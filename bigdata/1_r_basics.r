@@ -177,3 +177,7 @@ pred
 
 compare <- data.frame(pred, cars[, 2], pred-cars[, 2])
 colnames(compare) <- c()
+
+
+# 2020.10.17 교육 2
+# 로지스틱 회귀분석
