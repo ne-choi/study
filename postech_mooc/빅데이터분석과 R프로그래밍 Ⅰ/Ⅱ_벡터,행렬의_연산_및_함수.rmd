@@ -1,0 +1,323 @@
+---
+title: "Ⅱ. 벡터, 행렬의 연산 및 함수"
+author: "ne_choi"
+date: '2020 11 11 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅰ 과정입니다.  
+
+# Ⅱ. 벡터, 행렬의 연산 및 함수  
+## 1. 벡터 및 행렬 생성  
+### 벡터 생성  
+- 벡터  
+  - seq 함수 사용 (sequence)  
+```{r}
+# 0부터 10까지, 20개의 값을 생성
+y1 <- seq(0, 10, length=20)
+y1
+
+# 0부터 10까지, 0.5씩 간격을 두고 값을 생성
+y2 <- seq(0, 10, by = 0.5)
+y2
+```
+  - rep 함수 사용 (replication)  
+```{r}
+# 1부터 4까지 두 번을 반복하여 생성
+z1 <- rep(1:4, 2)
+z1
+
+# 1부터 5까지 다섯 번을 반복하여 생성
+z2 <- rep(1:2, 5)
+z2
+```
+
+- 백터 결합  
+  - cbind: column bind (열 기준으로 결합)  
+```{r}
+x <- c(1, 3, 5, 7, 9)
+c1 <- c(2, 4, 6, 8, 10)
+c2 <- cbind(x, c1)
+c2
+```
+
+  - rbind: row bind (행으로 결합)
+```{r}
+c3 <- rbind(x, c1)
+c3
+```
+
+- 행렬의 생성
+  - matrix 함수
+```{r}
+# tow row matrix with 1 to 10
+m1 <- matrix(1:10, nrow=2) #number of row
+m1
+
+# three columns matrix with 1:6
+m2 <- matrix(1:6, ncol=3)
+m2
+
+# matrix filled by rows, defalut: filled by columns
+m3 <- matrix(1:6, nrow=2, byrow=T)
+m3
+```
+
+  - 고차원 행렬_array 함수
+```{r}
+# higher order of array
+a1 <- array(c(1:18), dim=c(3,3,2)) # 3 by 3 행렬을 2개 만듦
+a1
+```
+
+## 2. 벡터 생성과 이름 주기
+### 벡터 생성 및 벡터 이름 주기
+- (0,1) 값을 갖는 벡터 gender에 0=female, 1=male 값 부여  
+```{r}
+gender <- c(0,1)
+names(gender) <- c("female", "male")
+gender
+```
+
+- factor 변수로 정의  
+  - gender 변수에 (0,1)입력된 경우 -> gender를 factor 변수로 정의 필요  
+gender 변수는 factor 변수로 인식하지 못함: (0,1)로 입력되었으므로  
+```{r}
+# define as a factor variable
+is.factor(gender)
+```
+
+  - as.factor(변수이름): 어떤 변수를 factor 변수로 정의할 때  
+gender 변수는 factor 변수로 정의 -> is.factor(gender)로 확인하면 factor 변수로 정의된 것 확인 가능  
+```{r}
+gender <- as.factor(gender)
+is.factor(gender)
+```
+
+- 범주형 변수 생성_factor 사용  
+  - size라는 변수 생성: (S, M, L, XL) 값을 갖는 범주형 변수(factor) 생성  
+```{r}
+size <- c("S", "M", "L", "XL")
+# define size as a factor (categorical variable)
+size_factor <- factor(size)
+
+size_factor
+```
+
+  - 순서를 정의한 factor 생성
+```{r}
+size_factor1 <- factor(size, ordered = TRUE, levels = c("S", "M", "L", "XL"))
+size_factor
+```
+
+- 행렬 생성하고 차원 알아보기
+```{r}
+x <- matrix(rnorm(12), nrow=4)
+x
+
+# 차원 확인하기
+dim(x)
+```
+
+- 행렬의 속성
+  - 행렬 x는 (4*3), x가 data frame은 아님
+```{r}
+# generate matrix form normal
+x <- matrix(rnorm(12), nrow=4)
+x
+
+# check dimension of x
+dim(x)
+
+# data frame
+is.data.frame(x)
+# matrix x is not a data frame
+```
+
+  - as.data.frame(x)는 x를 데이터로 인식
+```{r}
+# defime x as a data frame
+x <- as.data.frame(x)
+
+# then x is a data frame
+is.data.frame(x)
+```
+
+## 3. 백터와 행렬의 연산
+- 기본 연산 기호
+```{r}
+2^3
+4**3
+
+7%%2
+7%/%2
+```
+
+- 행렬의 연산  
+[- 참고](http://www.statmethods.net/advstats/matrix.html)
+  - 전치행렬(transpose) 구하기 (t)  
+  : 전치행렬은 행과 열을 바꾼 행렬
+  : m2는 (2 * 3)행렬, tm2는 (3 * 2) 행렬
+```{r}
+m2 <- matrix(1:6, ncol=3)
+m2
+
+# transpose of m2
+tm2 <- t(m2)
+tm2
+```
+
+  - determinant(행렬식) 구하기 (det) 
+  : determinant 식 |A| = $\frac{|a b|}{[c d]}$ = ad = bc
+```{r}
+d1 <- matrix(1:4, nrow=2, byrow=T) # row부터 채워라
+d1
+det(d1)
+```
+
+  - 역행렬(inverse) 구하기 (solve)
+  : d1 = $\frac{[1 2]}{3 4]}$,
+  : inverse(d1) = $frac{[-2.0  1.0]}{[1.5  -0.5]}$
+```{r}
+# inverse of matrix
+d1_inv <- solve(d1)
+d1_inv
+
+# d1 * inv(dq) = identity matrix
+d1 %*% d1_inv
+```
+  : d1*d1의 역행렬 = 단위행렬(대각행렬이 1인 행렬)  
+
+  - 역행렬을 이용한 방정식 해 구하기 (solve)
+  : 3x + 2y = 8, x + y = 2 => ## 임시 저장 ##
+  : 방정식의 해를 구하기 위해 a(행렬)과 b(벡터)를 생성  
+```{r}
+# solve equation
+# 3x + 2y = 8, x + y =2
+
+# matrix a, b
+a <- matrix(c(3,1,2,1), nrow=2, ncol=2)
+b <- matrix(c(8,2), nrow=2, ncol=1)
+a
+b
+```
+  : solve 함수를 이용해 x와 y의 해를 찾음
+```{r}
+solve(a,b)
+```
+
+  - 고유치(eigenvalue)와 고유벡터(eigenvector)
+```{r}
+# example for eigen value and eigen vector
+# already centered matrix
+x <- matrix(c(-3, -2, 0, 1, 2, 2, -3, -3, 0, 2, 2, 2, 5, 7, 4, 0, -5, -11), nrow=6, ncol=3)
+x
+dim(x)
+```
+```{r}
+# eigen value and eigen vector
+e1 <- eigen(t(x)%*%x)
+e1
+```
+
+## 4. 간단한 함수생성 및 루프(for, while)
+### 함수 생성
+- squre 함수 생성
+```{r}
+# create a simple function
+# squre function
+
+squre <- function(x){
+  return(x*x) # 제곱값 제공
+}
+
+squre(9)
+squre(1:3) #1부터 3까지 각 squre 값 제공하라
+```
+
+- dif 함수 생성
+```{r}
+dif <- function(x,y){
+  return(x-y)
+}
+
+dif(20,10)
+```
+
+- rootdif 함수 생성
+```{r}
+rootdif <- function(x,y){
+  return(sqrt(x-y))
+}
+
+rootdif(20,10)
+```
+- 기존 함수의 코드 보기_round 함수
+```{r}
+# round 함수: 소수점 자리 조정하는 함수
+round(5.14846)
+round(5.14846, 2)
+
+# to see the function "round"
+round
+
+# plus
+round(rootdif(20,10))
+round(rootdif(20,10),2)
+```
+
+### 루프문
+- 루프문 (for)
+  - for을 사용한 루프 1
+```{r}
+# for 1 to 10
+# if remainder = 1 when deviding by 3
+# then go to next number
+# $$
+
+for(i in 1:10){
+  if(i%%3 == 1){
+    next()
+  }
+  print(i)
+}
+# 1부터 10까지의 숫자 반복
+# 3으로 나누었을 때 내머지가 1인 경우 next(다음 숫자로 넘어감)
+# 넘어가지 않은 경우 print(i)를 통해 결과 반환
+```
+
+  - for을 사용한 루프 2
+```{r}
+# i = 1 ~ 10 1, 2, 3 ... 더해가며 프린트하는데, i > 5 보다 크면 수행(print(i))을 멈춤
+# for loop example 2
+# stop loop after i > 5
+# %%
+for (i in 1:10){
+  i <- i + 1
+  print(i)
+  if (i > 5){
+    # stop loop after i > 5
+    break
+  }
+}
+```
+
+  - while을 사용한 루프
+```{r}
+# y가 5보다 적을 때는 {expression} 부분 수행
+# while loop
+# while (condition) {expression}
+y = 0
+while(y < 5){print(y <- y+1)}
+```
