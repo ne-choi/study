@@ -1,0 +1,146 @@
+---
+title: "Ⅲ. R 데이터구조 (생성, 추출)"
+author: "ne_choi"
+date: '2020 11 12 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅰ 과정입니다.  
+
+# Ⅲ. R 데이터구조 (생성, 추출)
+## 1. R 데이터 생성
+### 파일 불러들이기
+
+1. csv
+```{r}
+brain <- read.csv("week3_2/brain2210.csv", header=T)
+```
+
+2. xls  
+- *.xls 파일인 경우, 데이터를 csv(comma separated value)로 저장한 다음 read.csv 함수를 사용해 r로 불러들이는 게 편리  
+- readxl로도 가능함
+
+3. txt
+```
+파일을 부를 이름 <- read.table(file = "파일명.txt, na = " ", header = TRUE)
+```
+
+### 데이터 저장 폴더
+- 데이터와 프로그램 저장 폴더 지정  
+  - 폴더 이름은 영문으로 생성할 것  
+
+- r 프로그램의 기본 경로 지정하는 명령어
+```
+# change working directory
+#set working directory
+setwd("경로") 
+
+# check the current working directory
+getwd()
+```
+
+### 데이터와 변수 이름
+attach를 사용하면 정의된 파일 이름 입력 없이 바로 항목 조회가 가능
+```{r}
+# attach 사용  
+attach(brain)  
+
+# 원래대로라면  
+table(brain$sex)  
+
+# attach를 쓰고 나면  
+table(sex)  
+```
+
+## 2. R 데이터 활용 Ⅰ
+### 데이터 추출_subset
+
+- subset(데이터 이름, 조건)  
+예제 1. brain 데이터에서 female만 있는 subset 데이터 생성  
+```{r}
+brainf <- subset(brain, sex = "f")
+mean(brainf$wt)
+```
+예제 2. brain 데이터에서 wt < 1300 이하인 데이터 생성  
+```{r}
+# subset with wt < 1300
+brain1300 <- subset(brain, brain$wt < 1300)
+
+# same subset of brain1300
+# brain1300 <- subset(brain, !brain@wt => 1300)
+summary(brain1300)
+```
+
+```{r}
+# subset with female
+# brainf <- subset(brain, sex = "f")
+brainf <- subset(brain, sex == "f")
+mean(brainf$wt)
+sd(brainf$wt)
+
+# subset with male
+brainm <- subset(brain, sex == "m")
+mean(brainm$wt)
+sd(brainm$wt)
+```
+
+### 요약통계치 (그룹별)_aggregate  
+
+- aggregate(변수~그룹, 데이터, 함수)
+```{r}
+# 'aggregate' for statistics by group
+aggregate(wt~sex, data = brain, FUN = mean)
+aggregate(wt~sex, data = brain, FUN = sd)
+```
+
+- 추출한 데이터의 활용 (그룹별 히스토그램)
+```{r}
+# histogram for female and male
+# 2*2 multiple plot
+par(mfrow=c(2,2))
+brainf<-subset(brain,brain$sex=='f') 
+hist(brainf$wt, breaks = 12,col = "green",cex=0.7, main="Histogram (Female)" ,xlab="brain weight")
+
+# subset with male
+brainm<-subset(brain,brain$sex=='m') 
+hist(brainm$wt, breaks = 12,col = "orange", main="Histogram with (Male)" ,  xlab="brain weight")
+```
+
+- 추출한 데이터의 활용
+```{r}
+# histogram with same scale
+hist(brainf$wt, breaks = 12,col = "green",cex=0.7, main="Histogram with Normal Curve (Female)" , xlim=c(900,1700),ylim=c(0,25), xlab="brain weight")
+hist(brainm$wt, breaks = 12,col = "orange", main="Histogram with Normal Curve (Male)" , xlim=c(900,1700), ylim=c(0,25),xlab="brain weight")
+```
+
+- csv로 내보내기
+```{r}
+# plot margin
+# par(mar=c(2,2,2,2))
+
+# export csv file - write out to csv file 
+write.table(brainf,file="week3_2/brainf.csv", row.names = FALSE, sep=",", na=" ")
+
+write.csv(brainf,file="week3_2/brainf.csv", row.names = FALSE)
+
+# export txt file 
+write.table(brainm, file="week3_2/brainm.txt", row.names = FALSE,  na=" ")
+```
+
+- 퀴즈  
+brain1000 <- subset(brain, brain$wt < 1000)
+brain1000
+
+table(brain1000)
+
