@@ -1521,7 +1521,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Ⅲ. R 데이터구조 (생성, 추출)</h1>
 <h4 class="author">ne_choi</h4>
-<h4 class="date">2020 11 12</h4>
+<h4 class="date">2020 11 1</h4>
 
 </div>
 
@@ -1679,6 +1679,292 @@ write.table(brainm, file=&quot;week3_2/brainm.txt&quot;, row.names = FALSE,  na=
 brain1000 &lt;- subset(brain, brain$wt &lt; 1000) brain1000</li>
 </ul>
 <p>table(brain1000)</p>
+</div>
+</div>
+<div id="r-데이터-활용-ⅰ-1" class="section level2">
+<h2>2. R 데이터 활용 Ⅰ</h2>
+<div id="dplyr-패키지" class="section level3">
+<h3>dplyr 패키지</h3>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>car &lt;- read.csv(&quot;week3_3/autompg.csv&quot;)
+head(car)</code></pre>
+<pre><code>##   mpg cyl disp hp   wt accler year origin                   carname
+## 1  18   8  307 17 3504   12.0   70      1 chevrolet chevelle malibu
+## 2  15   8  350 35 3693   11.5   70      1         buick skylark 320
+## 3  18   8  318 29 3436   11.0   70      1        plymouth satellite
+## 4  16   8  304 29 3433   12.0   70      1             amc rebel sst
+## 5  17   8  302 24 3449   10.5   70      1               ford torino
+## 6  15   8  429 42 4341   10.0   70      1          ford galaxie 500</code></pre>
+<p>데이터 구조 파악하기</p>
+<pre class="r"><code># 데이터의 수와 변수는?
+dim(car)</code></pre>
+<pre><code>## [1] 398   9</code></pre>
+<pre class="r"><code># 데이터 수: 398개, 변수: 9개
+
+# 데이터 전체 주고 파악하기: str 함수
+str(car)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    398 obs. of  9 variables:
+##  $ mpg    : num  18 15 18 16 17 15 14 14 14 15 ...
+##  $ cyl    : int  8 8 8 8 8 8 8 8 8 8 ...
+##  $ disp   : num  307 350 318 304 302 429 454 440 455 390 ...
+##  $ hp     : num  17 35 29 29 24 42 47 46 48 40 ...
+##  $ wt     : int  3504 3693 3436 3433 3449 4341 4354 4312 4425 3850 ...
+##  $ accler : num  12 11.5 11 12 10.5 10 9 8.5 10 8.5 ...
+##  $ year   : int  70 70 70 70 70 70 70 70 70 70 ...
+##  $ origin : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ carname: chr  &quot;chevrolet chevelle malibu&quot; &quot;buick skylark 320&quot; &quot;plymouth satellite&quot; &quot;amc rebel sst&quot; ...</code></pre>
+<pre class="r"><code># num: 실수, int: 정수
+
+# 데이터 요약하기: summary 함수
+summary(car)</code></pre>
+<pre><code>##       mpg             cyl             disp             hp              wt      
+##  Min.   : 9.00   Min.   :3.000   Min.   : 68.0   Min.   : 1.00   Min.   :1613  
+##  1st Qu.:17.50   1st Qu.:4.000   1st Qu.:104.2   1st Qu.:26.00   1st Qu.:2224  
+##  Median :23.00   Median :4.000   Median :148.5   Median :60.50   Median :2804  
+##  Mean   :23.51   Mean   :5.455   Mean   :193.4   Mean   :51.39   Mean   :2970  
+##  3rd Qu.:29.00   3rd Qu.:8.000   3rd Qu.:262.0   3rd Qu.:79.00   3rd Qu.:3608  
+##  Max.   :46.60   Max.   :8.000   Max.   :455.0   Max.   :94.00   Max.   :5140  
+##      accler           year           origin        carname         
+##  Min.   : 8.00   Min.   :70.00   Min.   :1.000   Length:398        
+##  1st Qu.:13.82   1st Qu.:73.00   1st Qu.:1.000   Class :character  
+##  Median :15.50   Median :76.00   Median :1.000   Mode  :character  
+##  Mean   :15.57   Mean   :76.01   Mean   :1.573                     
+##  3rd Qu.:17.18   3rd Qu.:79.00   3rd Qu.:2.000                     
+##  Max.   :24.80   Max.   :82.00   Max.   :3.000</code></pre>
+<pre class="r"><code># 데이터 요약통계치(빈도 구하기): table 함수
+attach(car) # attach를 쓰면 변수에 이름을 안 써도 됨</code></pre>
+<pre><code>## The following object is masked from brain:
+## 
+##     wt</code></pre>
+<pre class="r"><code>table(origin)</code></pre>
+<pre><code>## origin
+##   1   2   3 
+## 249  70  79</code></pre>
+<pre class="r"><code>table(year)</code></pre>
+<pre><code>## year
+## 70 71 72 73 74 75 76 77 78 79 80 81 82 
+## 29 28 28 40 27 30 34 28 36 29 29 29 31</code></pre>
+<pre class="r"><code># 데이터 요약통계치 (평균, 표준편차): mean
+mean(mpg)</code></pre>
+<pre><code>## [1] 23.51457</code></pre>
+<pre class="r"><code>mean(hp)</code></pre>
+<pre><code>## [1] 51.38945</code></pre>
+<pre class="r"><code>mean(wt)</code></pre>
+<pre><code>## [1] 2970.425</code></pre>
+</div>
+</div>
+<div id="데이터-핸들링" class="section level2">
+<h2>4. 데이터 핸들링</h2>
+<div id="dplyr-활용" class="section level3">
+<h3>dplyr 활용</h3>
+<p>dplyr: 전처리 과정을 하기 위한 편리한 기능</p>
+<pre class="r"><code>library(dplyr)
+
+attach(car)</code></pre>
+<pre><code>## The following objects are masked from car (pos = 3):
+## 
+##     accler, carname, cyl, disp, hp, mpg, origin, wt, year</code></pre>
+<pre><code>## The following object is masked from brain:
+## 
+##     wt</code></pre>
+<pre class="r"><code>str(car)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    398 obs. of  9 variables:
+##  $ mpg    : num  18 15 18 16 17 15 14 14 14 15 ...
+##  $ cyl    : int  8 8 8 8 8 8 8 8 8 8 ...
+##  $ disp   : num  307 350 318 304 302 429 454 440 455 390 ...
+##  $ hp     : num  17 35 29 29 24 42 47 46 48 40 ...
+##  $ wt     : int  3504 3693 3436 3433 3449 4341 4354 4312 4425 3850 ...
+##  $ accler : num  12 11.5 11 12 10.5 10 9 8.5 10 8.5 ...
+##  $ year   : int  70 70 70 70 70 70 70 70 70 70 ...
+##  $ origin : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ carname: chr  &quot;chevrolet chevelle malibu&quot; &quot;buick skylark 320&quot; &quot;plymouth satellite&quot; &quot;amc rebel sst&quot; ...</code></pre>
+</div>
+<div id="변수-추출-select" class="section level3">
+<h3>변수 추출: select</h3>
+<p>car 데이터에서 mpg, hp 변수만 추출</p>
+<pre class="r"><code># Data handling usin &quot;dplyr&quot;
+# 1 subset data: selecting a few variables
+set1 &lt;- select(car, mpg, hp)
+head(set1)</code></pre>
+<pre><code>##   mpg hp
+## 1  18 17
+## 2  15 35
+## 3  18 29
+## 4  16 29
+## 5  17 24
+## 6  15 42</code></pre>
+<p>car 데이터에서 mpg로 시작하는 변수를 제외</p>
+<pre class="r"><code># 2 subset data: drop variables with -
+set2 &lt;- select(car, -starts_with(&quot;mpg&quot;))
+head(set2)</code></pre>
+<pre><code>##   cyl disp hp   wt accler year origin                   carname
+## 1   8  307 17 3504   12.0   70      1 chevrolet chevelle malibu
+## 2   8  350 35 3693   11.5   70      1         buick skylark 320
+## 3   8  318 29 3436   11.0   70      1        plymouth satellite
+## 4   8  304 29 3433   12.0   70      1             amc rebel sst
+## 5   8  302 24 3449   10.5   70      1               ford torino
+## 6   8  429 42 4341   10.0   70      1          ford galaxie 500</code></pre>
+</div>
+<div id="데이터-추출-filter" class="section level3">
+<h3>데이터 추출: filter</h3>
+<ul>
+<li>조건에 맞는 데이터 추출: filter(데이터, 변수 조건, …)<br />
+car 데이터에서 mpg가 30보다 큰 행 추출</li>
+</ul>
+<pre class="r"><code># 3 subset data: filter mpg &gt; 50
+set3 &lt;- filter(car, mpg &gt; 30)
+head(set3)</code></pre>
+<pre><code>##   mpg cyl disp hp   wt accler year origin             carname
+## 1  31   4   71 62 1773   19.0   71      3 toyota corolla 1200
+## 2  35   4   72 66 1613   18.0   71      3         datsun 1200
+## 3  31   4   79 64 1950   19.0   74      3         datsun b210
+## 4  32   4   71 62 1836   21.0   74      3 toyota corolla 1200
+## 5  31   4   76 53 1649   16.5   74      3       toyota corona
+## 6  32   4   83 58 2003   19.0   74      3          datsun 710</code></pre>
+</div>
+<div id="변수-생성-mutate" class="section level3">
+<h3>변수 생성: mutate</h3>
+<ul>
+<li>mutate(새로운 변수 이름 = 기존 변수 활용)</li>
+<li><strong>%&gt;% 파이프 연산자</strong>: 연산자 사용하여 연결</li>
+</ul>
+<pre class="r"><code># create a derived variable
+set4 &lt;- car %&gt;%
+   filter(!is.na(mpg)) %&gt;%
+   mutate(mpg_km = mpg*1.609)
+head(set4)</code></pre>
+<pre><code>##   mpg cyl disp hp   wt accler year origin                   carname mpg_km
+## 1  18   8  307 17 3504   12.0   70      1 chevrolet chevelle malibu 28.962
+## 2  15   8  350 35 3693   11.5   70      1         buick skylark 320 24.135
+## 3  18   8  318 29 3436   11.0   70      1        plymouth satellite 28.962
+## 4  16   8  304 29 3433   12.0   70      1             amc rebel sst 25.744
+## 5  17   8  302 24 3449   10.5   70      1               ford torino 27.353
+## 6  15   8  429 42 4341   10.0   70      1          ford galaxie 500 24.135</code></pre>
+<pre class="r"><code># filter: car 데이터 mpg열의 NA가 아닌 모든 데이터 추출
+# mutate: 기존 mpg열을 사용해 새로운 mpg_km열 생성</code></pre>
+</div>
+<div id="데이터-요약-통계치평균" class="section level3">
+<h3>데이터 요약 통계치(평균)</h3>
+<ul>
+<li>summarize(mean(변수이름))</li>
+</ul>
+<pre class="r"><code># mean and standard deviation
+car %&gt;%
+   summarize(mean(mpg), mean(hp), mean(wt))</code></pre>
+<pre><code>##   mean(mpg) mean(hp) mean(wt)
+## 1  23.51457 51.38945 2970.425</code></pre>
+<pre class="r"><code># 몇 개 변수의 평균값 한 번에 구하기
+select(car, 1:6) %&gt;%
+   colMeans() # 데이터를 열로 재구성하여 평균값 구함</code></pre>
+<pre><code>##         mpg         cyl        disp          hp          wt      accler 
+##   23.514573    5.454774  193.425879   51.389447 2970.424623   15.568090</code></pre>
+</div>
+<div id="백터화-요약치-summarize_allfun" class="section level3">
+<h3>백터화 요약치: summarize_all(FUN)</h3>
+<ul>
+<li>열추출하여 기술통계치 구하고 요약치 보기</li>
+</ul>
+<pre class="r"><code>a1 &lt;- select(car, 1:6) %&gt;% summarize_all(mean)
+a2 &lt;- select(car, 1:6) %&gt;% summarize_all(sd)
+a3 &lt;- select(car, 1:6) %&gt;% summarize_all(min)
+a4 &lt;- select(car, 1:6) %&gt;% summarize_all(max)
+
+table1 &lt;- data.frame(rbind(a1,a2,a3,a4))
+rownames(table1) &lt;- c(&quot;mean&quot;, &quot;sd&quot;, &quot;min&quot;, &quot;max&quot;) # data.frame을 tbl_df로 전환시켰으므로 data.frame으로 원상복귀하여 행 이름을 바꿈
+
+table1</code></pre>
+<pre><code>##            mpg      cyl     disp       hp        wt    accler
+## mean 23.514573 5.454774 193.4259 51.38945 2970.4246 15.568090
+## sd    7.815984 1.701004 104.2698 29.93236  846.8418  2.757689
+## min   9.000000 3.000000  68.0000  1.00000 1613.0000  8.000000
+## max  46.600000 8.000000 455.0000 94.00000 5140.0000 24.800000</code></pre>
+</div>
+<div id="그룹별-통계량-group_by" class="section level3">
+<h3>그룹별 통계량: group_by</h3>
+<ul>
+<li>group_by(변수), summarize(__=FUN()) 그룹별 요약통계량 구하기</li>
+</ul>
+<pre class="r"><code># summary statistics by group variable
+car %&gt;%
+   group_by(cyl) %&gt;%
+   summarize(mean_mpg = mean(mpg), na.rm = TRUE)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##     cyl mean_mpg na.rm
+##   &lt;int&gt;    &lt;dbl&gt; &lt;lgl&gt;
+## 1     3     20.6 TRUE 
+## 2     4     29.3 TRUE 
+## 3     5     27.4 TRUE 
+## 4     6     20.0 TRUE 
+## 5     8     15.0 TRUE</code></pre>
+<pre class="r"><code># group_by: car 데이터의 cyl열을 그룹으로 묶음
+# summarize: cyl그룹의 mpg 평균을 구함
+# na.rm = TURE: 통계 분석 시 결측값을 제외</code></pre>
+<ul>
+<li>퀴즈</li>
+</ul>
+<pre class="r"><code>height &lt;- c(165, 170, 155, 185)  
+weight &lt;- c(55, 65, 50, 110)  
+gender &lt;- c(&quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;)
+
+df &lt;- data.frame(height, weight, gender)
+
+df</code></pre>
+<pre><code>##   height weight gender
+## 1    165     55 Female
+## 2    170     65   Male
+## 3    155     50 Female
+## 4    185    110   Male</code></pre>
+<pre class="r"><code>df %&gt;% 
+   group_by(height) %&gt;%
+   summarize(result = mean(gender))</code></pre>
+<pre><code>## Warning in mean.default(gender): argument is not numeric or logical: returning
+## NA
+
+## Warning in mean.default(gender): argument is not numeric or logical: returning
+## NA
+
+## Warning in mean.default(gender): argument is not numeric or logical: returning
+## NA
+
+## Warning in mean.default(gender): argument is not numeric or logical: returning
+## NA</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##   height result
+##    &lt;dbl&gt;  &lt;dbl&gt;
+## 1    155     NA
+## 2    165     NA
+## 3    170     NA
+## 4    185     NA</code></pre>
+<pre class="r"><code>summarize(group_by(df, gender), result=mean(height))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   gender result
+##   &lt;chr&gt;   &lt;dbl&gt;
+## 1 Female   160 
+## 2 Male     178.</code></pre>
+<pre class="r"><code>filter(df, gender = c(&quot;Male&quot;, &quot;Female&quot;)) %&gt;%
+   summarize(result = mean())</code></pre>
+<pre><code>## Error: Problem with `filter()` input `..1`.
+## x Input `..1` is named.
+## i This usually means that you&#39;ve used `=` instead of `==`.
+## i Did you mean `gender == c(&quot;Male&quot;, &quot;Female&quot;)`?</code></pre>
+<pre class="r"><code>df %&gt;%
+   select(height) %&gt;%
+   summarize(result = mean(gender))</code></pre>
+<pre><code>## Warning in mean.default(gender): argument is not numeric or logical: returning
+## NA</code></pre>
+<pre><code>##   result
+## 1     NA</code></pre>
 </div>
 </div>
 </div>

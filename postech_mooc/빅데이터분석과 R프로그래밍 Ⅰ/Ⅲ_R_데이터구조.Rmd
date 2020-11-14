@@ -1,7 +1,7 @@
 ---
 title: "Ⅲ. R 데이터구조 (생성, 추출)"
 author: "ne_choi"
-date: '2020 11 12 '
+date: '2020 11 1 '
 output:
   html_document:
    toc: true
@@ -144,3 +144,157 @@ brain1000
 
 table(brain1000)
 
+
+## 2. R 데이터 활용 Ⅰ
+### dplyr 패키지
+```{r}
+library(dplyr)
+
+car <- read.csv("week3_3/autompg.csv")
+head(car)
+```
+
+데이터 구조 파악하기
+```{r}
+# 데이터의 수와 변수는?
+dim(car)
+# 데이터 수: 398개, 변수: 9개
+
+# 데이터 전체 주고 파악하기: str 함수
+str(car)
+# num: 실수, int: 정수
+
+# 데이터 요약하기: summary 함수
+summary(car)
+
+# 데이터 요약통계치(빈도 구하기): table 함수
+attach(car) # attach를 쓰면 변수에 이름을 안 써도 됨
+table(origin)
+table(year)
+
+# 데이터 요약통계치 (평균, 표준편차): mean
+mean(mpg)
+mean(hp)
+mean(wt)
+```
+
+## 4. 데이터 핸들링
+### dplyr 활용
+dplyr: 전처리 과정을 하기 위한 편리한 기능
+```{r}
+library(dplyr)
+
+attach(car)
+str(car)
+```
+
+### 변수 추출: select
+car 데이터에서 mpg, hp 변수만 추출
+```{r}
+# Data handling usin "dplyr"
+# 1 subset data: selecting a few variables
+set1 <- select(car, mpg, hp)
+head(set1)
+```
+
+car 데이터에서 mpg로 시작하는 변수를 제외
+```{r}
+# 2 subset data: drop variables with -
+set2 <- select(car, -starts_with("mpg"))
+head(set2)
+```
+
+### 데이터 추출: filter
+- 조건에 맞는 데이터 추출: filter(데이터, 변수 조건, ...)  
+car 데이터에서 mpg가 30보다 큰 행 추출
+```{r}
+# 3 subset data: filter mpg > 50
+set3 <- filter(car, mpg > 30)
+head(set3)
+```
+### 변수 생성: mutate
+- mutate(새로운 변수 이름 = 기존 변수 활용)
+- **%>% 파이프 연산자**: 연산자 사용하여 연결
+```{r}
+# create a derived variable
+set4 <- car %>%
+   filter(!is.na(mpg)) %>%
+   mutate(mpg_km = mpg*1.609)
+head(set4)
+
+# filter: car 데이터 mpg열의 NA가 아닌 모든 데이터 추출
+# mutate: 기존 mpg열을 사용해 새로운 mpg_km열 생성
+```
+
+### 데이터 요약 통계치(평균)
+- summarize(mean(변수이름))
+```{r}
+# mean and standard deviation
+car %>%
+   summarize(mean(mpg), mean(hp), mean(wt))
+
+# 몇 개 변수의 평균값 한 번에 구하기
+select(car, 1:6) %>%
+   colMeans() # 데이터를 열로 재구성하여 평균값 구함
+```
+
+### 백터화 요약치: summarize_all(FUN)
+- 열추출하여 기술통계치 구하고 요약치 보기
+```{r}
+a1 <- select(car, 1:6) %>% summarize_all(mean)
+a2 <- select(car, 1:6) %>% summarize_all(sd)
+a3 <- select(car, 1:6) %>% summarize_all(min)
+a4 <- select(car, 1:6) %>% summarize_all(max)
+
+table1 <- data.frame(rbind(a1,a2,a3,a4))
+rownames(table1) <- c("mean", "sd", "min", "max") # data.frame을 tbl_df로 전환시켰으므로 data.frame으로 원상복귀하여 행 이름을 바꿈
+
+table1
+```
+
+### 그룹별 통계량: group_by
+- group_by(변수), summarize(__=FUN())
+그룹별 요약통계량 구하기
+```{r}
+# summary statistics by group variable
+car %>%
+   group_by(cyl) %>%
+   summarize(mean_mpg = mean(mpg), na.rm = TRUE)
+
+# group_by: car 데이터의 cyl열을 그룹으로 묶음
+# summarize: cyl그룹의 mpg 평균을 구함
+# na.rm = TURE: 통계 분석 시 결측값을 제외
+```
+
+
+- 퀴즈  
+```{r}
+height <- c(165, 170, 155, 185)  
+weight <- c(55, 65, 50, 110)  
+gender <- c("Female", "Male", "Female", "Male")
+
+df <- data.frame(height, weight, gender)
+
+df
+```
+
+```{r}
+df %>% 
+   group_by(height) %>%
+   summarize(result = mean(gender))
+```
+
+```{r}
+summarize(group_by(df, gender), result=mean(height))
+```
+
+```{r, error=TRUE}
+filter(df, gender = c("Male", "Female")) %>%
+   summarize(result = mean())
+```
+
+```{r}
+df %>%
+   select(height) %>%
+   summarize(result = mean(gender))
+```
