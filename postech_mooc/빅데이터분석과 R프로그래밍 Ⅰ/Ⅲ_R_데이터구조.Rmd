@@ -1,7 +1,7 @@
 ---
 title: "Ⅲ. R 데이터구조 (생성, 추출)"
 author: "ne_choi"
-date: '2020 11 1 '
+date: '2020 11 13 '
 output:
   html_document:
    toc: true
@@ -145,7 +145,7 @@ brain1000
 table(brain1000)
 
 
-## 2. R 데이터 활용 Ⅰ
+## 3. R 데이터 활용 Ⅱ
 ### dplyr 패키지
 ```{r}
 library(dplyr)
