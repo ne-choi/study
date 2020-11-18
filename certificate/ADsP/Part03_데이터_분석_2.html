@@ -12,7 +12,7 @@
 <meta name="author" content="ne_choi" />
 
 
-<title>part03. 데이터 분석</title>
+<title>Part03. 데이터 분석_2</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -1519,9 +1519,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">part03. 데이터 분석</h1>
+<h1 class="title toc-ignore">Part03. 데이터 분석_2</h1>
 <h4 class="author">ne_choi</h4>
-<h4 class="date">2020 11 15</h4>
+<h4 class="date">2020 11 17</h4>
 
 </div>
 
@@ -1529,763 +1529,6 @@ div.tocify {
 <ul>
 <li>해당 자료는 <a href="http://www.dataedu.kr/product/adsp-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D-%EC%A4%80%EC%A0%84%EB%AC%B8%EA%B0%80-2020-%EC%99%84%EC%A0%84%EA%B0%9C%EC%A0%95%ED%8C%90/">ADsP 데이터분석 준전문가 2020 완전 개정판</a> 요약본으로 저작권은 DATA EDU에 있습니다.</li>
 </ul>
-<div id="장.-데이터-분석-개요" class="section level1">
-<h1>1장. 데이터 분석 개요</h1>
-<div id="절.-데이터-분석-기법의-이해" class="section level2">
-<h2>1절. 데이터 분석 기법의 이해</h2>
-<div id="데이터-처리" class="section level3">
-<h3>1. 데이터 처리</h3>
-<ul>
-<li>데이터 분석
-<ul>
-<li>통계 기반이나, 통계지식과 복잡한 가정이 상대적으로 적은 실용적인 분야</li>
-</ul></li>
-<li>활용
-<ul>
-<li>대기업은 데이터 웨어하우스(DW)와 데이터마트(DM)를 통해 분석 데이터를 가져와 사용</li>
-<li>신규 시스템이나 DW에 포함되지 못한 자료는, 기존 운영 시스템(Legacy)나 스테이징 영역(staging area)과 ODS(Operational Data Store)에서 데이터를 가져와 DW에서 가져온 내용과 결합하여 활용 가능</li>
-<li>단, 운영시스템에 직접 접근해 데이터를 활용하는 것은 매우 위험 → 스테이징 영역 데이터는 운영시스템에서 임시로 저장된 데이터기에 가급적 클린징 영역인 ODS에서 데이터 전처리를 하여 DW나 DM과 결합해 사용</li>
-</ul></li>
-<li>최종 데이터 구조로 가공
-<ul>
-<li><strong>데이터 마이닝 분류</strong>
-<ul>
-<li>분류값과 입력변수를 연관시켜 인구통계, 요약변수, 파생벽수 등 산출</li>
-</ul></li>
-<li><strong>정형화된 패턴 처리</strong>
-<ul>
-<li>비정형 데이터나 소셜 데이터는 정형화된 패턴으로 처리해야 함</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li><strong>비정형 데이터</strong>
-<ul>
-<li>DMBS에 저장됐다가 텍스트 마이닝을 거쳐 데이터 마트와 통합</li>
-</ul></li>
-<li><strong>관계형 데이터</strong>
-<ul>
-<li>DBMS에 저장되어 사회 신경망 분석을 거쳐 분석 결과 통계값이 마트와 통합되어 활용</li>
-</ul></li>
-</ol></li>
-</ul></li>
-</ul>
-</div>
-<div id="시각화시각화-그래프" class="section level3">
-<h3>2. 시각화(시각화 그래프)</h3>
-<ul>
-<li>가장 낮은 수준의 분석이지만, 제대로 사용하면 복잡한 분석보다도 효율적</li>
-<li>대용량 데이터를 다루는 빅데이터 분석에서 시각화는 필수</li>
-<li>탐색적 분석을 할 때, 시각화는 필수</li>
-<li>SNA 분석(사회연결망 분석)을 할 때, 자주 활용</li>
-</ul>
-</div>
-<div id="공간분석gis" class="section level3">
-<h3>3. 공간분석(GIS)</h3>
-<ul>
-<li><strong>공간분석(Spatial Analysis)</strong>은 공간적 차원과 관련된 속성을 시각화하는 분석</li>
-<li>지도 위에 관련 속성을 생성하고 크기, 모양, 선, 굵기 등으로 구분하여 인사이트를 얻음</li>
-</ul>
-</div>
-<div id="탐색적-자료-분석eda" class="section level3">
-<h3>4. 탐색적 자료 분석(EDA)</h3>
-<ul>
-<li>탐색적 분석
-<ul>
-<li>다양한 차원과 값을 조합하며 특이점이나 의미 있는 사실을 도출하여 분석의 최종 목적을 달성하는 과정</li>
-<li>데이터의 특징과 내재하는 구조적 관계를 알아내기 위한 기법의 통칭</li>
-</ul></li>
-<li><strong>EDA의 4가지 주제</strong>
-<ul>
-<li><strong>저항성의 강조, 잔차 계산, 자료변수의 재표현, 그래프를 통한 현시성</strong></li>
-</ul></li>
-<li>탐색적 분석 효율 예시 -데이터 이해 단계, 변수 생성 단계, 변수 선택 단계에서 활용</li>
-</ul>
-</div>
-<div id="통계분석" class="section level3">
-<h3>5. 통계분석</h3>
-<ul>
-<li><strong>통계</strong>
-<ul>
-<li>어떤 현상을 종합적으로 알아보기 쉽게 일정한 체계에 따라 숫자, 표, 그림 형태로 나타낸 것</li>
-</ul></li>
-<li><strong>기술통계(descriptive statistics)</strong>
-<ul>
-<li>모집단으로부터 표본을 추출하고 표본이 가진 정보를 쉽게 파악하도록 데이터를 정리하거나 요약하기 위해 하나의 숫자 또는 그래프 형태로 표현하는 절차</li>
-</ul></li>
-<li><strong>추측(추론)통계(inferential statistics)</strong>
-<ul>
-<li>모집단으로부터 추출된 표본의 표본통계량으로부터 모집단 특성인 모수에 관해 통계적으로 추론하는 절차</li>
-</ul></li>
-<li>활용 분야
-<ul>
-<li>정부 경제정책 수립 / 평가 근거자료(통계청 실업률, 고용률, 물가지수)</li>
-<li>농업(가뭄, 수해, 병충해에 강한 품종 개발 및 개량)</li>
-<li>의학(치료 방법의 효과나 신약 개발을 위한 임상실험 결과 분석)</li>
-<li>경영(제품 개발, 품질관리, 시장조사, 영업관리)</li>
-<li>스포츠(선수 체질향상, 경기 분석, 전략 분석, 선수 평가, 기용)</li>
-</ul></li>
-</ul>
-</div>
-<div id="데이터-마이닝" class="section level3">
-<h3>6. 데이터 마이닝</h3>
-<ul>
-<li>데이터 마이닝
-<ul>
-<li>대표적인 고급 데이터 분석법</li>
-<li>대용량 자료를 요약하고 미래 예측을 목표로 자료의 관계, 패턴, 규칙을 탐색하고 모형화</li>
-<li>이전에 알려지지 않은 유용한 지식을 추출하는 분석</li>
-</ul></li>
-<li>방법론
-<ul>
-<li><strong>데이터베이스</strong>에서의 지식 탐색
-<ul>
-<li>데이터 웨어하우스에서 데이터 마트를 생성하면서 각 데이터 속성을 사전분석하여 지식을 얻는 방법</li>
-</ul></li>
-<li><strong>기계학습</strong>(machine learning)
-<ul>
-<li>인공지능의 한 분야</li>
-<li>컴퓨터가 학습할 수 있도록 알고리즘과 기술을 개발하는 분야</li>
-<li>인공신경망, 의사결정나무, 클러스터링, 베이지안 분류, SVM 등</li>
-</ul></li>
-<li><strong>패턴인식</strong>(pattern recognition)
-<ul>
-<li>원자료를 이용하여 사전지식, 패턴에서 추출된 통계 정보를 기반으로 자료 또는 패턴을 분류</li>
-<li>장바구니 분석, 연관 규칙</li>
-</ul></li>
-</ul></li>
-<li>활용 분야
-<ul>
-<li>데이터베이스 마케팅(고객 행동정보를 활용한 목표 마케팅, 고객 세분화, 장바구니 분석, 추천 시스템)</li>
-<li>신용평가 및 조기경보시스템(금융기관에서 신용카드 발급, 보험, 대출 발생 시)</li>
-<li>생물정보학(세포 유전자 분석으로 질병 진단과 치료법, 신약 개발)</li>
-<li>텍스트마이닝(전자우편, SNS 등 디지털 텍스트 정보로 고객성향, 감정, 사회관계망 분석)</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="장.-r-프로그래밍-기초" class="section level1">
-<h1>2장. R 프로그래밍 기초</h1>
-<div id="절.-r-소개" class="section level2">
-<h2>1절. R 소개</h2>
-<div id="데이터-분석-도구의-현황" class="section level3">
-<h3>1. 데이터 분석 도구의 현황</h3>
-<ul>
-<li>R의 탄생
-<ul>
-<li>오픈소스 프로그램으로 통계, 데이터 마이닝과 그래프를 위한 언어</li>
-<li>최신 통계 분석과 마이닝 기능 제공</li>
-<li>세계적인 사용자와 다양한 예제 공유 가능</li>
-<li>패키지가 수시로 업데이트 됨</li>
-</ul></li>
-<li>분석 도구 비교</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th>SAS</th>
-<th>SPSS</th>
-<th>오픈소스 R</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>프로그램 비용</td>
-<td>유료, 고가</td>
-<td>유료, 고가</td>
-<td>오픈소스</td>
-</tr>
-<tr class="even">
-<td>설치 용량</td>
-<td>대용량</td>
-<td>대용량</td>
-<td>모듈화로 간단함</td>
-</tr>
-<tr class="odd">
-<td>다양한 모듈 지원 및 비용</td>
-<td>별도 구매</td>
-<td>별도 구매</td>
-<td>오픈 소스</td>
-</tr>
-<tr class="even">
-<td>최근 알고리즘 및 기술 반양</td>
-<td>느림</td>
-<td>다소 느림</td>
-<td>매우 빠름</td>
-</tr>
-<tr class="odd">
-<td>학습자료 입수 편의성</td>
-<td>유료 도서 위주</td>
-<td>유료 도서 위주</td>
-<td>공개 논문 및 자료 많음</td>
-</tr>
-<tr class="even">
-<td>질의용 공개 커뮤니티</td>
-<td>NA</td>
-<td>NA</td>
-<td>매우 활발</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>R의 특징
-<ol style="list-style-type: decimal">
-<li>오픈소스 프로그램</li>
-</ol>
-<ul>
-<li>사용자 커뮤니티에 도움 요청이 많음</li>
-<li>많은 패키지가 수시 업데이트</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>그래픽 및 성능</li>
-</ol>
-<ul>
-<li>프로그래밍, 그래픽 측명 등 사용 프로그램과 대등하거나 월등함</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>시스템 데이터 저장 방식</li>
-</ol>
-<ul>
-<li>각 세션 사이마다 시스템에 데이터셋을 저장 → 매번 데이터 로딩 필요가 없음</li>
-<li>명령어 스토리 저장 가능</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>모든 운영체제</li>
-</ol>
-<ul>
-<li>윈도우, 맥, 리눅스 운영체제에서 사용 가능</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li>표준 플랫폼</li>
-</ol>
-<ul>
-<li>S 통계 언어 기반으로 구현</li>
-<li>R/S 플랫폼은 통계전문가의 사실상 표준 플랫폼</li>
-</ul>
-<ol start="6" style="list-style-type: decimal">
-<li>객체지향 언어이며 함수형 언어</li>
-</ol>
-<ul>
-<li><p>통계 기능뿐 아니라 일반 프로그래밍 언어처럼 자동화하거나 새로운 함수 생성 가능</p></li>
-<li><p><strong>객체지향 언어의 특징</strong></p>
-<ul>
-<li>SAS, SPSS 회귀 분석 시, 화면에 결과가 나와 추가 작업이 필요</li>
-<li>R은 추정계수, 표준오차, 잔차 등 결괏값을 객체에 저장할 수 있어서 활용이 쉬움</li>
-</ul></li>
-<li><p><strong>함수형 언어의 특징</strong></p>
-<ul>
-<li>깔끔하고 단축된 코드</li>
-<li>코드 실행이 빠름</li>
-<li>단순한 코드로 디버깅 노력 감소</li>
-<li>병렬 프로그래밍으로의 전환 용이</li>
-</ul></li>
-</ul></li>
-<li>R 스튜디오
-<ul>
-<li>오픈소스이며 다양한 운영체계 지원</li>
-<li>메모리에 변수가 어떻게 되어 있는지, 타입이 무엇인지를 볼 수 있음</li>
-<li>스크립트 관리와 도큐먼테이션이 편리</li>
-<li>코딩은 스크립트용 프로그래밍으로 어렵지 않게 자동화 가능</li>
-<li>래틀(Rattle)은 GUI가 패키지와 긴밀하게 결합외어 있어 정해진 기능만 사용 가능 → 업그레이드가 제대로 되지 않으면 통합성에 문제 발생</li>
-</ul></li>
-<li>R 기반 작업 환경
-<ul>
-<li>R 메모리: 64bit 유닉스- 무제한, x86 64bit- 128TB, 64bit 윈도우- 8TB</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="절.-r-기초" class="section level2">
-<h2>2절. R 기초</h2>
-<ul>
-<li>교재 참고</li>
-</ul>
-</div>
-<div id="절.-입력과-출력" class="section level2">
-<h2>3절. 입력과 출력</h2>
-<div id="데이터-분석-과정" class="section level3">
-<h3>1. 데이터 분석 과정</h3>
-<ul>
-<li>분석자가 분석 목적에 맞는 방법론을 선택하여 얻은 결과를 해석하는 과정</li>
-<li>INPUT → ANALYSIS → OUTPUT</li>
-</ul>
-</div>
-<div id="r에서의-데이터-입력과-출력" class="section level3">
-<h3>2. R에서의 데이터 입력과 출력</h3>
-<ul>
-<li>R에서 다룰 수 있는 파일 타입
-<ul>
-<li>Tab-delimited text, Comma-separated text, Excel file, JSON file, HTML/XML file, Database, (other) Statistical SW’s file</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="절.-데이터-구조와-데이터-프레임-1" class="section level2">
-<h2>4절. 데이터 구조와 데이터 프레임 1</h2>
-<div id="백터vector" class="section level3">
-<h3>1. 백터(Vector)</h3>
-<ul>
-<li><p>백터들은 동질적</p></li>
-<li><p>한 백터의 모든 원소는 같은 자료형 또는 같은 모드(mode)를 가짐</p></li>
-<li><p>백터는 위치로 인덱스 됨</p>
-<ul>
-<li>V[2]는 V 백터의 2번째 원소</li>
-</ul></li>
-<li><p>백터는 인덱스를 통해 여러 개 원소로 구성된 하위 백터를 반환할 수 있음</p>
-<ul>
-<li>V[c(2,3)]은 V 백터의 2번째, 3번째 원소로 구성된 하위 백터</li>
-</ul></li>
-<li><p>백터 원소들은 이름을 가질 수 있음</p>
-<pre><code>V &lt;- c(10,20,30); names(v) &lt;- c(&quot;Moe&quot;, &quot;Larry&quot;, &quot;Curly&quot;)
-v[&quot;Larry&quot;]  
-Larry  
-20</code></pre></li>
-</ul>
-</div>
-<div id="리스트lists" class="section level3">
-<h3>2. 리스트(Lists)</h3>
-<ul>
-<li>리스트는 이질적
-<ul>
-<li>여러 자료형 원소가 포함될 수 있음</li>
-</ul></li>
-<li>리스트는 위치로 인덱스 됨
-<ul>
-<li>L[[2]]는 L 리스트의 2번째 원소</li>
-</ul></li>
-<li>리스트에서 하위 리스트 추출 가능
-<ul>
-<li>L[c(2,3)]은 L 리스트의 2번째, 3번째 원소로 이루어진 하위 리스트</li>
-</ul></li>
-<li>리스트의 원소들은 이름을 가질 수 있음
-<ul>
-<li>L[[“Moe”]]와 L$Moe는 둘 다 “Moe”라는 이름의 원소를 지칭</li>
-</ul></li>
-</ul>
-</div>
-<div id="r에서의-자료-형태mode" class="section level3">
-<h3>3. R에서의 자료 형태(mode)</h3>
-<table>
-<thead>
-<tr class="header">
-<th>객체</th>
-<th>예시</th>
-<th>모드</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>숫자</strong></td>
-<td>3.1415</td>
-<td>수치형(numeric)</td>
-</tr>
-<tr class="even">
-<td><strong>숫자 백터</strong></td>
-<td>c(2,3,4,5,5)</td>
-<td>수치형(numeric)</td>
-</tr>
-<tr class="odd">
-<td><strong>문자열</strong></td>
-<td>“Tom”</td>
-<td>문자형(character)</td>
-</tr>
-<tr class="even">
-<td><strong>문자열 백터</strong></td>
-<td>c(“Tom”,“Yoon”,“Kim”)</td>
-<td>문자형(character)</td>
-</tr>
-<tr class="odd">
-<td><strong>요인</strong></td>
-<td>factor(c(“A”,“B”,“C”))</td>
-<td><strong>수치형(numeric)</strong></td>
-</tr>
-<tr class="even">
-<td><strong>리스트</strong></td>
-<td>list(“Tom”,“Yoon”,“Kim”)</td>
-<td>리스트(list)</td>
-</tr>
-<tr class="odd">
-<td><strong>데이터 프레임</strong></td>
-<td>data.frame(x=1:3, y=c(“Tom”,“Yoon”,“Kim”))</td>
-<td>리스트(list)</td>
-</tr>
-<tr class="even">
-<td><strong>함수</strong></td>
-<td>print</td>
-<td>함수(function)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="데이터-프레임data-frames" class="section level3">
-<h3>4. 데이터 프레임(data frames)</h3>
-<ul>
-<li><p>강력하고 유연한 구조, SAS 데이터셋을 모방해서 만들어짐</p></li>
-<li><p>데이터 프레임의 리스트 원소는 백터 또는 요인</p></li>
-<li><p>백터와 요인은 데이터 프레임의 열</p></li>
-<li><p>백터와 요인은 동일한 길이</p></li>
-<li><p>데이터 프레임은 표 형태의 데이터 구조, 열별로 다른 데이터 형식을 가질 수 있음</p></li>
-<li><p>열에는 이름이 있어야 함</p></li>
-<li><p>데이터 프레임 원소 접근 방법</p>
-<pre><code>b[1]; b[&quot;empno&quot;]
-  b[[i]]; b[[&quot;empno&quot;]]
-  b$empno</code></pre></li>
-</ul>
-</div>
-<div id="그밖의-데이터-구조" class="section level3">
-<h3>5. 그밖의 데이터 구조</h3>
-<ul>
-<li>단일값(Scalars)
-<ul>
-<li>R에서는 원소가 하나인 백터로 인식/처리</li>
-</ul>
-<pre class="{r}"><code>pi
-length(pi)</code></pre></li>
-<li>행렬(Matrix)
-<ul>
-<li>R에서는 차원을 가진 백터로 인식</li>
-</ul>
-<pre class="{r}"><code>a &lt;- 1:9
-dim(a) &lt;- c(3,3)
-a</code></pre></li>
-<li>배열(Arrays)
-<ul>
-<li>행렬에 3차원 또는 n차원까지 확장된 형태</li>
-<li>주어진 백터에 더 많은 차원을 부여해 배열 생성</li>
-</ul>
-<pre class="{r}"><code>b &lt;- 1:12
-dim(b) &lt;- c(2,3,2)</code></pre></li>
-<li>요인(Factors)
-<ul>
-<li>백터처럼 생겼지만, R에서는 백터에 있는 고유값(unique key) 정보를 얻는데, 고유값들을 요인의 수준(level)이라고 함</li>
-<li>요인의 주된 2가지 사용처: 범주형 변수, 집단 분류</li>
-</ul></li>
-</ul>
-</div>
-<div id="백터-리스트-행렬-다루기" class="section level3">
-<h3>6. 백터, 리스트, 행렬 다루기</h3>
-<ul>
-<li>행렬(Matrix)은 R에서 차원을 가진 백터이며, 텍스트마이닝과 소셜 네트워크 분석 등에 활용</li>
-<li>재활용 규칙(Recycling Rule)
-<ul>
-<li>길이가 다른 두 백터 연산을 할 때, R은 짧은 백터의 처음으로 돌아가 연산이 끝날 때까지 원소를 재활용</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="장.-데이터-마트" class="section level1">
-<h1>3장. 데이터 마트</h1>
-<div id="절.-데이터-변경-및-요약" class="section level2">
-<h2>1절. 데이터 변경 및 요약</h2>
-<div id="r-reshape를-이용한-데이터-마트-개발" class="section level3">
-<h3>1. R reshape를 이용한 데이터 마트 개발</h3>
-<ul>
-<li><strong>데이터 마트</strong>
-<ul>
-<li>데이터 웨어하우스와 사용자 사이의 중간층에 위치한 것</li>
-<li>하나의 주제 또는 하나의 부서 중심의 데이터 웨어하우스</li>
-<li>데이터 마트 내 대부분의 데이터는 데이터 웨어하우스로부터 복제</li>
-<li>또는 자체적으로 수집되거나 관계형/다차원 데이터 베이스를 이용해 구축</li>
-<li>CRM 관련 업무 중 핵심: 고객 데이터 마트 구축</li>
-<li>동일한 데이터셋 활용 시, 데이터 마트를 어떻게 구축하느냐에 분석 효과 차이를 만듦</li>
-</ul></li>
-<li><strong>요약변수</strong>
-<ul>
-<li>수집된 정보를 분석에 맞게 종합한 변수</li>
-<li>가장 기본적인 변수로 총 구매 금액, 금액, 횟수, 구매여부 등 데이터 분석을 위해 만들어지는 변수</li>
-<li>많은 모델을 공통으로 사용할 수 있어 재활용성이 높음</li>
-<li>합계, 횟수와 같이 간단한 구조이므로 자동화하여 구측 가능</li>
-<li><strong>단점</strong>: 얼마 이상이면 구매하더라도 기준값 의미 해석이 애매할 수 있음 → 연속형 변수를 그룹핑해 사용하는 것이 좋음</li>
-</ul></li>
-<li><strong>파생변수</strong>
-<ul>
-<li>사용자(분석자)가 특정 조건을 만족하거나 특정 함수에 의해 값을 만들어 의미를 부여한 변수</li>
-<li>매우 주관적일 수 있으므로 논리적 타당성을 갖추어 개발해야 함</li>
-<li>세분화, 고객행동 예측, 캠페인 반응 예측에 활용</li>
-<li>파생변수는 상황에 따라 특정 상황에만 유의미하지 않고 대표성을 띄게 해야 함</li>
-</ul></li>
-<li><strong>reshape의 활용</strong>
-<ul>
-<li>reshape 패키지에는 melt()와 cast()라는 2개 핵심 함수가 있음
-<ul>
-<li>melt(): 쉬운 casting을 위해 적당한 형태로 만들어주는 함수</li>
-<li>melf(data, id=…)</li>
-<li>cast(): 데이터를 원하는 형태로 계산, 변형하는 함수</li>
-<li>cast(datea, formula=… ~ variable, fun)</li>
-</ul></li>
-<li>변수를 조합해 변수명을 만들고 변수를 시간, 상품 등 차원과 결합해 다양한 요약변수와 파생변수를 쉽게 생성하여 데이터 마트를 구성할 수 있게 함</li>
-</ul></li>
-</ul>
-</div>
-<div id="sqldf를-이용한-데이터-분석" class="section level3">
-<h3>2. sqldf를 이용한 데이터 분석</h3>
-<ul>
-<li>sqldf는 R에서 sql 명령어를 사용 가능하게 하는 패키지</li>
-<li>SAS에서의 proc sql과 같은 역할을 하는 패키지</li>
-<li>명령어 차이(sql, R)
-<ul>
-<li>sql: select * from [data frame], R: sqldf(“select * from [data frame]”)</li>
-<li>sql: select * from [data frame] numrows 10, R: sqldf(“select * from [data frame] limit 10”)</li>
-<li>sql: select * from [data frame] where [col] = ‘char%’, R: sqldf(“select * from [data frame] where [col] like ‘char%’”)</li>
-</ul></li>
-</ul>
-</div>
-<div id="plyr을-이용한-데이터-분석" class="section level3">
-<h3>3. plyr을 이용한 데이터 분석</h3>
-<ul>
-<li>apply 함수에 기반해 데이터와 출력변수를 동시에 배열로 치환하여 처리하는 패키지</li>
-<li>split - apply - combine: 데이터 분리, 처리, 결합 등 필수적인 처리 기능 제공</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th>array</th>
-<th>data frame</th>
-<th>list</th>
-<th>nothing</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>array</td>
-<td>aaply</td>
-<td>adply</td>
-<td>alply</td>
-<td>a_ply</td>
-</tr>
-<tr class="even">
-<td>data frame</td>
-<td>daply</td>
-<td>ddply</td>
-<td>dlply</td>
-<td>d_ply</td>
-</tr>
-<tr class="odd">
-<td>list</td>
-<td>laply</td>
-<td>ldply</td>
-<td>llply</td>
-<td>l_ply</td>
-</tr>
-<tr class="even">
-<td>n replicates</td>
-<td>raply</td>
-<td>rdply</td>
-<td>rlply</td>
-<td>r_ply</td>
-</tr>
-<tr class="odd">
-<td>function arguments</td>
-<td>maply</td>
-<td>mdply</td>
-<td>mlply</td>
-<td>m_ply</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="데이터-테이블" class="section level3">
-<h3>4. 데이터 테이블</h3>
-<ul>
-<li>data.table 패키지는 R에서 가장 많이 사용하는 데이터 핸들링 패키지 중 하나</li>
-<li>data.table은 큰 데이터를 탐색, 연산, 병합하는 데 유용</li>
-<li>기존 data.frame 방식보다 월등히 빠른 속도</li>
-<li>특정 column을 key 값으로 색인 지정 후, 데이터 처리</li>
-<li>빠른 그루핑과 ordering, 짧은 문장 지원 측면에서 데이터프레임보다 유용(속도차 큼)</li>
-</ul>
-</div>
-</div>
-<div id="절.-데이터-가공" class="section level2">
-<h2>2절. 데이터 가공</h2>
-<div id="data-exploration" class="section level3">
-<h3>1. Data Exploration</h3>
-<ul>
-<li>Data Exploration
-<ul>
-<li>데이터 분석을 위해 구성된 데이터 변수들의 상태를 파악</li>
-</ul></li>
-<li>종류
-<ol style="list-style-type: decimal">
-<li>head(데이터셋), tail(데이터셋)</li>
-<li>summary(데이터셋)
-<ul>
-<li>수치형변수: 최대값, 최소값, 평균, 1사분위수, 2사분위수(중앙값), 3사분위수</li>
-<li>명목형변수: 명목값, 데이터 개수</li>
-</ul></li>
-</ol></li>
-</ul>
-</div>
-<div id="변수-중요도" class="section level3">
-<h3>2. 변수 중요도</h3>
-<ul>
-<li>변수 중요도
-<ul>
-<li>변수 선택법과 유사한 개념으로 모형을 생성하여 사용된 변수의 중요도를 살피는 과정</li>
-</ul></li>
-<li>종류
-<ul>
-<li>klaR 패키지
-<ul>
-<li>특정 변수가 주어졌을 때, 클래스가 어떻게 분류되는지에 관한 에러율을 계산하고 그래픽으로 결과를 보여주는 기능</li>
-<li>greedy.wilks(): 세분화를 위한 stepwise forward 변수 선택을 위한 패키지, 종속변수에 가장 영향력을 미치는 변수를 wilks lambda를 활용하여 변수 중요도 정리 <strong>(Wilk’s Lambda = 집단내분산/총분산)</strong></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-<div id="변수의-구간화" class="section level3">
-<h3>3. 변수의 구간화</h3>
-<ul>
-<li>변수의 구간화
-<ul>
-<li><strong>연속형 변수</strong>를 분석 목적에 맞게 활용하기 위해 구간화하여 모델링에 적용</li>
-<li>일반적으로 10진수 단위로 구간화, 구간을 5개로 나누는 것이 보통이며 7개 이상의 구간을 만들지 않음</li>
-<li>신용 평가 모형, 고객 세분화 같은 시스템에서 모형에 활용하는 각 변수를 구간화해서 구간별로 점수를 적용하는 스코어링 방식으로 활용</li>
-</ul></li>
-<li>구간화 방법
-<ol style="list-style-type: decimal">
-<li>binning
-<ul>
-<li>신용평가모형 개발에서 연속형 변수(부채비율 등)를 범주형 변수로 구간화하는데 자주 활용</li>
-</ul></li>
-<li>의사결정나무
-<ul>
-<li>세분화 또는 예측에 활용되는 의사결정나무 모형을 사용해 입력변수 구간화 가능</li>
-<li>동일한 변수를 여러 번의 분리 기준으로 사용 가능하기 때문에, 연속변수가 반복적으로 선택될 경우 각각 분리 기준값으로 연속형 변수를 구간화할 수 있음</li>
-</ul></li>
-</ol></li>
-</ul>
-</div>
-</div>
-<div id="절.-기초-분석-및-데이터-관리" class="section level2">
-<h2>3절. 기초 분석 및 데이터 관리</h2>
-<div id="데이터-eda탐색적-자료-분석" class="section level3">
-<h3>1. 데이터 EDA(탐색적 자료 분석)</h3>
-<ul>
-<li>데이터 분석에 앞서 전체적으로 데이터 특징을 파악하고 다양한 각도로 데이터에 접근</li>
-<li>summary()를 이용해 데이터의 기초통계량 확인</li>
-</ul>
-</div>
-<div id="결측값-인식" class="section level3">
-<h3>2. 결측값 인식</h3>
-<ul>
-<li>결측값은 NA, 99999999, ’ ’(공백), Not Answer 등으로 표현</li>
-<li>결측값 자체에 의미가 있는 경우도 있음: 쇼핑몰 중 특정 거래 자체가 존재하지 않는 경우, 아주 부자이거나 아주 가난한 경우 정보를 잘 채우지 않음</li>
-<li>결측값 처리는 전체 작업속도에 많은 영향을 줌</li>
-</ul>
-</div>
-<div id="결측값-처리-방법" class="section level3">
-<h3>3. 결측값 처리 방법</h3>
-<ul>
-<li><strong>단순 대치법(Single Imputation)</strong>
-<ol style="list-style-type: decimal">
-<li>completes analysis
-<ul>
-<li>결측값이 존재하는 레코드 삭제</li>
-</ul></li>
-<li>평균 대치법(Mean Imputation)
-<ul>
-<li>관측 또는 실험을 통해 얻어진 데이터의 평균으로 대치</li>
-<li>비조건부 평균 대치법: 관측 데이터 평균으로 대치</li>
-<li>조건부 평균 대치법(regression imputation): 회귀분석을 활용한 대치법</li>
-</ul></li>
-<li>단순확률 대치법(Single Stochastic Imputation)
-<ul>
-<li>평균 대치법에서 추정량 표준 오차의 과소 추정문제를 보완하고자 고안된 방법</li>
-<li>Hot-deck 방법, nearest neighbor 방법 등</li>
-</ul></li>
-</ol></li>
-<li><strong>다중 대치법(Multiple Imputation)</strong>
-<ul>
-<li>m번의 대치를 통해 m개의 가상적 완전 자료를 만드는 방법</li>
-<li>1단계: 대치(imputation step), 2단계: 분석(Analysis step), 3단계: 결합(combination step)</li>
-<li>Amelia-time series cross sectional data set(여러 국가에서 매년 측정된 자료)에서 boostrapping based algorithm을 활용한 다중 대치법</li>
-</ul></li>
-</ul>
-</div>
-<div id="r에서-결측값-처리" class="section level3">
-<h3>4. R에서 결측값 처리</h3>
-<ul>
-<li>관련 함수</li>
-</ul>
-<table>
-<colgroup>
-<col width="50%"></col>
-<col width="50%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th>함수</th>
-<th>내용</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>complete.cases()</td>
-<td>데이터 내 레코드에 결측값 있으면 FALSE, 있으면 TRUE로 반환</td>
-</tr>
-<tr class="even">
-<td>is.na()</td>
-<td>결측값을 NA로 인식하여 결측값 있으면 TRUE, 없으면 FALSE로 반환</td>
-</tr>
-<tr class="odd">
-<td>DMwR 패키지의 centrallmputation()</td>
-<td>NA 값에 가운데 값(central value)으로 대치, 숫자는 중위수, 요인(factor)은 최빈값으로 대치</td>
-</tr>
-<tr class="even">
-<td>DMwR 패키지의 knnlmputation</td>
-<td>NA 값을 k 최근 이웃 분류 알고리즘을 사용하여 대치, k개 주변 이웃까지의 거리를 고려하여 가중 평균한 값 사용</td>
-</tr>
-<tr class="odd">
-<td>Amelia 패키지의 amelia()</td>
-<td>time-series-cross-sectional data set에서 활용(랜덤포레스트 모델은 결측값 돈재할 경우 바로 에러 발생), ramdomForest 패키지의 rflmpute() 함수를 활용해 NA 결측값을 대치한 후 알고리즘에 적용</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="이상값outlier-인식과-처리" class="section level3">
-<h3>5. 이상값(Outlier) 인식과 처리</h3>
-<ul>
-<li>이상값이란?
-<ul>
-<li>의도하지 않게 잘못 입력한 경우 (Bad data)</li>
-<li>의도하지 않게 입력되었으나 분석 목접에 부합되지 않아 제거해야 하는 경우 (Bad data)</li>
-<li>의도하지 않은 현상이지만 분석에 포함해야 하는 경우</li>
-<li>의도된 이상값(fraud, 불량)인 경우</li>
-<li>이상값을 꼭 제거해야 하는 것은 아님</li>
-</ul></li>
-<li>이상값 인식 방법
-<ol style="list-style-type: decimal">
-<li><p><strong>ESD(Extreme Studentized Deviation)</strong></p>
-<ul>
-<li>평균으로부터 3 표준편차 떨어진 값(각 0.15%)</li>
-</ul></li>
-<li><p>기하평균 -2.5 x 표준편차 &lt; data &lt; 기하평균 +2.5 x 표준편차</p></li>
-<li><p>사분위수 이용하여 제거하기(상자 그림의 outer fence 밖에 있는 값 제거)</p>
-<ul>
-<li>이상값 정의: Q1 - 1.5(Q3 - Q1) &lt; data &lt; Q3 + 1.5(Q3 - Q1)을 벗어나는 데이터</li>
-</ul></li>
-</ol></li>
-<li><strong>극단값 절단(trimming) 방법</strong>
-<ol style="list-style-type: decimal">
-<li>기하평균을 이용한 제거
-<ul>
-<li>geo_mean</li>
-</ul></li>
-<li>하단, 상단 % 이용한 제거
-<ul>
-<li>10% 절단(상하위 5%에 해당되는 데이터 제거)</li>
-</ul></li>
-</ol></li>
-<li><strong>극단값 조정(winsorizing) 방법</strong>
-<ul>
-<li>상한값과 하한값을 벗어나는 값들을 상한, 하한값으로 바꾸어 활용</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
 <div id="장.-통계-분석" class="section level1">
 <h1>4장. 통계 분석</h1>
 <div id="절.-통계분석의-이해" class="section level2">
@@ -2382,7 +1625,7 @@ dim(b) &lt;- c(2,3,2)</code></pre></li>
 </ul></li>
 </ul>
 </div>
-<div id="통계분석-1" class="section level3">
+<div id="통계분석" class="section level3">
 <h3>3. 통계분석</h3>
 <ul>
 <li>통계분석
@@ -2440,15 +1683,1915 @@ dim(b) &lt;- c(2,3,2)</code></pre></li>
 </ul></li>
 <li><strong>확률변수(random variable)</strong>
 <ul>
-<li>특정값이 나타날 가능성이 확률적으로 주어지는 변수</li>
-<li>정의역(domain)이 표본공간, 치역(range)이 실수값 (0 &lt; y &lt; 1)인 함수</li>
-<li>0이 아닌 확률을 갖는 실수값이 형태에 따라, 이산형 확률변수(discrete random variable)와 연속형 확률변수(continuous random variable)로 구분</li>
-<li>덧셈정리(배반이 아닐 때)
+<li><p>특정값이 나타날 가능성이 확률적으로 주어지는 변수</p></li>
+<li><p>정의역(domain)이 표본공간, 치역(range)이 실수값 (0 &lt; y &lt; 1)인 함수</p></li>
+<li><p>0이 아닌 확률을 갖는 실수값이 형태에 따라, 이산형 확률변수(discrete random variable)와 연속형 확률변수(continuous random variable)로 구분</p></li>
+<li><p><strong>덧셈정리(배반 X)</strong></p>
 <ul>
-<li>사건 A와 사건 B가 동시에 일어날 수 있을 때(교집합 성립), 일어날 확률 P(A 또는 B)는 P</li>
+<li>사건 A와 사건 B가 동시에 일어날 수 있을 때(교집합 성립)</li>
+<li>일어날 확률 P(A 또는 B): P(A∪B) = P(A) + P(B) - P(A∩B)</li>
+<li>사건 B가 주어졌을 때, 사건 A의 조건부확률: <strong>P(A|B) = P(A∩B)/P(B)</strong></li>
+</ul></li>
+<li><p><strong>덧셈정리(배반 O)</strong></p>
+<ul>
+<li>사건 A와 사건 B가 동시에 일어나지 않을 때</li>
+<li>사건 A or 사건 B 중, 한 쪽만 일어날 확률: <strong>P(A∪B) = P(A) + P(B)</strong></li>
+</ul></li>
+<li><p><strong>곱셈정리</strong></p>
+<ul>
+<li>사건 A와 B가 서로 무관계하게 나타날 때(독립사건)</li>
+<li>사건 B가 주어졌을 때, 사건 A의 조건부확률: <strong>P(A|B) = P(A)</strong></li>
 </ul></li>
 </ul></li>
 </ol></li>
+<li>확률분포
+<ul>
+<li><strong>이산형 확률 변수</strong>
+<ol style="list-style-type: decimal">
+<li><strong>베르누이 확률분포</strong>(Bernoulli distribution)
+<ul>
+<li>결과가 2개만 나오는 경우</li>
+<li>동전 던지기, 시험의 합격/불합격, 안타를 칠 확률</li>
+</ul></li>
+<li><strong>이항분포</strong>(Binomial distribution)
+<ul>
+<li>베르누이 시행을 n번 반복했을 때, k번 성공할 확률</li>
+<li>5번 타석에 들어와서 3번 안타를 칠 확률 → n=5, k=3, 안타를 칠 확률 P(x)=타율</li>
+<li>성공할 확률 P가 0이나 1에 가깝지 않고 n이 충분히 크면 정규분포에 가까워짐, 1/2에 가까우면 종 모양</li>
+</ul></li>
+<li><strong>기하분포</strong>(Geometric distribution)
+<ul>
+<li>성공확률이 p인 베르누이 시행에서 첫 번째 성공이 있기까지 x번 실패할 확률</li>
+<li>5번 타석에 들어와서 3번째 타석에서 안타를 칠 확률</li>
+</ul></li>
+<li><strong>다항분포</strong>(Multinomial distribution)
+<ul>
+<li>세 가지 이상의 결과를 가지는 반복 시행에서 발생하는 확률 분포 (이항분포 확장한 것)</li>
+</ul></li>
+<li><strong>포아송분포</strong>(Poisson distribution)
+<ul>
+<li>시간과 공간 내에서 발생하는 사건의 발생횟수에 대한 확률분포</li>
+<li>책에 오타가 5p당 10개 나온다고 할 때, 한 페이지에 오타가 3개 나올 확률</li>
+<li>최근 5경기에서 10개의 홈런을 쳤다고 할 때, 오늘 경기에서 홈런을 치지 못할 확률</li>
+</ul></li>
+</ol></li>
+<li><strong>연속형 확률 변수</strong>
+<ol style="list-style-type: decimal">
+<li><strong>균일분포</strong>(일양분포, Uniform distribution)
+<ul>
+<li>모든 확률변수 X가 균일한 확률을 가지는 확률분포 (다트의 확률분포)</li>
+</ul></li>
+<li><strong>정규분포</strong>(Normal distribution)
+<ul>
+<li>평균이 μ이고 표준편차가 σ인 X의 확률밀도함수</li>
+<li>표준편차가 클 경우 그래프가 퍼져보임</li>
+<li>표준정규분포: 평균 0, 표준편차 1 → 정규분포를 표준정규분포로 만드는 공식: z = <span class="math inline">\(\frac{X-μ}{σ}\)</span></li>
+</ul></li>
+<li><strong>지수분포</strong>(Exponential distribution)
+<ul>
+<li>어떤 사건이 발생할 때까지 경과 시간에 대한 연속확률분포</li>
+<li>전자레인지 수명 시간, 콜센터에 전화가 걸려올 때까지의 시간, 은행 고객 내방에 걸리는 시간, 버스가 올 때까지 시간</li>
+</ul></li>
+<li><strong>t-분포</strong>(t-distribution)
+<ul>
+<li>데이터가 연속형일 때, 두 집단 평균이 동일한지 알고 싶을 때 사용</li>
+<li>평균이 0을 중심으로 좌우가 동일한 분포</li>
+<li>정규분포보다 퍼져 있고 자유도가 커질수록 정규분포에 가까워짐</li>
+</ul></li>
+<li><strong>X<sup>2</sup>-분포</strong>(chi-square distribution)
+<ul>
+<li>두 집단 간의 동질성 검정에 활용</li>
+<li>범주형 자료에 얻어진 관측값과 기대값 차이를 보는 적합성 검정에 활용</li>
+<li>모평균과 모분산이 알려지지 않은 모집단의 모분산에 대한 가설 검정에 사용되는 분포</li>
+</ul></li>
+</ol>
+6 <strong>F-분포</strong>(F-distribution)
+<ul>
+<li>두 집단 간 분산의 동일성 검정에 사용</li>
+<li>확률변수는 항상 양의 값만 갖고 x<sup>2</sup>-분포와 달리 자유도를 2개 가지며 자유도가 커질수록 정규분포에 가까워짐</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="추정과-가설-검정" class="section level3">
+<h3>5. 추정과 가설 검정</h3>
+<ul>
+<li>추정의 개요
+<ul>
+<li><strong>확률표본</strong>(random sample)
+<ul>
+<li>확률분포는 분포를 결정하는 평균, 분산 등 모수(parameter)를 가지고 있음</li>
+<li>특정한 확률분포로부터 독립적으로 반복해 표본을 추출하는 것</li>
+<li>각 관찰값들은 서로 독립적이며 동일한 분포를 가짐</li>
+</ul></li>
+<li><strong>추정</strong>
+<ul>
+<li>표본으로부터 미지의 모수를 추측하는 것</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>점추정</strong>(point estimation)
+<ul>
+<li><strong>’모수가 특정한 값일 것</strong>’이라고 추정하는 것</li>
+<li>표본의 평균, 중위수, 최빈값 등을 사용</li>
+<li>점추정량의 조건, 표본평균, 분산
+<ul>
+<li>불편성: 가능한 표본에서 얻은 추정량의 기대값은 모집단의 모수와 편의(차이)가 없음</li>
+<li>효율성: 추정량의 분산이 작을수록 좋음</li>
+<li>일치성: 표본 크기가 아주 커지면, 추정량이 모수와 거의 같아짐</li>
+<li>충족성: 추정량은 모수에 대해 모든 정보를 제공</li>
+<li>표본평균: 모집단 평균(모평균)을 추정하기 위한 추정량, 확률표본의 평균값</li>
+<li>표본분산: 모집단의 분산(모분산)을 추정하기 위한 추정량</li>
+</ul></li>
+</ul></li>
+<li><strong>구간추정</strong>(interval estimation)
+<ul>
+<li>점추정의 정확성을 보완하기 위해, 확률로 표현된 믿음의 정도 하에서 <strong>모수가 특정한 구간에 있을 것</strong>이라고 선언하는 것</li>
+<li>항상 추정량 분포에 대한 전제와, 구해진 구간 안에 모수가 있을 가능성의 크기(신뢰수준(confidence interval))가 주어져야 함</li>
+<li>참고: 모분산을 알 때는 분자에 σ, 모를 때는 S를 넣음</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>가설검정
+<ul>
+<li>모집단에 대한 가설을 설정하고, 표본관찰을 통해 가설의 채택여부를 결정하는 분석 방법</li>
+<li>표본 관찰 또는 실험을 통해 귀무가설과 대립가설 중 하나를 선택</li>
+<li>귀무가설이 옳다는 전제 하에 검정통계량 값을 구하고, 이 값이 나타날 가능성의 크기에 의해 귀무가설 채택 여부를 결정</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>귀무가설(null hypothesis, H<sub>0</sub>)</strong>
+<ul>
+<li>’비교하는 값과 차이가 없다, 동일하다’를 기본개념으로 하는 가설</li>
+</ul></li>
+<li><strong>대립가설(alternative hypothesis, H<sub>1</sub>)</strong>
+<ul>
+<li>뚜렷한 증거가 있을 때 주장하는 가설</li>
+</ul></li>
+<li><strong>검정통계량(test statistic)</strong>
+<ul>
+<li>관찰된 표본으로부터 구하는 통계량, 검정 시 가설 진위를 판단하는 기준</li>
+</ul></li>
+<li><strong>유의수준(significance level, α)</strong>
+<ul>
+<li>귀무가설이 옳은데도 기각하는 확률 크기</li>
+</ul></li>
+<li><strong>기각역(critical regoin, C)</strong>
+<ul>
+<li>귀무가설이 옳다는 전제 하에서 구한 검정통계량 분포에서, 확률이 유의수준 α인 부분</li>
+<li>반대는 채택역(acceptance region)</li>
+</ul></li>
+</ol>
+<ul>
+<li>제1종 오류와 제2종 오류</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>사실  가설검정 결과</th>
+<th>H<sub>0</sub>가 사실이라고 판정</th>
+<th>H<sub>0</sub>가 사실 아니라고 판정</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>H<sub>0</sub>가 사실</td>
+<td>옳은 결정</td>
+<td>제1종 오류(α)</td>
+</tr>
+<tr class="even">
+<td>H<sub>0</sub>가 사실 아님</td>
+<td>제2종 오류(β)</td>
+<td>옳은 결정</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>두 가지 오류는 상충관계라, 가설검정에서는 제1종 오류 크기를 0.1, 0.05, 0.01 등으로 고정한 뒤, 제2종 오류가 최소가 되도록 기각역을 설정함</li>
+</ul></li>
+</ul>
+</div>
+<div id="비모수-검정" class="section level3">
+<h3>6. 비모수 검정</h3>
+<ul>
+<li><strong>모수적 방법</strong>
+<ul>
+<li>검정하고자 하는 모집단의 분포에 대해 가정하고, 가정 하에서 검정통계량과 검정통계량 분포를 유도해 검정 실시</li>
+</ul></li>
+<li><strong>비모수적 방법</strong>
+<ul>
+<li>자료가 추출된 모집단의 분포에 대한 아무 제약을 가하지 않고 검정 실시</li>
+<li>관측된 자료가 특정분포를 따른다고 가정할 수 없는 경우에 이용</li>
+<li>관측된 자료 수가 많지 않거나(30개 미만) 자료가 개체 간의 서열관계를 나타내는 경우에 이용</li>
+</ul></li>
+<li><strong>모수적 검정 vs 비모수적 검정</strong>
+<ol style="list-style-type: decimal">
+<li>가설의 설정
+<ul>
+<li>모수적 검정: 가정된 분포의 모수에 대해 가설 설정</li>
+<li>비모수적 검정: 가정된 분포 x → 가설은 단지 분포의 형태가 동일하다/동일하지 않다’처럼 분포 형태를 설명</li>
+</ul></li>
+<li>검정 방법
+<ul>
+<li>모수적 검정: 관측된 자료로 구한 표본평균, 표본분산 등 이용해 검정</li>
+<li>비모수적 검정: 관측값의 절대적 크기에 의존하지 않는 관측값의 순위나 두 관측값 차이의 부호 등 이용해 검정</li>
+</ul></li>
+</ol></li>
+<li>비모수적 검정의 예
+<ul>
+<li>부호 검정, 윌콕슨의 순위합검정, 윌콕슨의 부호순위합검정, 만-위트니의 U검정, 런검정, 스피어만의 순위상관계수</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="절.-기초-통계분석" class="section level2">
+<h2>2절. 기초 통계분석</h2>
+<div id="기술통계" class="section level3">
+<h3>1. 기술통계</h3>
+<ul>
+<li><strong>기술통계(Descriptive Statistics)</strong>
+<ul>
+<li>자료 특성을 그림, 통계량을 사용해 쉽게 파악할 수 있도록 정리하는 것</li>
+<li>자료를 요약하는 기초적 통계를 의미</li>
+<li>데이터 분석에 앞서 대략적 통계적 수치를 계산 → 통찰력 얻기에 유리</li>
+</ul></li>
+<li>통계량에 이한 자료 정리
+<ol style="list-style-type: decimal">
+<li>중심위치의 측도</li>
+<li>산포의 측도: 분산, 표준편차, 범위, 사분위수 범위 등</li>
+</ol></li>
+<li>분포 형태에 관한 측도
+<ul>
+<li>왜도: 분포의 비대칭 정도를 나타내는 측도
+<ul>
+<li>m<sub>3</sub> &gt; 0: 오른쪽으로 긴 꼬리를 갖는 분포 (최빈값 &lt; 중앙값 &lt; 평균)</li>
+<li>m<sub>3</sub> = 0: 좌우가 대칭인 분포</li>
+<li>m<sub>3</sub> &lt; 0: 왼쪽으로 긴 꼬리를 갖는 분포 (평균 &lt; 중앙값 &lt; 최빈값)</li>
+</ul></li>
+</ul></li>
+<li>그래프를 이용한 자료 정리
+<ul>
+<li><p>히스토그램</p>
+<ul>
+<li>표로 된 도수분포를 그림으로 나타낸 것</li>
+</ul></li>
+<li><p><strong>막대그래프 vs 히스토그램</strong></p>
+<ul>
+<li>막대그래프
+<ul>
+<li>범주(category)형으로 구분된 데이터를 표현 → 의도에 따라 범주의 순서를 바꿀 수 있음</li>
+<li>직업, 종교, 음식</li>
+</ul></li>
+<li>히스토그램
+<ul>
+<li>연속(continuous)형으로 표시된 데이터 → 임의로 순서를 바꿀 수 없고 막대의 간격이 없음</li>
+<li>몸무게, 성적, 연봉</li>
+</ul></li>
+</ul></li>
+<li><p>히스토그램의 생성</p>
+<ul>
+<li>계급의 수는 2<sup>k</sup> ≥ n을 만족하는 최소의 정수 log<sub>2</sub>n = k에서 최소의 정수</li>
+<li>계급 간격은 <span class="math inline">\(\frac{(최대값 - 최소값)}{계급수}\)</span>로 파악 가능</li>
+<li>계급 수와 간격이 변하면 히스토그램 모양도 변함</li>
+</ul></li>
+<li><p>줄기-잎 그림(stem-and leaf plot)</p></li>
+<li><p>상자그림(Box plot)</p>
+<ul>
+<li>다섯 숫자 요약을 통해 그림으로 표현(최소값, Q1, Q2, Q3, 최대값)</li>
+<li>사분위수 범위(IQR): Q3 - Q1</li>
+<li>안울타리(inner fence): Q1 - 1.5 X IQR 또는 Q3 + 1.5 X IQR</li>
+<li>바깥울타리(outer fence): Q1 - 3 X IQR 또는 Q3 + 3 X IQR</li>
+<li>보통이상점(mild outlier): 안쪽울타리와 바깥울타리 사이 자료</li>
+<li>극단이상점(extreme outlier): 바깥울타리 밖 자료</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="인과관계의-이해" class="section level3">
+<h3>2. 인과관계의 이해</h3>
+<ul>
+<li>용어
+<ul>
+<li>종속변수(반응변수, y)
+<ul>
+<li>다른 변수의 영향을 받는 변수</li>
+</ul></li>
+<li>독립변수(설명변수, x)
+<ul>
+<li>영향을 주는 변수</li>
+</ul></li>
+<li>산점도(sxatter plot)
+<ul>
+<li>좌표평면 위에 점들로 표현한 그래프</li>
+</ul></li>
+</ul></li>
+<li>공분산(covariance)
+<ul>
+<li>두 확률변수 X, Y 방향의 조합(선형성)</li>
+<li>공분산 부호로 두 변수의 방향성 확인 가능
+<ul>
+<li><strong>공분산 부호가 +: 두 변수는 양의 방향성, 공분산 부호가 -: 두 변수는 음의 방향성</strong>을 가짐</li>
+<li>X, Y가 서로 독립이면, Cov(X,Y) = 0</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="상관분석" class="section level3">
+<h3>3. 상관분석</h3>
+<ul>
+<li><p>상관분석(Correlation Analysis)</p>
+<ul>
+<li>두 변수 간 관계의 정도를 알아보기 위한 분석 방법</li>
+<li>상관계수(Correlation coefficient)이용</li>
+</ul></li>
+<li><p>상관관계 특성</p>
+<table>
+<thead>
+<tr class="header">
+<th>상관계수 범위</th>
+<th>해석</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.7 &lt; r ≤ 1</td>
+<td>강한 양(+)의 상관이 있다</td>
+</tr>
+<tr class="even">
+<td>0.3 &lt; r ≤ 0.7</td>
+<td>약한 양(+)의 상관이 있다</td>
+</tr>
+<tr class="odd">
+<td>0 &lt; r ≤ 0.3</td>
+<td>거의 상관이 없다</td>
+</tr>
+<tr class="even">
+<td>r = 0</td>
+<td>상관관계(선형, 직선)가 존재하지 않는다</td>
+</tr>
+<tr class="odd">
+<td>-0.3 ≤ r &lt; 0</td>
+<td>거의 상관이 없다</td>
+</tr>
+<tr class="even">
+<td>-0.7 ≤ r &lt; -0.3</td>
+<td>약한 음(-)의 상관이 있다</td>
+</tr>
+<tr class="odd">
+<td>-1 ≤ r &lt; -0.7</td>
+<td>강한 음(-)의 상관이 있다</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>상관분석 유형</p>
+<table>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>피어슨</th>
+<th>스피어만</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>개념</td>
+<td>등간척도 이상으로 측정된 두 변수의 상관관계 측정 방식</td>
+<td>서열척도인 두 변수 상관관계 측정 방식</td>
+</tr>
+<tr class="even">
+<td>특징</td>
+<td>연속형 변수, 정규성 가정, 대부분 많이 사용</td>
+<td>순서형 변수, 비모수적 방법, 순위 기준 상관관계 측정</td>
+</tr>
+<tr class="odd">
+<td>상관계수</td>
+<td>피어슨 r(적률상관계수)</td>
+<td>순위상관계수(p, 로우)</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>상관분석을 위한 R</p>
+<ul>
+<li>분산: var(x,y=NULL, na.rm=FALSE)</li>
+<li>공분산: cov(x,y=NULL, use=“everything”, method=c(“pearson”, “kendall”, “spearman”))</li>
+<li>상관관계: cor(x,y=NULL, use=“everything”, method=c(“pearson”, “kendall”, “spearman”))</li>
+<li>상관관계(Hmisc 패키지): rcorr(matrix(data명), type=c(“pearson”, “kendall”, “spearman”))</li>
+</ul></li>
+<li><p><strong>상관분석의 가설 검정</strong></p>
+<ul>
+<li>상관계수 r이 0이면 입력변수 x와 출력변수 y사이에는 아무런 관계가 없음 (귀무가설: r=0, 대립가설: r≠0)</li>
+<li>t 검정통계량을 통해 얻은 p-value값이 0.05 이하인 경우, 대립가설을 채택하게 되어 데이터에서 구한 상관계수를 활용할 수 있게 됨</li>
+</ul></li>
+<li><p><strong>상관분석 예제</strong></p>
+<ul>
+<li>cov: 공분산</li>
+<li>cor: 상관계수</li>
+<li>p-value: 유의수준 0.05보다 작게 나타나면 상관계수가 있음</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="절.-회귀분석" class="section level2">
+<h2>3절. 회귀분석</h2>
+<div id="회귀분석" class="section level3">
+<h3>1. 회귀분석</h3>
+<ul>
+<li>회귀분석
+<ul>
+<li>하나나 그 이상의 독립변수들이 종속변수에 미치는 영향을 추정할 수 있는 통계기법</li>
+<li>변수 사이의 인과관계를 밝히고 모형을 적합하여 관심 있는 변수를 예측하거나 추론하기 위한 분석 방법</li>
+<li>독립변수의 개수가 하나면 단순선형회귀분석, 독립변수 개수가 두 개 이상이면 다중선형회귀분석</li>
+</ul></li>
+<li>회귀분석의 변수
+<ul>
+<li>영향 받는 변수(y): 반응변수(response variable), 종속변수(dependent variable), 결과변수(outcome variable)</li>
+<li>영향 주는 변수(x): 설명변수(explanatory variable), 독립변수(independent variable), 예측변수(predictor variable)</li>
+</ul></li>
+<li>선형회귀분석의 가정
+<ol style="list-style-type: decimal">
+<li><strong>선형성</strong>
+<ul>
+<li>입력변수와 출력변수의 관계가 선형 (가장 중요한 가정)</li>
+</ul></li>
+<li><strong>등분산성</strong>
+<ul>
+<li>오차 분산이 입력변수와 무관하게 일정</li>
+<li>잔차플롯(산점도)를 활용해 잔차와 입력변수 간 아무런 관련성이 없게 무작위적으로 고루 분포돼야 등분산성 가정 만족</li>
+</ul></li>
+<li><strong>독립성</strong>
+<ul>
+<li>입력변수와 오차는 관련 없음</li>
+<li>자기상관(독립성)을 알아보기 위해 Durbin-Waston 통계량 사용</li>
+<li>시계열 데이터에서 많이 활용</li>
+</ul></li>
+<li><strong>비상관성</strong>
+<ul>
+<li>오차들끼리 상관이 없음</li>
+</ul></li>
+<li><strong>정상성(정규성)</strong>
+<ul>
+<li>오차 분포가 정규분포를 따름</li>
+<li>Q-Q plot, Kolmogolov-Sirnov 검정, Shaprio-Wilk 검정 등 활용</li>
+</ul></li>
+</ol></li>
+<li>가정에 대한 검증
+<ul>
+<li>단순선형회귀분석
+<ul>
+<li>입력변수와 출력변수 간 선형성을 점검하기 위해 산점도 확인</li>
+</ul></li>
+<li>다중선형회귀분석
+<ul>
+<li>선형회귀분석 가정인 선형성, 등분산성, 독립성, 정상성이 모두 만족하는지 확인</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="단순선형회귀분석" class="section level3">
+<h3>2. 단순선형회귀분석</h3>
+<ul>
+<li><p>하나의 독립변수가 종속변수에 미치는 영향을 추정할 수 있는 통계기법</p></li>
+<li><p>회귀분석 검토사항</p>
+<ol style="list-style-type: decimal">
+<li>회귀계수가 유의미한가?
+<ul>
+<li>해당 계수의 t 통계량의 p-값이 0.05보다 작으면 해당 회귀계수가 통계적으로 유의하다고 볼 수 있음</li>
+</ul></li>
+<li>모형이 설명력을 갖는가?
+<ul>
+<li>결정계수(R<sup>2</sup>)를 확인</li>
+<li>결정계수는 0~1값을 가지며, 높을수록 추정된 회귀식의 설명력이 높아짐</li>
+</ul></li>
+<li>모형이 데이터를 잘 적합하는가?
+<ul>
+<li>잔차를 그래프로 그리고 회귀진단</li>
+</ul></li>
+</ol></li>
+<li><p>회귀계수의 추정</p>
+<ul>
+<li>최소제곱법, 최소자승법</li>
+<li>측정값을 기초로 적당한 제곱합을 만들고 이를 최소로 하는 값을 구해 측정결과를 처리</li>
+<li>잔차제곱이 가장 작은 선을 구하는 것</li>
+</ul></li>
+<li><p>회귀분석의 검정</p>
+<ul>
+<li>회귀계수의 검정
+<ul>
+<li>회귀계수 β<sub>1</sub>이 0이면 입력변수 X와 출력변수 y 사이에는 아무런 인과관계가 없음</li>
+<li>회귀계수 β<sub>1</sub>이 0이면 적합된 추정식은 아무 의미가 없음 (귀무가설 β<sub>1</sub>=0, 대립가설 <sub>1</sub>≠0)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="다중선형회귀분석" class="section level3">
+<h3>3. 다중선형회귀분석</h3>
+<ul>
+<li>다중선형회귀분석(다변량회귀분석)
+<ul>
+<li>다중회귀식
+<ul>
+<li>Y = β<sub>0</sub> + β<sub>1</sub>X<sub>1</sub> + β<sub>2</sub>X<sub>2</sub> + … + β<sub>k</sub>X<sub>k</sub> + ε</li>
+</ul></li>
+<li>모형의 통계적 유의성
+<ul>
+<li>모형의 통계적 유의성은 F통계량으로 확인</li>
+<li>유의수준 5% 하에서 F통계량의 p-값이 0.05보다 작으면 추정된 회귀식은 통계적으로 유의하다 볼 수 있음</li>
+<li>F통계량이 크면 p-value가 0.05보다 작아지고 귀무가설을 기각함 → 모형이 유의하다고 결론 내릴 수 있음</li>
+</ul></li>
+<li>회귀계수의 유의성
+<ul>
+<li>단변량 회귀분석의 회귀계수 유의성 검토와 같이 t통계량을 통해 확인</li>
+<li>모든 회귀계수의 유의성이 통계적으로 검증되어야 선택된 변수 조합으로 모형 확인 가능</li>
+</ul></li>
+<li>모형의 설명력
+<ul>
+<li>결정계수(R<sup>2</sup>)나 수정된 결정계수(R<sup>2</sup><sub>α</sub>) 확인</li>
+</ul></li>
+<li>모형의 적합성
+<ul>
+<li>잔차와 종속변수의 산점도로 모형이 데이터를 잘 적합하고 있는지 확인</li>
+</ul></li>
+<li>데이터가 전제하는 가정을 만족하는가?
+<ul>
+<li>선형성, 독립성, 등분산성, 비상관성, 정상성</li>
+</ul></li>
+<li>다중공선성(multicollinearity)
+<ul>
+<li>다중회귀분석에서 설명변수 사이에 선형관계가 존재하면 회귀계수의 정확한 추정이 곤란함</li>
+<li>다중공선성 검사 방법
+<ul>
+<li>분산팽창요인(VIF): 4보다 크면 다중공산성 존재한다고 볼 수 있고, 10보다 크면 심각한 문제가 있다고 해석</li>
+<li>상태지수: 10 이상이면 문제 있다고 보고, 30보다 크면 심각한 문제가 있다고 해석
+<ul>
+<li>다중선형회귀분석에서 다중공선성 문제 발생 시, 문제 있는 변수를 제거하거나 주성분회귀, 능형회귀 모형을 적용하여 문제 해결</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="회귀분석의-종류" class="section level3">
+<h3>4. 회귀분석의 종류</h3>
+<table>
+<thead>
+<tr class="header">
+<th>종류</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>단순회귀</td>
+<td>독립변수가 1개이며 종속변수와의 관계가 직선</td>
+</tr>
+<tr class="even">
+<td>다중회귀</td>
+<td>독립변수가 k개이며 종속변수와의 관계가 선형(1차 함수)</td>
+</tr>
+<tr class="odd">
+<td>로지스틱 회귀</td>
+<td>종속변수가 범주형(2진변수)인 경우에 적용, 단순 로지스틱 회귀 및 다중, 다항 로지스틱 회귀로 확장할 수 있음</td>
+</tr>
+<tr class="even">
+<td>다항회귀</td>
+<td>독립변수와 종속변수와의 관계가 1차 함수 이상인 관계(단, k=1이면 2차 함수 이상)</td>
+</tr>
+<tr class="odd">
+<td>곡선회귀</td>
+<td>독립변수가 1개이며 종속변수와의 관계가 곡선</td>
+</tr>
+<tr class="even">
+<td>비선형회귀</td>
+<td>회귀식 모양이 미지의 모수들의 선형관계로 이뤄져 있지 않은 모형</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="회귀분석-사례" class="section level3">
+<h3>5. 회귀분석 사례</h3>
+<ul>
+<li>F-statistic: F-통계량</li>
+<li>p-value: 유의수준 5% 하에서 추정되어야 해당 회귀 모형이 통계적으로 유의하다고 할 수 있음</li>
+<li>Multiple R-squared: 결정계수, Adjusted R-squared: 수정된 결정계수 (0~1값을 가지며, 높을수록 회귀식의 설명력 높아짐)</li>
+<li>Pr: 회귀계수들의 p-값</li>
+</ul>
+</div>
+<div id="최적회귀방정식" class="section level3">
+<h3>6. 최적회귀방정식</h3>
+<ul>
+<li>설명변수 선택
+<ul>
+<li>상황에 따라 필요한 변수만 선택</li>
+<li>y에 영향을 미칠 수 있는 모든 설명변수 x가 y값 예측에 참여</li>
+<li>데이터에 설명변수 x 수가 많아지면 관리가 어려워, 가능한 범위 내에서 적은 수의 설명변수만 포함</li>
+</ul></li>
+<li>모형선택(exploratiry analysis)
+<ul>
+<li>분석 데이터에 가장 잘 맞는 모형을 찾는 방법</li>
+<li>가능한 모든 조합의 회귀분석(All possible regression): 가능한 모든 독립변수 조합에 대한 회귀모형을 생성한 뒤, 가장 적합한 회귀모형 선택</li>
+</ul></li>
+<li>단계적 변수 선택(Stepwise Variable Selection)
+<ul>
+<li><strong>전진선택법</strong>(forward selection)
+<ul>
+<li>절편만 있는 상수모형으로 시작해 중요하다고 생각되는 설명변수부터 모형에 추가</li>
+</ul></li>
+<li><strong>후진제거법</strong>(backward selection)
+<ul>
+<li>독립변수 후보 모두를 포함한 모형에서 출발해 가장 적은 영향을 주는 변수부터 제거</li>
+<li>더 제거할 변수가 없을 때의 모형을 선택</li>
+</ul></li>
+<li><strong>단계선택법</strong>(stepwise selection)
+<ul>
+<li>전진선택법에 이해 변수를 추가하며, 새롭게 추가된 변수에 기인해 기존 변수 중요도가 약화되면 해당변수를 제거</li>
+<li>단계별로 추가 또는 제거되는 변수 여부를 검토하고 더 이상 없을 때 중단</li>
+</ul></li>
+</ul></li>
+<li>벌점화된 선택기준
+<ul>
+<li>모형 복잡도에 벌점을 주는 방법
+<ul>
+<li><strong>AIC</strong>(Akaike information criterion)</li>
+<li><strong>BIC</strong>(Bayesian information criterion)</li>
+</ul></li>
+<li>모든 후보 모형에 대해 AIC 또는 BIC를 계산하고 값이 최소가 되는 모형을 선택</li>
+<li>모형 선택의 일치성(consistency inselection)
+<ul>
+<li>자료 수가 늘어날 때 참인 모형이 주어진 모형 선택 기준의 최소값을 갖게 되는 성질</li>
+<li>이론적으로 AIC에 대해 일치성이 성립하지 않지만, BIC는 주요 분포에서 이러한 성질이 성립</li>
+</ul></li>
+<li>AIC 활용이 보편화된 방식</li>
+<li>추가: RIC(Risk inflation criterion), CIC(Covariance inflation criterion), DIC(Deviation information criterion)</li>
+</ul></li>
+<li>최적회귀방정식 사례: 교재 참고
+<ol style="list-style-type: decimal">
+<li>변수 선택법 예제(유의확률 기반)</li>
+<li>변수 선택법 예제(벌점화 전진선택법)</li>
+<li>변수 선택법 예제(벌점화 후진제거법)</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="절.-시계열-분석" class="section level2">
+<h2>4절. 시계열 분석</h2>
+<div id="시계열-자료" class="section level3">
+<h3>1. 시계열 자료</h3>
+<ul>
+<li>시계열 자료
+<ul>
+<li>시간의 흐름에 따라 관찰된 값</li>
+<li>시계열 데이터 분석을 통해 미래의 값을 예측하고 경향, 주기, 계절성 등을 파악하여 활용</li>
+</ul></li>
+<li>시계열 자료의 종류
+<ol style="list-style-type: decimal">
+<li>비정상성 시계열 자료
+<ul>
+<li>시계열 분석을 실시할 때, 다루기 어려운 자료</li>
+</ul></li>
+<li>정상성 시계열 자료
+<ul>
+<li>비정상 시계열을 핸들링해 다루기 쉬운 시계열 자료로 변환한 자료</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="정상성" class="section level3">
+<h3>2. 정상성</h3>
+<ul>
+<li><p>평균이 일정할 경우</p>
+<ul>
+<li>모든 시점에 대해 일정한 평균을 가짐</li>
+<li>평균이 일정하지 않은 시계열은 <strong>차분(difference)을 통해 정상화</strong>할 수 있음</li>
+<li>차분?
+<ul>
+<li>현 시점 자료에서 전 시점 자료를 빼는 것</li>
+<li>일반차분: 바로 전 시점 자료를 빼는 방법, 계절차분: 여러 시점 전의 자료를 빼는 방법</li>
+</ul></li>
+</ul></li>
+<li><p>분산이 일정</p>
+<ul>
+<li>분산도 시점에 의존하지 않고 일정해야 함</li>
+<li>분산이 일정하지 않을 경우 <strong>변환(transformation)을 통해 정상화</strong>할 수 있음</li>
+</ul></li>
+<li><p>공분산도 단지 시차에만 의존, 실제 특정 시점 t, s에는 의존하지 않음</p></li>
+<li><p>정상 시계열</p>
+<ul>
+<li>어떤 시점에서 평균과 분산, 특정한 시차의 길이를 갖는 자기공분산을 측정하더라도 동일한 값을 가짐</li>
+<li>정상 시계열은 항상 그 평균값으로 회귀하려는 경향이 있으며, 그 평균값 주변에서의 변동은 대체로 일정한 폭을 가짐</li>
+<li>정상 시계열이 아닌 경우 특정 기간의 시계열 자료로부터 얻은 정보를 다른 시기로 일반화할 수 없음</li>
+</ul></li>
+</ul>
+</div>
+<div id="시계열자료-분석방법" class="section level3">
+<h3>3. 시계열자료 분석방법</h3>
+<ul>
+<li><p>분석방법</p>
+<ul>
+<li>회귀분석(계량경제) 방법, Box-Jenkins 방법, 지수평활법, 시계열 분해법 등</li>
+</ul></li>
+<li><p>자료 형태에 따른 분석방법</p>
+<ul>
+<li>일변량 시계열분석
+<ul>
+<li>Box-Jenkins(ARMA), 지수평활법, 시계열 분해법</li>
+<li>시간(t)을 설명변수로 한 회귀모형주가, 소매물가지수 등 하나의 변수에 관심 갖는 경우의 시계열분석</li>
+</ul></li>
+<li>다중 시계열분석
+<ul>
+<li>계량경제모형, 전이함수모형, 개입분석, 상태공간분석, 다변량 ARIMA 등</li>
+<li>여러 개의 시간(t)에 따른 변수들을 활용하는 시계열 분석</li>
+</ul></li>
+</ul></li>
+<li><p>이동평균법</p></li>
+<li><p>지수평활법</p></li>
+</ul>
+</div>
+<div id="시계열모형" class="section level3">
+<h3>4. 시계열모형</h3>
+<p>교재 참고</p>
+</div>
+</div>
+<div id="절.-다차원척도법" class="section level2">
+<h2>5절. 다차원척도법</h2>
+<div id="다차원척도법multidimensional-scaling" class="section level3">
+<h3>1. 다차원척도법(Multidimensional Scaling)</h3>
+<ul>
+<li>객체간 근접성을 시각화하는 통계기법</li>
+<li>군집분석과 같이 개체를 대상으로 변수들을 측정한 후, 개체 사이의 유사성/비유사성을 측정하여 개체들을 2차원 공간상에 점으로 표현하는 분석 방법</li>
+<li>개체들을 2차원 또는 3차원 공간상에 점으로 표현하여 개체들 사이의 집단화를 시각적으로 표현하는 분석 방법</li>
+</ul>
+</div>
+<div id="다차원척도법-목적" class="section level3">
+<h3>2. 다차원척도법 목적</h3>
+<ul>
+<li>데이터 속에 잠재해 있는 패턴, 구조를 찾아냄</li>
+<li>찾아낸 구조를 소수 차원의 공간에 기하학적으로 표현</li>
+<li>데이터 축소 목적으로 다차원척도법을 이용 → 데이터에 포함되는 정보를 끄집어내기 위한 탐색수단</li>
+<li>다차원척도법에 의해 얻은 결과를, 데이터가 만들어진 현상이나 과정에 고유의 구조로서 의미 부여</li>
+</ul>
+</div>
+<div id="다차원척도법-방법" class="section level3">
+<h3>3. 다차원척도법 방법</h3>
+<ul>
+<li><p>객체들의 거리 계산: 유클리드 거리행렬 활용</p></li>
+<li><p>관측대상의 상대적 거리 정확도를 높이기 위해 적합 정도를 스트레스값으로 나타냄</p></li>
+<li><p>각 개체를 공간상에 표현하기 위한 방법: 부적합도 기준으로 STRESS나 S-STRESS 사용</p></li>
+<li><p>최적모형의 적합은 부적합도를 최소로 하는 반복알고리즘을 이용하며, 이 값이 일정 수준 이하가 될 때 최종적으로 적합된 모형으로 제시</p></li>
+<li><p>STRESS와 적합도 수준 M은 개체들을 공간상에 표현하기 위한 방법으로 STRESS나 S-STRESS를 부적합도 기준으로 사용</p>
+<table>
+<thead>
+<tr class="header">
+<th>STRESS</th>
+<th>적합도 수준</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>완벽(perfect)</td>
+</tr>
+<tr class="even">
+<td>0.05 이내</td>
+<td>매우 좋은(excellent)</td>
+</tr>
+<tr class="odd">
+<td>0.05 ~ 0.10</td>
+<td>만족(satisfactory)</td>
+</tr>
+<tr class="even">
+<td>0.10 ~ 0.15</td>
+<td>보통(acceptable, but doubt)</td>
+</tr>
+<tr class="odd">
+<td>0.15 이상</td>
+<td>나쁨(poor)</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+<div id="다차원척도법-종류" class="section level3">
+<h3>4. 다차원척도법 종류</h3>
+<ul>
+<li>계량적 MDS(Metric MDS)
+<ul>
+<li>데이터가 구간척도나 비율척도인 경우 활용</li>
+<li>N개의 케이스에 대해 P개의 특성변수가 있는 경우, 각 개체들 간 유클리드 거리행렬을 계산하고 개체들 간 비유사성 S(거리제곱 행렬의 선형함수)를 공간상에 표현</li>
+</ul></li>
+<li>비계량적 MDS(nonmetric MDS)
+<ul>
+<li>데이터가 순서척도인 경우 활용</li>
+<li>개체들 간 거리가 순서로 주어진 경우에는 순서척도를 거리의 속성과 같도록 변환하여 거리를 생성한 후 적용</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="절.-주성분분석" class="section level2">
+<h2>6절. 주성분분석</h2>
+<div id="주성분분석principal-component-analysis" class="section level3">
+<h3>1. 주성분분석(Principal Component Analysis)</h3>
+<ul>
+<li>여러 변수들이 변량을 주성분이라는 서로 상관성이 높은 변수의 선형 결합으로 만들어 기존 상관성이 높은 변수들을 요약, 축소하는 기법</li>
+<li>첫 번째 주성분으로 전체 변동을 가장 많이 설명할 수 있도록 하고, 두 번째 주성분으로는 첫 번째 주성분과는 상관성이 없어서(낮아서) 첫 번째 주성분이 설명하지 못하는 나머지 변동을 정보의 손실 없이 가장 많이 설명할 수 있도록 변수들의 선형조합을 만듦</li>
+</ul>
+</div>
+<div id="주성분분석의-목적" class="section level3">
+<h3>2. 주성분분석의 목적</h3>
+<ul>
+<li>여러 변수들 간 내재하는 상관관계, 연관성을 이용해 소수의 주성분으로 차원을 축소함으로써 데이터를 이해하기 쉽고 관리하기 쉽게 함</li>
+<li>다중공선성이 존재하는 경우, 상관성 없는(적은) 주성분으로 변수들을 축소하여 모형 개발에 활용</li>
+<li>회귀분석이나 의사결정나무 등 모형 개발 시, 입력변수들 간 상관관계가 높은 다중공선성이 존재할 경우 모형이 잘못 만들어져 문제 발생</li>
+<li>연관성 높은 변수를 주성분분석을 통해 차원을 축소한 후, 군집분석을 수행하면 군집화 결과와 연산속도 개선 가능</li>
+<li>기계에서 나오는 센서데이터를 주성분분석으로 차원 축소 후, 시계열로 분포나 추세 변화를 분석하면 기계의 고장 징후를 사전에 파악하는 데 활용할 수 있음</li>
+</ul>
+</div>
+<div id="주성분분석-vs-요인분석" class="section level3">
+<h3>3. 주성분분석 vs 요인분석</h3>
+<ul>
+<li><strong>요인분석</strong>(Factor Analysis)
+<ul>
+<li>등간척도(혹은 비율척도)로 측정한 두 개 이상 변수에 잠재된 공통인자를 찾아내는 기법</li>
+</ul></li>
+<li>공통점
+<ul>
+<li>모두 데이터를 축소하는 데 활용</li>
+<li>원래 데이터를 활용하여 몇 개의 새로운 변수 생성 가능</li>
+</ul></li>
+<li>차이점
+<ul>
+<li>생성된 변수의 수
+<ul>
+<li>요인분석은 몇 개라고 지정 없이(2 or 3, 4, 5 …) 만들 수 있음</li>
+<li>주성분분석은 제1주성분, 제2주성분, 제3주성분 정도로 활용(대략 4개 이상은 넘지 않음)</li>
+</ul></li>
+<li>생성된 변수 이름
+<ul>
+<li>요인분석은 분석자가 요인 이름을 명명</li>
+<li>주성분분석은 주로 제1주성분, 제2주성분 등으로 표현</li>
+</ul></li>
+<li>생성된 변수 간 관계
+<ul>
+<li>요인분석은 새 변수들은 기본적으로 대등한 관계를 가짐</li>
+<li>요인분석은 어떤 것이 더 중요하다는 의미가 없음(분류/예측의 다음 단계로 사용되면 중요성 부여)</li>
+<li>주성분분석은 제1주성분이 가장 중요, 그 다음 제2주성분이 중요</li>
+</ul></li>
+<li>분석 방법의 의미
+<ul>
+<li>요인분석은 목표변수를 고려하지 않고 데이터가 주어지면 변수를 비슷한 성격으로 묶어서 새로운 (잠재)변수를 만듦</li>
+<li>주성분분석은 목표변수를 고려하여 목표변수를 예측/분류하기 위해 원래 변수의 선형 결합으로 이뤄진 몇 개의 주성분(변수)를 찾게 됨</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="주성분의-선택법" class="section level3">
+<h3>4. 주성분의 선택법</h3>
+<ul>
+<li>주성분분석 결과에서 누적기여율(cumulative proportion)이 85% 이상이면 주성분 수로 결정할 수 있음</li>
+<li>scree plot을 활용하여 고유값(eigenvalue)이 수평을 유지하기 전 단계로 주성분의 수 선택</li>
+</ul>
+</div>
+<div id="주성분-분석-사례" class="section level3">
+<h3>5. 주성분 분석 사례</h3>
+<ul>
+<li>교재 참고</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="장.-정형-데이터-마이닝" class="section level1">
+<h1>5장. 정형 데이터 마이닝</h1>
+<div id="절.-데이터마이닝의-개요" class="section level2">
+<h2>1절. 데이터마이닝의 개요</h2>
+<div id="데이터마이닝" class="section level3">
+<h3>1. 데이터마이닝</h3>
+<ul>
+<li><p>데이터마이닝</p>
+<ul>
+<li>대용량 데이터에서 의미 있는 패턴을 파악하거나 예측하여 의사결정에 활용하는 방법</li>
+</ul></li>
+<li><p>통계분석과의 차이점</p>
+<ul>
+<li>통계분석은 가설이나 가정에 따른 분석이나 검증을 함</li>
+<li>데이터마이닝은 다양한 수리 알고리즘을 이용해 데이터베이스의 데이터로부터 의미 있는 정보를 찾아내는 방법을 통칭</li>
+</ul></li>
+<li><p>종류</p>
+<table>
+<thead>
+<tr class="header">
+<th>정보를 찾는 방법론에 따라</th>
+<th>분석대상, 활용목적, 표현방법에 따라</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>인공지능, 의사결정나무, K-평균군집화, 연관분석, 회귀분석, 로짓분석, 최근접이웃</td>
+<td>시각화분석, 분류, 군집화, 포케스팅</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>사용분야</p>
+<ul>
+<li>병원: 환자 데이터를 이용하여 해당 환자에게 발생 가능성 높은 병 예측</li>
+<li>병원: 기존 환자가 응급실에 왔을 때, 어떤 조치를 먼저 해야 하는지 결정</li>
+<li>은행: 고객 데이터를 이용해 해당 고객의 우량/불량을 예측하여 대출 여부 판단</li>
+<li>공항: 세관 검사에서 입국자 이력과 데이터를 이용해 관세품 반입 여부 예측</li>
+</ul></li>
+</ul>
+</div>
+<div id="데이터마이닝의-분석-방법" class="section level3">
+<h3>2. 데이터마이닝의 분석 방법</h3>
+<table>
+<colgroup>
+<col width="50%"></col>
+<col width="50%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Supervised Data Prediction(지도학습)</th>
+<th>Unsupervised Data Prediction(비지도학습)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>의사결정나무, 인공신경망, 일반화 선형 모형, 회귀분석, 로지스틱 회귀분석, 사례기반 추론, 최근접 이웃법</td>
+<td>OLAP, 연관성 규칙발견, 군집분석, SOM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="분석-목적에-따른-작업-유형과-기법" class="section level3">
+<h3>3. 분석 목적에 따른 작업 유형과 기법</h3>
+<ul>
+<li>예측(Predictive Modeling): 분류 규칙</li>
+<li>설명(Descriptive Modeling): 연관 규칙, 연속 규칙, 데이터 군집화</li>
+</ul>
+<table>
+<colgroup>
+<col width="33%"></col>
+<col width="33%"></col>
+<col width="33%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>작업유형</th>
+<th>설명</th>
+<th>사용기법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>분류 규칙(Classification)</td>
+<td>가장 많이 사용되는 작업으로 과거 데이터로부터 고객특성을 찾아 분륨형을 만들어 이를 토대로 새로운 레코드의 결과값을 예측하는 것, 목표 마케팅 및 고객 신용평가 모형에 활용</td>
+<td>회귀분석, 판별분석, 신경망, 의사결정나무</td>
+</tr>
+<tr class="even">
+<td>연관규칙(Association)</td>
+<td>데이터 안에 존재하는 항목간의 종속관계를 찾아내는 작업, 제품이나 서비스 교차판매, 매장진열, 첨부우편, 사기적발 등 분야에 활용</td>
+<td>동시발생 매트릭스</td>
+</tr>
+<tr class="odd">
+<td>연속규칙(Sequence)</td>
+<td>연관 규칙에 시간 관련 정보가 포함된 형태, 고객 구매이력 속성이 반드시 필요, 목표 마케팅이나 일대일 마케팅에 활용</td>
+<td>동시발생 매트릭스</td>
+</tr>
+<tr class="even">
+<td>데이터 군집화(Clustering)</td>
+<td>고객 레코드를 유사한 특성을 지닌 몇 개의 소그룹으로 분할, 작업 특성이 분류규칙과 유사하나 분석대상 데이터에 결과값이 없음, 판촉활동이나 이벤트 대상 선정에 활용</td>
+<td>K-Means Clustering</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="데이터마이닝-추진단계" class="section level3">
+<h3>4. 데이터마이닝 추진단계</h3>
+<ol style="list-style-type: decimal">
+<li>목적 설정</li>
+<li>데이터 준비</li>
+<li>가공</li>
+<li>기법 적용</li>
+<li>검증</li>
+</ol>
+</div>
+<div id="데이터마이닝을-위한-데이터-분할" class="section level3">
+<h3>5. 데이터마이닝을 위한 데이터 분할</h3>
+<ul>
+<li>개요
+<ul>
+<li>모델 평가용 테스트 데이터와 구축용 데이터로 분할</li>
+<li>구축용 데이터로 모형을 생성하고 테스트 데이터로 모형이 얼마나 적합한지를 판단</li>
+</ul></li>
+<li>데이터 분할
+<ol style="list-style-type: decimal">
+<li>구축용(training data, 50%)
+<ul>
+<li>추정용, 훈련용 데이터라고도 불리며 데이터마이닝 모델을 만드는 데 활용</li>
+</ul></li>
+<li>검정용(validation data, 30%)
+<ul>
+<li>구축된 모형의 과대추정 또는 과소추정을 미세 조정하는 데 활용</li>
+</ul></li>
+<li>시험용(tast data, 20%)
+<ul>
+<li>테스트 데이터나 과거 데이터를 활용하여 모델의 성능을 검증하는 데 활용</li>
+</ul></li>
+<li>데이터 양이 충분하지 않거나 입력 변수에 대한 설명이 충분한 경우
+<ul>
+<li>홀드아웃 방법
+<ul>
+<li>주어진 데이터를 랜덤하게 두 개의 데이터로 구분하여 사용</li>
+<li>주로 학습용과 시험용으로 분리하여 사용</li>
+</ul></li>
+<li>교차확인 방법
+<ul>
+<li>주어진 데이터를 k개의 하부집단으로 구분</li>
+<li>k-1개의 집단을 학습용으로 나머지는 하부집단으로 검증용으로 설정하여 학습</li>
+<li>k번 반복 측정한 결과를 평균낸 값을 최종값으로 사용</li>
+<li>주로 10-fold 교차분석을 많이 사용</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="성과분석" class="section level3">
+<h3>6. 성과분석</h3>
+<ul>
+<li>오분류에 대한 추정치
+<ol style="list-style-type: decimal">
+<li><strong>정분류율</strong>(Accuracy)
+<ul>
+<li>Accuracy = <span class="math inline">\(\frac{TN + TP}{TN + TP + FN + FP}\)</span></li>
+</ul></li>
+<li><strong>오분류율</strong>(Error Rate)
+<ul>
+<li>1 - Accuracy = <span class="math inline">\(\frac{FN + FP}{TN + TP + FN + FP}\)</span></li>
+</ul></li>
+<li><strong>특이도</strong>(Specificity)
+<ul>
+<li>Specificity = <span class="math inline">\(\frac{TN}{TN + FP}\)</span> (TNR: True Negative Rate)</li>
+</ul></li>
+<li><strong>민감도</strong>(Sensitivity)
+<ul>
+<li>Sensitivity = <span class="math inline">\(\frac{TP}{TP + FN}\)</span> (TPR: True Positive Rate)</li>
+</ul></li>
+<li><strong>정확도</strong>(Precision)
+<ul>
+<li>Precision = <span class="math inline">\(\frac{TP}{TP + FP}\)</span></li>
+</ul></li>
+<li><strong>재현율</strong>(Recall): 민감도와 같음
+<ul>
+<li>Recall = <span class="math inline">\(\frac{TP}{TP + FN}\)</span></li>
+</ul></li>
+<li><strong>F1 Score</strong>
+<ul>
+<li>F1 = 2 x <span class="math inline">\(\frac{Precision x Recall}{Precision + Recall}\)</span></li>
+</ul></li>
+</ol></li>
+<li>ROCR 패키지로 성과분석
+<ul>
+<li>ROC Curve(Receiver Operation Characteristic Curve)
+<ul>
+<li><p>가로축을 FPR(False Positive Rate = 1 - 특이도)값, 세로축을 TPR(Ture Positive Rate, 민감도)값으로 두어 시각화한 그래프</p></li>
+<li><p>2진 분류(binary classfication)에서 모형 성능을 평가하기 위해 사용되는 척도</p></li>
+<li><p>그래프가 왼쪽 상단에 가깝게 그려질수록 올바르게 예측한 비율은 높고 잘못 예측한 비율은 낮음을 의미</p></li>
+<li><p><strong>ROC 곡선 아래 면적을 의미하는 AUROC(Area Under ROC) 값이 클수록(1에 가까울 수록) 모형 성능이 좋다고 평가</strong></p></li>
+<li><p>TPR: 1인 케이스에 대한 1로 예측한 비율</p></li>
+<li><p>FPR: 0인 케이스에 대한 1로 잘못 예측한 비율</p></li>
+<li><p>AUROC를 이용한 정확도의 판단 기준</p>
+<table>
+<thead>
+<tr class="header">
+<th>기준</th>
+<th>구분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.9 - 1.0</td>
+<td>excellent (A)</td>
+</tr>
+<tr class="even">
+<td>0.8 - 0.9</td>
+<td>good</td>
+</tr>
+<tr class="odd">
+<td>0.7 - 0.8</td>
+<td>fair</td>
+</tr>
+<tr class="even">
+<td>0.6 - 0.7</td>
+<td>poor</td>
+</tr>
+<tr class="odd">
+<td>0.5 - 0.6</td>
+<td>fail</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+<li>이익도표(Lift chart)
+<ul>
+<li>분류모형 성능을 평가하기 위한 척도 (분류된 관측치에 대해 예측이 얼마나 잘 이루어졌는지)</li>
+<li>임의로 나눈 등급별로 반응검출율, 반응률, 리프트 등 정보를 산출해 나타내는 도표</li>
+<li>기본 향상도에 비해 반응률이 몇 배나 높은지 계산: 향상도(Lift)</li>
+<li>각 등급은 예측확률에 따라 매겨진 순위이므로, 상위 등급에서는 더 높은 반응률을 보이는 것이 좋은 모형</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="절.-분류분석" class="section level2">
+<h2>2절. 분류분석</h2>
+<div id="분류분석과-예측분석" class="section level3">
+<h3>1. 분류분석과 예측분석</h3>
+<ul>
+<li>분류분석의 정의
+<ul>
+<li>데이터가 어떤 그룹에 속하는지 예측할 때 사용하는 기법</li>
+<li>클러스터링과 유사하나, 분류분석은 각 그룹이 정의되어 있음</li>
+<li>교사학습(supervised learning)에 해당하는 예측기법</li>
+</ul></li>
+<li>예측분석의 정의
+<ul>
+<li>시계열분석처럼 시간에 따른 값 두 개만을 이용해 앞으로의 매출 또는 온도 등을 예측하는 것</li>
+<li>모델링을 하는 입력 데이터가 어떤 것인지에 따라 특성이 다름</li>
+<li>여러 개의 다양한 설명변수(독립변수)가 아닌 한 개의 설명변수로 생각하면 됨</li>
+</ul></li>
+<li>분류분석 vs 예측분석
+<ul>
+<li>공통점
+<ul>
+<li>레코드 특정 속성의 값을 미리 알아맞힐 수 있음</li>
+</ul></li>
+<li>차이점
+<ul>
+<li>분류: 레코드(튜플)의 <strong>범주형 속성</strong>의 값을 맞힘(국/영/수 점수로 내신 등급 맞히기)</li>
+<li>예측: 레코드(튜플)의 <strong>연속형 속성</strong>의 값을 맞힘(카드 회원 가입정보로 연 매출액 알아맞히기)</li>
+</ul></li>
+</ul></li>
+<li>분류 모델링
+<ul>
+<li>신용평가모형(우량, 불량)</li>
+<li>사기방지모형(사기, 정상)</li>
+<li>이탈모형(이탈, 유지)</li>
+<li>고객세분화(VVIP, VIP, GOLD, SILVER, BRONZE)</li>
+</ul></li>
+<li>분류 기법
+<ul>
+<li>회귀분석, 로지스틱 회귀분석</li>
+<li>의사결정나무, CART, C5.0</li>
+<li>베이지안 분류</li>
+<li>인공신경망</li>
+<li>지지도벡터기계</li>
+<li>k 최근접 이웃</li>
+<li>규칙기반의 분류와 사례기반추록</li>
+</ul></li>
+</ul>
+</div>
+<div id="로지스틱-회귀분석logistic-regression" class="section level3">
+<h3>2. 로지스틱 회귀분석(Logistic Regression)</h3>
+<ul>
+<li><p><strong>반응변수가 범주형인 경우</strong>에 적용되는 회귀분석모형</p></li>
+<li><p>새로운 설명변수(또는 예측변수)가 주어질 때, 반응변수의 각 범주(또는 집단)에 속할 확률이 얼마인지 추정(예측모형)하여, 추정 확률을 기준치에 따라 분류하는 목적(분류모형)</p></li>
+<li><p><strong>사후확률</strong>(Posterior Probability): 모형의 적합을 통해 추정된 확률</p></li>
+<li><p>exp(β<sub>1</sub>): 나머지 변수가 주어질 때, x<sub>1</sub>이 한 단위 증가할 때마다 성공(Y=1)의 오즈가 몇 배 증가하는지 나타내는 값</p></li>
+<li><p>표준 로지스틱 분포의 누적함수로 성공 확률을 추정</p></li>
+<li><p>선형회귀분석 vs 로지스틱 회귀분석</p>
+<table>
+<thead>
+<tr class="header">
+<th>목적</th>
+<th>선형회귀분석</th>
+<th>로지스틱 회귀분석</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>종속변수</td>
+<td>연속형 변수</td>
+<td>(0, 1)</td>
+</tr>
+<tr class="even">
+<td>계수 추정법</td>
+<td>최소제곱법</td>
+<td>최대우도추정법</td>
+</tr>
+<tr class="odd">
+<td>모형 검정</td>
+<td>F-검정, T-검정</td>
+<td>카이제곱 검정(x<sup>2</sup>-test)</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>glm() 함수를 활용하여 로지스틱 회귀분석을 실행</p></li>
+</ul>
+</div>
+<div id="의사결정나무" class="section level3">
+<h3>3. 의사결정나무</h3>
+<ul>
+<li><p>정의</p>
+<ul>
+<li>분류함수를 의사결정 규칙으로 이뤄진 나무 모양으로 그리는 방법</li>
+<li>연속적으로 발생하는 의사결정 문제를 시각화</li>
+<li>계산결과가 의사결정나무에 직접적으로 나타나서 해석이 간편함</li>
+<li>주어진 입력값에 대해 출력값을 예측하는 모형 → 분류나무와 회귀나무 모형</li>
+</ul></li>
+<li><p>예측력과 해석력</p></li>
+<li><p>의사결정나무의 활용</p>
+<ol style="list-style-type: decimal">
+<li>세분화
+<ul>
+<li>데이터를 비슷한 특성을 갖는 몇 개 그룹으로 분할해 그룹별 특성을 발견하는 것</li>
+</ul></li>
+<li>분류
+<ul>
+<li>여러 예측변수에 근거해 관측개체의 목표변수 범주를 몇 개 등급으로 분류하고자 하는 경우에 사용</li>
+</ul></li>
+<li>예측
+<ul>
+<li>자료에서 규칙을 찾고 이를 이용해 미래 사건을 예측하고자 하는 경우에 사용</li>
+</ul></li>
+<li>차원축소 및 변수선택
+<ul>
+<li>많은 예측변수 중 목표변수에 큰 영향을 미치는 변수를 골라내고자 하는 경우에 사용</li>
+</ul></li>
+<li>교호작용효과의 파악
+<ul>
+<li>여러 개 예측변수를 결합해 목표변수에 작용하는 규칙을 파악하고자 하는 경우</li>
+<li>범주의 병합 또는 연속형 변수의 이산화: 범주형 목표변수의 범주를 소수 몇 개로 병합하거나, 연속형 목표변수를 몇 개의 등급으로 이산화하고자 하는 경우</li>
+</ul></li>
+</ol></li>
+<li><p><strong>의사결정나무 특징</strong></p>
+<ul>
+<li>장점
+<ul>
+<li>결과 설명 용이</li>
+<li>모형 만들기가 계산적으로 복잡하지 않음</li>
+<li>대용량 데이터에서도 빠르게 만들 수 있음</li>
+<li>비정상 잡음 데이터도 민감함 없이 분류 가능</li>
+<li>한 변수와 상관성 높은, 다른 불필요한 변수가 있어도 크게 영향 받지 않음</li>
+<li>설명변수나 목표변수에 수치형변수와 범주형변수 모두 사용 가능</li>
+<li>모형 분류 정확도가 높음</li>
+</ul></li>
+<li>단점
+<ul>
+<li>새로운 자료에 대한 과대적합이 발생할 가능성이 높음</li>
+<li>분류 경계선 부근 자료값에 대해 오차가 큼</li>
+<li>설명변수 간 중요도 판단이 어려움</li>
+</ul></li>
+</ul></li>
+<li><p>의사결정나무 분석 과정</p>
+<ul>
+<li>성장: 적절한 정지규칙을 만족하면 중단</li>
+<li>가지치기</li>
+<li>타당성 평가</li>
+<li>해석 및 예측</li>
+</ul></li>
+<li><p>나무의 성장</p>
+<ul>
+<li><p>분리규칙(splitting rule)</p></li>
+<li><p>분리기준(splitting criterion)</p></li>
+<li><p>이산형 목표변수</p>
+<table>
+<thead>
+<tr class="header">
+<th>기준값</th>
+<th>분리기준</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>카이제곱 통계량 p값</td>
+<td>P값이 가장 작은 예측변수와 그때의 최적분리에 의해 자식마디 형성</td>
+</tr>
+<tr class="even">
+<td>지니지수</td>
+<td>지니지수를 감소시키는 예측변수와 그때의 최적분리에 의해 자식마디 선택</td>
+</tr>
+<tr class="odd">
+<td>엔트로피 지수</td>
+<td>엔트로피 지수가 가장 작은 예측변수와 그때의 최적분리에 의해 자식마디 형성</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>연속형 목표변수</p>
+<table>
+<thead>
+<tr class="header">
+<th>기준값</th>
+<th>분리기준</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>분산분석에서 F통계량</td>
+<td>P값이 가장 작은 예측변수와 그때의 최적분리에 의해 자식마디 형성</td>
+</tr>
+<tr class="even">
+<td>분산의 감소량</td>
+<td>분산 감소량을 최대화하는 기준의 최적분리에 의해 자식마디 형성</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>정지규칙</p>
+<ul>
+<li>더이상 분리가 일어나지 않고 현재 마디가 끝마디가 되도록 하는 규칙</li>
+<li>정지기준: 의사결정나무 깊이를 지정, 끝마디의 레코드 수의 최소 개수를 지정</li>
+</ul></li>
+</ul></li>
+<li><p><strong>나무의 가지치기</strong>(Pruning)</p>
+<ul>
+<li>너무 큰 나무모형은 자료를 과대적합, 너무 작은 나무모형은 과소적합할 위험</li>
+<li>나무 크기를 모형 복잡도로 볼 수 있으며, 최적 나무 크기는 자료로부터 추정하게 됨</li>
+<li>일반적으로 사용되는 방법은 마디에 속하는 자료가 일정 수(가령 5) 이하일 때 분할을 정지</li>
+<li>비용 - 복잡도 가지치기를 이용하여 성장시킨 나무를 가지치기하게 됨</li>
+</ul></li>
+</ul>
+</div>
+<div id="불순도의-여러-가지-측도" class="section level3">
+<h3>4. 불순도의 여러 가지 측도</h3>
+<ul>
+<li>목표변수가 범주형 변수인 의사결정나무 분류규칙을 선택
+<ol style="list-style-type: decimal">
+<li>카이제곱 통계량
+<ul>
+<li>각 셀에 대한 ((실제도수 - 기대도수)의 제곱 / 기대도수) 합으로 구할 수 있음</li>
+<li>기대도수 = 열의 합계 x 합의 합계 / 전체합계</li>
+</ul></li>
+<li>지니지수
+<ul>
+<li>노드의 불순도를 나타내는 값</li>
+<li>지니지수 값이 클수록 이질적이며 순수도가 낮다고 볼 수 있음</li>
+</ul></li>
+<li>엔트로피 지수
+<ul>
+<li>열역학에서 쓰는 개념으로 무질서 정도에 대한 측도</li>
+<li>엔트로피 지수 값이 클수록 순수도가 낮다고 볼 수 있음</li>
+<li>엔트로피 지수가 가장 작은 예측변수와 이때의 최적분리 규칙에 의해 자식마디 형성</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="의사결정나무-알고리즘" class="section level3">
+<h3>5. 의사결정나무 알고리즘</h3>
+<ul>
+<li>CART
+<ul>
+<li>불순도의 측도로 출력변수가 범주형일 경우 지니지수를 이용, 연속형인 경우 분산을 이용한 이진분리 사용</li>
+<li>개별 입력변수뿐 아니라 입력변수의 선형결합 중에서 최적의 분리를 찾을 수 있음</li>
+</ul></li>
+<li>C4.5와 C5.0
+<ul>
+<li>CART와는 다르게 각 마디에서 다지분리가 가능</li>
+<li>범주형 입력변수에 대하여는 범주 수만큼 분리가 일어남</li>
+<li>불순도의 측도로는 엔트로피지수 사용</li>
+</ul></li>
+<li>CHAID
+<ul>
+<li>가지치기 하지 않고 적당한 크기에서 나무모형의 성장을 중지</li>
+<li><strong>입력변수가 반드시 범주형 변수여야 함</strong></li>
+<li>불순도 측도로는 카이제곱 통계량 사용</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="절.-앙상블-분석" class="section level2">
+<h2>3절. 앙상블 분석</h2>
+<ul>
+<li>앙상블
+<ul>
+<li>주어진 자료로부터 여러 개 예측모형을 만든 후, 조합하여 하나의 최종 예측 모형을 만드는 방법</li>
+<li>다중 모델 조합, 분류기 조합</li>
+</ul></li>
+<li>학습방법의 불안정성
+<ul>
+<li>학습자료의 작은 변화에 의해 예측모형이 크게 변하는 경우, 그 학습방법은 불안정함</li>
+<li>가장 안정적인 방법
+<ul>
+<li>1-nearest neighbor: 가장 가까운 자료만 변하지 않으면 예측모형 변하지 않음</li>
+<li>선형회귀모형: 최소제곱법으로 추정해 모형 결정</li>
+</ul></li>
+<li>가장 불안정한 방법: 의사결정나무</li>
+</ul></li>
+<li>앙상블 기법의 종류
+<ol style="list-style-type: decimal">
+<li><strong>배깅</strong>
+<ul>
+<li>주어진 자료에서 여러 개의 붓스트랩 자료를 생성하고 각 붓스트랩 자료에 예측모형을 만든 후 결합하여 최종 예측모형을 만드는 방법</li>
+<li>붓스트랩(bootstrap): 주어진 자료에서 동일한 크기 표본을 랜덤 복원추출로 뽑은 자료</li>
+<li>보팅(voting): 여러 개 모형으로부터 산출된 결과를 다수결에 의해 최종 결과를 선정하는 과정</li>
+<li>배깅에서는 가지치기를 하지 않고 최대로 성장한 의사결정나무를 활용</li>
+<li>훈련자료 모집단의 분포를 모르기 때문에 실제 문제에서는 평균예측모형을 구할 수 없음 → 훈련자료를 모집단으로 생각하고 평균예측모형을 구하여 분산을 줄이고 예측력을 향상시킬 수 있음</li>
+</ul></li>
+<li><strong>부스팅</strong>
+<ul>
+<li>예측력 약한 모형을 결합하여 강한 예측모형을 만드는 방법</li>
+<li>훈련오차를 빠르고 쉽게 줄일 수 있음</li>
+<li>배깅에 비해 많은 경우의 예측오차가 향상</li>
+<li>Adaboost: 이진분류 문제에서 랜덤 분류기보다 조금 더 좋은 분류기 n개에 가중치를 설정하고 n개 분류기를 결합하여 최종 분류기 만드는 방법(단, 가중치 합은 1)</li>
+</ul></li>
+<li><strong>랜덤 포레스트</strong>(random forest)
+<ul>
+<li>분산이 크다는 의사결정나무 특징을 고려하여 배깅과 부스팅보다 더 많은 무작위성을 줌</li>
+<li>약한 학습기를 생성한 후, 이를 선형 결합하여 최종 학습기를 만드는 방법</li>
+<li>랜덤한 forest에는 많은 트리가 생성됨</li>
+<li>정확도 측면에서 좋은 성과</li>
+<li>이론적 설명이나 최종 결과 해석이 어렵지만, 예측력이 매우 높음</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="절.-인공신경망-분석" class="section level2">
+<h2>4절. 인공신경망 분석</h2>
+<div id="인공신경망-분석ann" class="section level3">
+<h3>1. 인공신경망 분석(ANN)</h3>
+<ul>
+<li>인공신경망이란?
+<ul>
+<li>인간 뇌를 기반으로 한 추론 모델</li>
+<li>뉴런: 기본적인 정보처리 단위</li>
+</ul></li>
+<li>인간의 뇌를 형상화한 인공신경망
+<ul>
+<li>인간 뇌의 특징
+<ul>
+<li>100억 개 뉴런과 6조 개 시냅스의 결합체</li>
+<li>인간의 뇌: 컴퓨터보다 빠르고, 복잡하고, 비선형적, 병렬적인 정보 처리 시스템</li>
+<li>적응성에 따라 잘못된 답에 대한 뉴런 사이 연결은 약화되고, 올바른 답에 대한 연결이 강화됨</li>
+</ul></li>
+<li>인간 뇌 모델링
+<ul>
+<li>뉴런은 가중치 있는 링크로 연결되어 있음</li>
+<li>뉴런은 여러 입력 신호를 받으나, 출력 신호는 하나만 생성함</li>
+</ul></li>
+</ul></li>
+<li>인공신경망의 학습
+<ul>
+<li>신경망은 <strong>가중치를 반복적으로 조정하며 학습</strong></li>
+<li>뉴런은 링크로 연결되어 있고, 각 링크에는 수치적인 가중치가 있음</li>
+<li>신경망 가중치를 초기화 → 훈련 데이터로 가중치 갱신 → 신경망 구조 선택 → 활용할 학습 알고리즘 결정 → 신경망 훈련</li>
+</ul></li>
+<li>인공신경망 특징
+<ol style="list-style-type: decimal">
+<li>구조
+<ul>
+<li>입력 링크에서 여러 신호를 받아 새로운 활성화 수준을 계산하고 출력 링크로 출력 신호를 보냄</li>
+<li>입력 신호는 미가공 데이터 또는 다른 뉴런의 출력이 될 수 있음</li>
+<li>출력 신호는 문제의 최종적인 해(solution)가 되거나 다른 뉴런에 입력될 수 있음</li>
+</ul></li>
+<li>뉴런의 계산
+<ul>
+<li>뉴런은 전이함수, 즉 활성화 함수를 사용</li>
+<li>활성화 함수를 이용해 출력을 결정하며, 입력신호의 가중치 합을 계산하여 임계값과 비교</li>
+<li>가중치 합이 임계값보다 작으면 뉴련의 출력은 -1, 같거나 크면 +1을 출력</li>
+</ul></li>
+<li>뉴런의 활성화 함수
+<ul>
+<li>시그모이드 함수: 로지스틱 회귀분석과 유사하며 0~1의 확률값을 가짐</li>
+<li>softmax 함수: 표준화지수 함수로도 불리며, 출력값이 여러 개로 주어지고 목표치가 다범주인 경우 각 범주에 속할 사후확률을 제공하는 함수</li>
+<li>relu 함수: 입력값이 0 이하는 0, 0 이상은 x값을 가지는 함수, 최근 딥러닝에서 많이 활용</li>
+</ul></li>
+<li>단일 뉴런의 학습(단층 퍼셉트론)
+<ul>
+<li>퍼셉트론은 선형 결합기와 하드 리미터로 구성</li>
+<li>초평면(hyperplane)은 n차원 공간을 두 개의 영역으로 나눔</li>
+<li>초평면을 선형 분리 함수로 정의</li>
+</ul></li>
+</ol></li>
+<li>신경망 모형 구축 시 고려사항
+<ol style="list-style-type: decimal">
+<li>입력변수
+<ul>
+<li>신경망 모형은 복잡성으로 인해 입력 자료 선택에 매우 민감</li>
+<li>입력변수가 범주형 또는 연속형 변수일 때 아래 조건이 신경망 모형에 적합
+<ul>
+<li><strong>범주형 변수</strong>: 모든 범주에서 일정 빈도 이상의 값을 갖고 각 범주 빈도가 일정할 때</li>
+<li><strong>연속형 변수</strong>: 입력변수 값의 범위가 변수간의 큰 차이가 없을 때</li>
+</ul></li>
+<li>연속형 변수의 경우, 분포가 평균을 중심으로 대칭이 아니면 좋지 않은 결과를 도출하므로 아래 방법을 활용
+<ul>
+<li><strong>변환</strong>: 고객 소득(대부분 평균 미만, 특정 고객 소득이 매우 큰) 로그 변환</li>
+<li><strong>범주화</strong>: 각 범주 빈도가 비슷해지도록 설정</li>
+</ul></li>
+<li>범주형 변수의 경우 가변수화하여 적용</li>
+<li>가능한 경우 모든 범주형 변수는 같은 범위를 갖도록 가변수화 하는 것이 좋음</li>
+</ul></li>
+<li>가중치의 초기값과 다중 최소값 문제
+<ul>
+<li>역전파 알고리즘은 초기값에 따라 결과가 많이 달라짐 → 초기값 선택은 매우 중요한 문제</li>
+<li>가중치가 0이면 시그모이드 함수는 선형, 신경망 모형은 근사적으로 선형모형이 됨</li>
+<li>일반적으로 초기값은 0 근처로 랜덤하게 선택 → 초기 모형은 선형모형에 가깝고, 가중치 값이 증가할수록 비선형모형이 됨</li>
+<li>참고: 초기값이 0이면 반복해도 값이 전혀 변하지 않고, 너무 크면 좋지 않은 해를 주는 문제점 내포</li>
+</ul></li>
+<li>학습모드
+<ul>
+<li>온라인 학습모드(online learning mode)
+<ul>
+<li>각 관측값을 순차적으로 하나씩 신경망에 투입하여 가중치 추정값이 매번 바뀜</li>
+<li>일반적으로 속도가 빠름, 훈련자료에 유사값 많은 경우 그 차이가 더 두드러짐</li>
+<li>훈련자료가 비정상성과 같이 특이한 성질을 가진 경우가 좋음</li>
+<li>국소최솟갑셍서 벗어나기 더 쉬움</li>
+</ul></li>
+<li>확률적 학습모드(probabilistic learning mode)
+<ul>
+<li>온라인 학습모드와 같으나, 신경망에 투입되는 관측값의 순서가 랜덤</li>
+</ul></li>
+<li>배치 학습모드(batch learning mode)
+<ul>
+<li>전체 훈련자료를 동시에 신경망에 투입</li>
+</ul></li>
+<li>은닉층(hidden layer)과 은닉노드(hidden node)의 수
+<ul>
+<li>신경망을 적용할 때, 가장 중요한 부분이 모형의 선택</li>
+<li>은닉층과 은닉노드가 많으면 가중치가 많아져서 과대 적합 문제 발생</li>
+<li>은닉층과 은닉노드가 적으면 과소적합 문제 발생</li>
+<li>은닉층 수가 하나인 신경망: 범용 근사자 → 모든 매끄러운 함수 근사적 표현 가능</li>
+<li>은닉노드 수는 적절히 큰 값으로 놓고 가중치를 감소시키며 적용하는 것이 좋음</li>
+</ul></li>
+<li>과대 적합 문제
+<ul>
+<li>신경망에서는 많은 가중치를 추정해야 하므로 과대적합 문제가 빈번히 발생</li>
+<li>알고리즘 조기종료와 가중치 감소 기법으로 해결할 수 있음</li>
+<li>모형 적합 과정에서 검증오차가 증가하면 반복을 중지하는 조기종료 시행</li>
+<li>선형모형의 능형회귀와 유사한 가중치 감소라는 벌점화 기법 활용</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="절.-군집분석" class="section level2">
+<h2>5절. 군집분석</h2>
+<div id="군집분석" class="section level3">
+<h3>1. 군집분석</h3>
+<ul>
+<li>개요
+<ul>
+<li>각 객체(대상)의 유사성을 측정하여 유사성이 높은 대상 집단을 분류하고, 군집에 속한 객체들의 유사성과 서로 다른 군집에 속한 객체간 상이성을 규명하는 분석 방법</li>
+<li>특성에 따라 고객을 여러 개의 배타적인 집단으로 나눔</li>
+<li>결과는 구체적인 군집분석 방법에 따라 차이 날 수 있음</li>
+<li>군집 개수나 구조에 관한 가정 없이 데이터 사이 거리를 기준으로 군집화 유도</li>
+<li>마케팅 조사에서 소비자의 상품구매행동이나 life style에 따른 소비자군을 분류하여 시장 전략 수립에 활용</li>
+</ul></li>
+<li>특징
+<ul>
+<li>요인분석과의 차이
+<ul>
+<li>요인분석은 유사한 변수를 함께 묶는 목적</li>
+</ul></li>
+<li>판별분석과의 차이
+<ul>
+<li>판별분석은 사전에 집단이 나뉜 자료를 통해 새로운 데이터를 기존 집단에 할당하는 것이 목적</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="거리" class="section level3">
+<h3>2. 거리</h3>
+<ul>
+<li><p>군집분석에서는 관측 데이터 간 유사성이나 근접성을 측정해 어느 군집으로 묶을 수 있는지 판단해야 함<br />
+</p></li>
+<li><p>아래 각 거리 식은 교재 참고</p></li>
+<li><p><strong>연속형 변수의 경우</strong></p>
+<ul>
+<li><p>유클리디안 거리</p>
+<ul>
+<li>데이터 유사성 측정할 때 많이 사용하는 거리, 통계적 개념 내포 x → 변수 산포 정도가 감안되지 않음</li>
+</ul></li>
+<li><p>표준화 거리</p>
+<ul>
+<li>해당변수 표준편차로 척도 변환 후, 유클리드안 거리를 계산하는 방법</li>
+<li>표준화하게 되면 척도 차이, 분산 차이로 인한 왜곡을 피할 수 있음</li>
+</ul></li>
+<li><p>마할라노비스 거리</p>
+<ul>
+<li>통계적 개념이 포함된 거리이며 변수들의 산포를 고려하여 이를 표준화한 거리</li>
+<li>두 백터 사이 거리를 산포를 의미하는 표본공분산으로 나눠주어야 함</li>
+<li>그룹에 관한 사전 지식 없이는 표본공분산S를 계산할 수 없으므로 사용하기 곤란</li>
+</ul></li>
+<li><p>체비셰프 거리</p></li>
+<li><p>맨하탄 거리</p>
+<ul>
+<li>유클리디안 거리와 함께 가장 많이 사용되는 거리</li>
+<li>맨하탄 도시 건물에서 건물을 가기 위한 최단 거리를 구하기 위해 고안</li>
+</ul></li>
+<li><p>캔버라 거리</p></li>
+<li><p>민코우스키 거리</p>
+<ul>
+<li>맨하탄 거리와 유클리디안 거리를 한 번에 표현한 공식</li>
+<li>L1 거리(맨하탄거리), L2 거리(유클리디안 거리)라고 불림</li>
+</ul></li>
+</ul></li>
+<li><p><strong>범주형 변수의 경우</strong></p>
+<ul>
+<li>자카드 거리</li>
+<li>자카드 계수</li>
+<li>코사인 거리
+<ul>
+<li>유사도 기준으로 문서를 분류/그룹핑할 때 유용하게 사용</li>
+</ul></li>
+<li>코사인 유사도
+<ul>
+<li>두 개체 백터 내적의 코사인 값을 이용하여 측정된 백터간의 유사한 정도</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="계층적-군집분석" class="section level3">
+<h3>3. 계층적 군집분석</h3>
+<ul>
+<li>n개의 군집으로 시작해 점차 군집 개수를 줄여가는 방법</li>
+<li>계층적 군집을 형성하는 방법에는 합병형 방법과 분리형 방법이 있음</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>최단연결법(single linkage, nearest neighbor)
+<ul>
+<li>n*n 거리행렬에서 거리가 가장 가까운 데이터를 묶어서 군집 형성</li>
+<li>군집과 군집 또는 데이터와의 거리 계산 시, 최단거리(min)를 거리로 계산하여 거리행렬 수정 진행</li>
+<li>수정된 거리행렬에서 거리가 가까운 데이터/군집을 새로운 군집으로 형성</li>
+</ul></li>
+<li>최장연결법(complete linkage, farthest neighbor)
+<ul>
+<li>군집과 군집/데이터와 거리 계산 시, 최장거리(max)를 거리로 계산하여 거리행렬을 수정하는 방법</li>
+</ul></li>
+<li>평균연결법(average linkage)
+<ul>
+<li>군집과 군집/데이터와 거리 계산 시, 평균(mean)을 거리로 계산하여 거리행렬을 수정하는 방법</li>
+</ul></li>
+<li>와드연결법(ward linkage)
+<ul>
+<li>군집 내 편차들의 제곱합을 고려한 방법</li>
+<li>군집간 정보 손실 최소화를 위해 군집화 진행</li>
+</ul></li>
+<li>군집화
+<ul>
+<li>거리행렬을 통해 가장 가까운 거리의 객체들간 관계를 규명하고 덴드로그램을 그림</li>
+<li>덴드로그램을 보고 군집 개수를 변화해가며 적절한 군집 수 선정</li>
+<li>군집 수는 분석 목적에 따라 선정할 수 있지만, 5개 이상은 잘 활용하지 않음</li>
+<li>군집화 단계
+<ul>
+<li>거리행렬을 기준으로 덴드로그램을 그림</li>
+<li>덴드로그램 최상단부터 세로축 개수에 따라 가로선을 그어 군집 개수 선택</li>
+<li>각 객체 구성을 고려하여 적절한 군집 수 선정</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+<div id="비계층적-군집분석" class="section level3">
+<h3>4. 비계층적 군집분석</h3>
+<p>n개의 개체를 g개의 군집으로 나눌 수 있는 모든 가능한 방법을 점검해 최적화한 군집을 형성하는 것</p>
+<ul>
+<li>K-평균 군집분석의 개념
+<ul>
+<li>주어진 데이터를 k개의 클러스터로 묶는 알고리즘</li>
+<li>각 클러스터와 거리 차이 분산을 최소화하는 방식으로 동작</li>
+</ul></li>
+<li>K-평균 군집분석 과정
+<ul>
+<li>원하는 군집 개수와 초기 값(seed)을 정해 seed 중심으로 군집 형성</li>
+<li>각 데이터를 거리가 가장 가까운 seed가 있는 군집으로 분류</li>
+<li>각 군집의 seed 값을 다시 계산</li>
+<li>모든 개체가 군집으로 할당될 때까지 위 과정 반복</li>
+</ul></li>
+<li>K-평균 군집분석 특징
+<ul>
+<li>거리 계산을 통해 군집화가 이루어지므로 <strong>연속형 변수에 활용 가능</strong></li>
+<li>K개의 <strong>초기 중심값은 임의 선택 가능</strong>하며 가급적이면 멀리 떨어지는 것이 바람직함</li>
+<li>초기 중심값을 임의로 선택할 때, 일렬로 선택하면 군집이 혼합되지 않고 층으로 나눠질 수 있어 주의해야 함</li>
+<li><strong>초기 중심값 선정에 따라 결과가 달라질 수 있음</strong></li>
+<li>초기 중심으로부터 오차 제곱합을 최소화하는 방향으로 군집이 형성되는 <strong>탐욕적(greedy) 알고리즘</strong>이므로 안정된 군집은 보장하나 최적이라는 보장은 없음</li>
+</ul>
+<table>
+<colgroup>
+<col width="50%"></col>
+<col width="50%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>장점</th>
+<th>단점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>알고리즘 단순, 수행 빠름 → 분석 방법 적용 용이, 계층적 군집분석에 비해 많은 양의 데이터를 다룰 수 있음, 내부 구조에 대한 사전정보 없이 의미 있는 자료구조 찾을 수 있음, 다양한 형태 데이터에 적용 가능</td>
+<td>군집 수, 가중치와 거리 정의가 어려움, 사전에 주어진 목적이 없으므로 결과 해석이 어려움, 잡음이나 이상값의 영향을 많이 받음, 볼록한 형태가 아닌 군집이 존재할 경우에는 성능 떨어짐, 초기 군집 수 결정이 어려움</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+<div id="혼합-분포-군집mixture-distribution-clustering" class="section level3">
+<h3>5. 혼합 분포 군집(mixture distribution clustering)</h3>
+<ul>
+<li>개요
+<ul>
+<li>모형 기반 군집 방법</li>
+<li>데이터가 k개의 모수적 모형의 가중합으로 표현되는 모집단 모형으로부터 나왔다는 가정 하에서 모수와 함께 가중치를 자료로부터 추정하는 방법 사용</li>
+<li>K개의 각 모형은 군집을 의미, 각 데이터는 추정된 k개의 모형 중 어느 모형으로부터 나왔을 확률이 높은지에 따라 군집 분류가 이루어짐</li>
+<li>혼합모형에서 모수와 가중치의 추정(최대가능도 추정)에는 EM 알고리즘이 사용됨</li>
+</ul></li>
+<li>혼합 분포모형으로 설명할 수 있는 데이터 형태
+<ul>
+<li>자료의 분포형태가 다봉형의 형태</li>
+<li>교재 참고</li>
+</ul></li>
+<li>EM(Expectation-Maximization) 알고리즘의 진행 과정
+<ul>
+<li>각 자료에 대해 Z의 조건부분포(어느 집단에 속할지에 관한)로부터 조건부 기댓값을 구할 수 있음</li>
+<li>관측변수 X와 잠재변수 Z를 포함하는 (X,Z)에 대한 로그-가능도함수에 Z 대신 상수값인 Z의 조건부 기댓값을 대입하면 로그-가능도함수를 최대로 하는 모수를 쉽게 찾을 수 있음, (M-단계) 갱신된 모수 추정치에 위 과정을 반복하면 수렴하는 값을 얻게 되고 이는 최대 가능도 추정치로 사용될 수 있음</li>
+<li>E-단계: 잠재변수 Z의 기대치 계산</li>
+<li>M-단계: 잠재변수 Z의 기대치를 이용하여 파라미터 추정</li>
+</ul></li>
+<li>혼합 분포 군집모형의 트깅
+<ul>
+<li>K-평균군집 절차와 유사하지만 <strong>확률분포를 도입하여 군집 수행</strong></li>
+<li>군집을 몇 개의 모수로 표현할 수 있으며, 서로 다른 크기나 모양의 군집을 찾을 수 있음</li>
+<li>EM 알고리즘을 이용한 모수 추정에서 데이터가 커지면 수렴에 시간이 걸릴 수 있음</li>
+<li>군집 크기가 너무 작으면 추정 정도가 떨어지거나 어려울 수 있음</li>
+<li>K-평균군집과 같이 <strong>이상치 자료에 민감</strong> → 사전 조치 필요</li>
+</ul></li>
+</ul>
+</div>
+<div id="somself-organizing-map" class="section level3">
+<h3>6. SOM(Self Organizing Map)</h3>
+<ul>
+<li>SOM
+<ul>
+<li>자가조직화지도 알고리즘은 코호넨에 의해 제시, 개발 → 코호넨 맵(Ko-honen Maps)이라고도 알려져 있음</li>
+<li><strong>SOM은 비지도 신경망으로 고차원의 데이터를 이해하기 쉬운 저차원의 뉴런으로 정렬</strong>하여 지도 형태로 형상화</li>
+<li>형상화는 입력 변수의 위치 관계를 그대로 보존한다는 특징이 있음 → 실제 공간의 입력변수가 가까이 있으면 지도상에도 가까운 위치에 있음</li>
+</ul></li>
+<li>구성
+<ul>
+<li>SOM 모델은 두 개의 인공신경망 층으로 구성되어 있음</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>입력층(Input layer, 입력벡터를 받는 층)</strong>
+<ul>
+<li>입력변수 개수와 뉴런 수가 동일하게 존재</li>
+<li>입력층 자료는 학습을 통해 경쟁층에 정렬되는데, 이를 지도라 부름</li>
+<li>입력층에 있는 각각의 뉴런은 경쟁층에 있는 각각의 뉴런과 완전 연결(fully connected)되어 있음</li>
+</ul></li>
+<li><strong>경쟁층(Competitive layer, 2차원 격자(grid)로 구성된 층)</strong>
+<ul>
+<li>입력백터 특성에 따라 백터가 한 점으로 클러스터링 되는 층</li>
+<li>SOM은 경쟁 학습으로 각각 뉴런이 입력백터와 얼마나 가까운가를 계산하여 연결 강도(connection weight)를 반복적으로 재조정하여 학습</li>
+<li>위 과정을 거치며 연결강도는 입력 패턴과 가장 유사한 경쟁층 뉴런이 승자가 됨</li>
+<li>입력층 표본 백터에 가장 가까운 프로토타입 백터를 BMU(Best-Matching-Unit)라고 하며, 코호넨 승자 독점의 학습 규칙에 따라 위상학적 이웃(topological neighbors)에 대한 연결 강도를 조정</li>
+<li>승자 독식 구조로 인해 경쟁층에는 승자 뉴런만이 나타나며, 승자와 유사한 연결 강도를 갖는 입력 패턴이 동일한 경쟁 뉴런으로 배열됨</li>
+</ul></li>
+</ol></li>
+<li>특징
+<ul>
+<li>고차원의 데이터를 저차원의 지도 형태로 형상화 → 시각적으로 이해가 쉬움</li>
+<li>입력변수의 위치 관계를 그대로 보존하기 때문에 실제 데이터가 유사하면 지도상에서 가깝게 표현 → 패턴 발견, 이미지 분석 등에서 뛰어난 성능을 보임</li>
+<li>역전파(Back Propagation): 알고리즘 등을 이용하는 인공신경망과 달리 단 하나의 전방 패스를 사용함으로써 속도가 매우 빠름 → 실시간 학습처리를 할 수 있는 모형</li>
+</ul></li>
+<li>SOM과 신경망 모형의 차이점</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>신경망 모형</th>
+<th>SOM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>학습 방법</td>
+<td>오차역전파법</td>
+<td>경쟁학습방법</td>
+</tr>
+<tr class="even">
+<td>구성</td>
+<td>입력층, 은닉층, 출력층</td>
+<td>입력층, 2차원 격자 형태의 경쟁층</td>
+</tr>
+<tr class="odd">
+<td>기계 학습 방법의 분류</td>
+<td>지도학습(Supervised Learning)</td>
+<td>비지도학습(Unsupervised Learning)</td>
+</tr>
+</tbody>
+</table>
+<p>###7. 최신 군집분석 기법 - 교재 참고</p>
+</div>
+</div>
+<div id="절.-연관분석" class="section level2">
+<h2>6절. 연관분석</h2>
+<div id="연관규칙" class="section level3">
+<h3>1. 연관규칙</h3>
+<ul>
+<li>연관규칙분석(Association Analysis)의 개념
+<ul>
+<li>흔히 장바구니분석 또는 서열분석이라고 불림</li>
+<li>기업 데이터베이스에서 상품의 구매, 서비스 등 일련의 거래 또는 사건 사이 규칙을 발견하기 위해 적용</li>
+<li>장바구니 분석: 장바구니에 무엇이 같이 들어 있는지에 관한 분석</li>
+<li>서열 분석: ‘A를 구매한 다음에 B를 구매한다’</li>
+</ul></li>
+<li>연관규칙의 형태
+<ul>
+<li>조건과 반응의 형태(if-then)로 이루어져 있음</li>
+</ul>
+<pre><code>(Item set A) → (Item set B)
+If A then B: 만일 A가 일어나면 B가 일어난다.
+
+- 아메리카노를 마시는 손님 중 10%가 브라우니를 먹는다.
+- 샌드위치를 먹는 고객의 30%가 탄산수를 함께 마신다.</code></pre></li>
+<li>연관규칙의 측도
+<ul>
+<li>산업 특성에 따라 지지도, 신뢰도, 향상도 값을 잘 보고 규칙을 선택해야 함</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>지지도(support)</strong>
+<ul>
+<li>전체 거래 중 항목 A와 항목 B를 동시에 포함하는 거래의 비율</li>
+</ul></li>
+<li><strong>신뢰도(confidence)</strong>
+<ul>
+<li>항목 A를 포함한 거래 중에서 항목 A와 항목 B가 같이 포함될 확률 → 연관성 정도 파악 가능</li>
+</ul></li>
+<li><strong>향상도(Lift)</strong>
+<ul>
+<li>A가 구매되지 않았을 때, 품목 B의 구매확률에 비해 A가 구매됐을 때 품목 B의 구매확률 증가 비</li>
+<li>연관규칙 A → B는 품목 A와 품목 B의 구매가 서로 관련 없는 경우에 향상도가 1이 됨</li>
+</ul></li>
+</ol></li>
+<li>연관규칙의 절차
+<ul>
+<li>최소 지지도보다 큰 집합만을 대상으로 높은 지지도를 갖는 품목 집합을 찾는 것</li>
+<li>처음에는 5%로 잡고 규칙이 충분히 도출되는지 보고 다양하게 조절하여 시도</li>
+<li>처음부터 너무 낮은 최소 지지도를 선정하는 것은 많은 리소스가 소모</li>
+<li>절차
+<ul>
+<li>최소 지지도 결정 → 품목 중 최소 지지도 넘는 품목 분류 → 2가지 품목 집합 생성 → 반복 수행해 빈발품목 집함 찾기</li>
+</ul></li>
+</ul></li>
+<li>연관규칙의 장단점</li>
+</ul>
+<table>
+<colgroup>
+<col width="50%"></col>
+<col width="50%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>장점</th>
+<th>단점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>조건 반응으로 표현되는 연관선 분석 결과를 쉽게 이해할 수 있음(탐색적 방법), 강력한 비목적성 분석기법으로 분석 방향이나 목적이 특별히 없는 경우 목적변수가 없어 유용하게 활용, 사용이 편리한 분석 데이터 형태로 거래 내용에 관한 데이터를 변환 없이 그 자체로 이용할 수 있는 간단한 자료 구조를 가짐, 분석을 위한 계산이 간단함</td>
+<td>품목수가 증가하면 분석에 필요한 계산은 기하급수적으로 늘어남,세분화한 품목을 갖고 연관성 규칙을 찾으면 의미 없는 분석이 될 수 있음, 거래량 적은 품목은 당연히 포함된 거래수가 적을 것이고 규칙 발견 시 제외하기가 쉬움</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>순차패턴(Sequence Analysis)
+<ul>
+<li>동시에 구매될 가능성이 큰 상품군을 찾는 연관성 분석에, 시간이라는 개념을 포함해 순차적으로 구매 가능성이 큰 상품군을 찾는 것</li>
+<li>연관성분석에서의 데이터 형태에서 각각의 고객으로부터 발생한 구매시점에 대한 정보가 포함됨</li>
+</ul></li>
+</ul>
+</div>
+<div id="기존-연관성분석의-이슈" class="section level3">
+<h3>2. 기존 연관성분석의 이슈</h3>
+<ul>
+<li>대용량 데이터에 관한 연관성 분석 불가능</li>
+<li>시간이 많이 걸리거나 기존 시스템에서 실행 시, 시스템 다운 현상 발생 가능</li>
+</ul>
+</div>
+<div id="최근-연관성분성-동향" class="section level3">
+<h3>3. 최근 연관성분성 동향</h3>
+<ul>
+<li><p>1세대 알고리즘인 Apriori나 2세대인 FP-Growth에서 발전하여 3세대의 FPV를 이용해 메모리를 효율적으로 사용 → SKU 레벨인 연관성분석을 성공적으로 적용</p></li>
+<li><p>거래내역에 포함된 모든 품목 개수가 n개일 때, 품목의 전체집합에서 추출할 수 있는 품목 부분집합 개수는 2<sup>n</sup>-1(공집합 제외)개, 가능한 모든 연관규칙 개서는 3<sup>n</sup> - 2<sup>n+1</sup> + 1개</p></li>
+<li><p>Aprirori: 모든 가능한 품목 부분집합 개수를 줄이는 방식으로 작동</p></li>
+<li><p>FP-Growth: 거래내역 안에 포함된 품목 개수를 줄여 비교하는 횟수를 줄이는 방식으로 작동</p></li>
+<li><p><strong>Aprirori 알고리즘</strong></p>
+<ul>
+<li>빈발항목집합: 최소 지지도보다 큰 지지도 값을 갖는 품목 집합</li>
+<li>모든 품목집합에 대한 지지도를 전부 계산하지 않고, 최소 지지도 이상의 빈발항목집합을 찾은 후 그것들에 대해서만 연관규칙을 계산하는 것</li>
+<li>1994년에 발표된 알고리즘으로 구현과 이해가 쉬우나, 지지도 낮은 후보 집합 생성 시 아이템 개수가 많아지면 계산 복잡도가 증가하는 문제 발생</li>
+</ul></li>
+<li><p><strong>FP-Growth 알고리즘</strong></p>
+<ul>
+<li>후보 빈발항목집합을 생성하지 않고, FP-Tree(Frequent Pattern Tree)를 만든 후 분할정복 방식으로 Apriori 알고리즘보다 더 빠르게 빈발항목집합을 추출할 수 있는 방법</li>
+<li>Apriori 알고리즘의 약점을 보안하기 위해 고안 → 데이터베이스 스캔 횟수가 작고 빠르게 분석 가능</li>
+</ul></li>
+</ul>
+</div>
+<div id="연관성분석-활용방안" class="section level3">
+<h3>4. 연관성분석 활용방안</h3>
+<ul>
+<li>장바구니 분석의 경우는 실시간 상품추천을 통한 교차판매에 응용</li>
+<li>순차패턴 분석은 A를 구매한 사람인데 B를 구매하지 않은 경우, B를 추천하는 교차판매 캠페인에 사용</li>
+</ul>
+</div>
+<div id="연관성분석-예제" class="section level3">
+<h3>5. 연관성분석 예제</h3>
+<ul>
+<li>교재 참고</li>
 </ul>
 </div>
 </div>
