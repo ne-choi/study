@@ -1891,8 +1891,8 @@ div.tocify {
 </ul></li>
 <li>검정 방법
 <ul>
-<li>모수적 검정: 관측된 자료로 구한 표본평균, 표본분산 등 이용해 검정</li>
-<li>비모수적 검정: 관측값의 절대적 크기에 의존하지 않는 관측값의 순위나 두 관측값 차이의 부호 등 이용해 검정</li>
+<li><strong>모수적 검정</strong>: 관측된 자료로 구한 <strong>표본평균, 표본분산</strong> 등 이용해 검정</li>
+<li><strong>비모수적 검정</strong>: <strong>관측값의 절대적 크기에 의존하지 않는 관측값의 순위나 두 관측값 차이의 부호</strong> 등 이용해 검정</li>
 </ul></li>
 </ol></li>
 <li>비모수적 검정의 예
@@ -2084,7 +2084,7 @@ div.tocify {
 <ul>
 <li>cov: 공분산</li>
 <li>cor: 상관계수</li>
-<li>p-value: 유의수준 0.05보다 작게 나타나면 상관계수가 있음</li>
+<li><strong>p-value</strong>: <strong>유의수준 0.05보다 작게 나타나면 상관계수</strong>가 있음</li>
 </ul></li>
 </ul>
 </div>
@@ -2109,7 +2109,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><strong>선형성</strong>
 <ul>
-<li>입력변수와 출력변수의 관계가 선형 (가장 중요한 가정)</li>
+<li>입력변수와 출력변수의 관계가 <strong>선형</strong> (가장 중요한 가정)</li>
 </ul></li>
 <li><strong>등분산성</strong>
 <ul>
@@ -2151,23 +2151,23 @@ div.tocify {
 <li><p>하나의 독립변수가 종속변수에 미치는 영향을 추정할 수 있는 통계기법</p></li>
 <li><p>회귀분석 검토사항</p>
 <ol style="list-style-type: decimal">
-<li>회귀계수가 유의미한가?
+<li><strong>회귀계수가 유의미</strong>한가?
 <ul>
-<li>해당 계수의 t 통계량의 p-값이 0.05보다 작으면 해당 회귀계수가 통계적으로 유의하다고 볼 수 있음</li>
+<li><strong>해당 계수 t 통계량의 p-값이 0.05보다 작으면</strong> 해당 회귀계수가 통계적으로 유의하다고 볼 수 있음</li>
 </ul></li>
-<li>모형이 설명력을 갖는가?
+<li><strong>모형이 설명력</strong>을 갖는가?
 <ul>
-<li>결정계수(R<sup>2</sup>)를 확인</li>
-<li>결정계수는 0~1값을 가지며, 높을수록 추정된 회귀식의 설명력이 높아짐</li>
+<li><strong>결정계수(R<sup>2</sup>)</strong>를 확인</li>
+<li>결정계수는 0~1값을 가지며, <strong>높을수록 추정된 회귀식의 설명력이 높아짐</strong></li>
 </ul></li>
-<li>모형이 데이터를 잘 적합하는가?
+<li>모형이 <strong>데이터를 잘 적합</strong>하는가?
 <ul>
-<li>잔차를 그래프로 그리고 회귀진단</li>
+<li><strong>잔차</strong>를 그래프로 그리고 회귀진단</li>
 </ul></li>
 </ol></li>
 <li><p>회귀계수의 추정</p>
 <ul>
-<li>최소제곱법, 최소자승법</li>
+<li><strong>최소제곱법</strong>, 최소자승법</li>
 <li>측정값을 기초로 적당한 제곱합을 만들고 이를 최소로 하는 값을 구해 측정결과를 처리</li>
 <li>잔차제곱이 가장 작은 선을 구하는 것</li>
 </ul></li>
@@ -2194,7 +2194,7 @@ div.tocify {
 <ul>
 <li>모형의 통계적 유의성은 F통계량으로 확인</li>
 <li>유의수준 5% 하에서 F통계량의 p-값이 0.05보다 작으면 추정된 회귀식은 통계적으로 유의하다 볼 수 있음</li>
-<li>F통계량이 크면 p-value가 0.05보다 작아지고 귀무가설을 기각함 → 모형이 유의하다고 결론 내릴 수 있음</li>
+<li><strong>F통계량이 크면 p-value가 0.05보다 작아지고 귀무가설을 기각</strong>함 → <strong>모형이 유의하다</strong>고 결론 내릴 수 있음</li>
 </ul></li>
 <li>회귀계수의 유의성
 <ul>
@@ -2211,7 +2211,7 @@ div.tocify {
 </ul></li>
 <li>데이터가 전제하는 가정을 만족하는가?
 <ul>
-<li>선형성, 독립성, 등분산성, 비상관성, 정상성</li>
+<li><strong>선형성, 독립성, 등분산성, 비상관성, 정상성</strong></li>
 </ul></li>
 <li>다중공선성(multicollinearity)
 <ul>
@@ -2268,10 +2268,13 @@ div.tocify {
 <div id="회귀분석-사례" class="section level3">
 <h3>5. 회귀분석 사례</h3>
 <ul>
-<li>F-statistic: F-통계량</li>
-<li>p-value: 유의수준 5% 하에서 추정되어야 해당 회귀 모형이 통계적으로 유의하다고 할 수 있음</li>
-<li>Multiple R-squared: 결정계수, Adjusted R-squared: 수정된 결정계수 (0~1값을 가지며, 높을수록 회귀식의 설명력 높아짐)</li>
-<li>Pr: 회귀계수들의 p-값</li>
+<li>그래프 보고 푸는 문제
+<ul>
+<li><strong>F-statistic</strong>: F-통계량</li>
+<li><strong>p-value</strong>: 유의수준 5% 하에서 추정되어야 해당 회귀 모형이 통계적으로 유의하다고 할 수 있음</li>
+<li><strong>Multiple R-squared</strong>: 결정계수, Adjusted R-squared: 수정된 결정계수 (0~1값을 가지며, 높을수록 회귀식의 설명력 높아짐)</li>
+<li><strong>Pr</strong>: 회귀계수들의 p-값</li>
+</ul></li>
 </ul>
 </div>
 <div id="최적회귀방정식" class="section level3">
@@ -2359,7 +2362,7 @@ div.tocify {
 <li><p>평균이 일정할 경우</p>
 <ul>
 <li>모든 시점에 대해 일정한 평균을 가짐</li>
-<li>평균이 일정하지 않은 시계열은 <strong>차분(difference)을 통해 정상화</strong>할 수 있음</li>
+<li><strong>평균이 일정하지 않은 시계열은 차분(difference)을 통해 정상화</strong>할 수 있음</li>
 <li>차분?
 <ul>
 <li>현 시점 자료에서 전 시점 자료를 빼는 것</li>
@@ -2369,7 +2372,7 @@ div.tocify {
 <li><p>분산이 일정</p>
 <ul>
 <li>분산도 시점에 의존하지 않고 일정해야 함</li>
-<li>분산이 일정하지 않을 경우 <strong>변환(transformation)을 통해 정상화</strong>할 수 있음</li>
+<li><strong>분산이 일정하지 않을 경우 변환(transformation)을 통해 정상화</strong>할 수 있음</li>
 </ul></li>
 <li><p>공분산도 단지 시차에만 의존, 실제 특정 시점 t, s에는 의존하지 않음</p></li>
 <li><p>정상 시계열</p>
@@ -2694,17 +2697,17 @@ div.tocify {
 </ul></li>
 <li>데이터 양이 충분하지 않거나 입력 변수에 대한 설명이 충분한 경우
 <ul>
-<li>홀드아웃 방법
+<li><strong>홀드아웃 방법</strong>
 <ul>
 <li>주어진 데이터를 랜덤하게 두 개의 데이터로 구분하여 사용</li>
 <li>주로 학습용과 시험용으로 분리하여 사용</li>
 </ul></li>
-<li>교차확인 방법
+<li><strong>교차확인 방법</strong>
 <ul>
 <li>주어진 데이터를 k개의 하부집단으로 구분</li>
 <li>k-1개의 집단을 학습용으로 나머지는 하부집단으로 검증용으로 설정하여 학습</li>
 <li>k번 반복 측정한 결과를 평균낸 값을 최종값으로 사용</li>
-<li>주로 10-fold 교차분석을 많이 사용</li>
+<li>주로 <strong>10-fold</strong> 교차분석을 많이 사용</li>
 </ul></li>
 </ul></li>
 </ol></li>
@@ -2746,7 +2749,7 @@ div.tocify {
 </ol></li>
 <li>ROCR 패키지로 성과분석
 <ul>
-<li>ROC Curve(Receiver Operation Characteristic Curve)
+<li><strong>ROC Curve</strong>(Receiver Operation Characteristic Curve)
 <ul>
 <li><p>가로축을 FPR(False Positive Rate = 1 - 특이도)값, 세로축을 TPR(Ture Positive Rate, 민감도)값으로 두어 시각화한 그래프</p></li>
 <li><p>2진 분류(binary classfication)에서 모형 성능을 평가하기 위해 사용되는 척도</p></li>
@@ -2787,11 +2790,11 @@ div.tocify {
 </table></li>
 </ul></li>
 </ul></li>
-<li>이익도표(Lift chart)
+<li>이익도표(Lift chart)*
 <ul>
 <li>분류모형 성능을 평가하기 위한 척도 (분류된 관측치에 대해 예측이 얼마나 잘 이루어졌는지)</li>
 <li>임의로 나눈 등급별로 반응검출율, 반응률, 리프트 등 정보를 산출해 나타내는 도표</li>
-<li>기본 향상도에 비해 반응률이 몇 배나 높은지 계산: 향상도(Lift)</li>
+<li>기본 향상도에 비해 반응률이 몇 배나 높은지 계산: <strong>향상도(Lift)</strong></li>
 <li>각 등급은 예측확률에 따라 매겨진 순위이므로, 상위 등급에서는 더 높은 반응률을 보이는 것이 좋은 모형</li>
 </ul></li>
 </ul>
@@ -2822,8 +2825,8 @@ div.tocify {
 </ul></li>
 <li>차이점
 <ul>
-<li>분류: 레코드(튜플)의 <strong>범주형 속성</strong>의 값을 맞힘(국/영/수 점수로 내신 등급 맞히기)</li>
-<li>예측: 레코드(튜플)의 <strong>연속형 속성</strong>의 값을 맞힘(카드 회원 가입정보로 연 매출액 알아맞히기)</li>
+<li><strong>분류</strong>: 레코드(튜플)의 <strong>범주형 속성</strong>의 값을 맞힘(국/영/수 점수로 내신 등급 맞히기)</li>
+<li><strong>예측</strong>: 레코드(튜플)의 <strong>연속형 속성</strong>의 값을 맞힘(카드 회원 가입정보로 연 매출액 알아맞히기)</li>
 </ul></li>
 </ul></li>
 <li>분류 모델링
@@ -2880,7 +2883,7 @@ div.tocify {
 </tr>
 </tbody>
 </table></li>
-<li><p>glm() 함수를 활용하여 로지스틱 회귀분석을 실행</p></li>
+<li><p><strong>glm() 함수</strong>를 활용하여 로지스틱 회귀분석을 실행</p></li>
 </ul>
 </div>
 <div id="의사결정나무" class="section level3">
@@ -2940,7 +2943,7 @@ div.tocify {
 <li><p>의사결정나무 분석 과정</p>
 <ul>
 <li>성장: 적절한 정지규칙을 만족하면 중단</li>
-<li>가지치기</li>
+<li><strong>가지치기</strong></li>
 <li>타당성 평가</li>
 <li>해석 및 예측</li>
 </ul></li>
@@ -3015,12 +3018,12 @@ div.tocify {
 <li>각 셀에 대한 ((실제도수 - 기대도수)의 제곱 / 기대도수) 합으로 구할 수 있음</li>
 <li>기대도수 = 열의 합계 x 합의 합계 / 전체합계</li>
 </ul></li>
-<li>지니지수
+<li><strong>지니지수</strong>
 <ul>
 <li>노드의 불순도를 나타내는 값</li>
 <li>지니지수 값이 클수록 이질적이며 순수도가 낮다고 볼 수 있음</li>
 </ul></li>
-<li>엔트로피 지수
+<li><strong>엔트로피 지수</strong>
 <ul>
 <li>열역학에서 쓰는 개념으로 무질서 정도에 대한 측도</li>
 <li>엔트로피 지수 값이 클수록 순수도가 낮다고 볼 수 있음</li>
@@ -3119,7 +3122,7 @@ div.tocify {
 <li>인간 뇌 모델링
 <ul>
 <li>뉴런은 가중치 있는 링크로 연결되어 있음</li>
-<li>뉴런은 여러 입력 신호를 받으나, 출력 신호는 하나만 생성함</li>
+<li>뉴런은 <strong>여러 입력 신호를 받으나, 출력 신호는 하나만 생성</strong>함</li>
 </ul></li>
 </ul></li>
 <li>인공신경망의 학습
@@ -3140,13 +3143,13 @@ div.tocify {
 <ul>
 <li>뉴런은 전이함수, 즉 활성화 함수를 사용</li>
 <li>활성화 함수를 이용해 출력을 결정하며, 입력신호의 가중치 합을 계산하여 임계값과 비교</li>
-<li>가중치 합이 임계값보다 작으면 뉴련의 출력은 -1, 같거나 크면 +1을 출력</li>
+<li><strong>가중치 합이 임계값보다 작으면 뉴련의 출력은 -1, 같거나 크면 +1을 출력</strong></li>
 </ul></li>
 <li>뉴런의 활성화 함수
 <ul>
-<li>시그모이드 함수: 로지스틱 회귀분석과 유사하며 0~1의 확률값을 가짐</li>
-<li>softmax 함수: 표준화지수 함수로도 불리며, 출력값이 여러 개로 주어지고 목표치가 다범주인 경우 각 범주에 속할 사후확률을 제공하는 함수</li>
-<li>relu 함수: 입력값이 0 이하는 0, 0 이상은 x값을 가지는 함수, 최근 딥러닝에서 많이 활용</li>
+<li><strong>시그모이드 함수</strong>: 로지스틱 회귀분석과 유사하며 0~1의 확률값을 가짐</li>
+<li><strong>softmax 함수</strong>: 표준화지수 함수로도 불리며, 출력값이 여러 개로 주어지고 목표치가 다범주인 경우 각 범주에 속할 사후확률을 제공하는 함수</li>
+<li><strong>relu 함수</strong>: 입력값이 0 이하는 0, 0 이상은 x값을 가지는 함수, 최근 딥러닝에서 많이 활용</li>
 </ul></li>
 <li>단일 뉴런의 학습(단층 퍼셉트론)
 <ul>
@@ -3187,7 +3190,7 @@ div.tocify {
 <li>각 관측값을 순차적으로 하나씩 신경망에 투입하여 가중치 추정값이 매번 바뀜</li>
 <li>일반적으로 속도가 빠름, 훈련자료에 유사값 많은 경우 그 차이가 더 두드러짐</li>
 <li>훈련자료가 비정상성과 같이 특이한 성질을 가진 경우가 좋음</li>
-<li>국소최솟갑셍서 벗어나기 더 쉬움</li>
+<li>국소최솟값에서 벗어나기 더 쉬움</li>
 </ul></li>
 <li>확률적 학습모드(probabilistic learning mode)
 <ul>
@@ -3199,9 +3202,9 @@ div.tocify {
 </ul></li>
 <li>은닉층(hidden layer)과 은닉노드(hidden node)의 수
 <ul>
-<li>신경망을 적용할 때, 가장 중요한 부분이 모형의 선택</li>
-<li>은닉층과 은닉노드가 많으면 가중치가 많아져서 과대 적합 문제 발생</li>
-<li>은닉층과 은닉노드가 적으면 과소적합 문제 발생</li>
+<li>신경망을 적용 시, 가장 중요한 부분: 모형의 선택</li>
+<li>은닉층과 은닉노드가 <strong>많으면 가중치가 많아져서 과대 적합 문제</strong> 발생</li>
+<li>은닉층과 은닉노드가 <strong>적으면 과소적합 문제</strong> 발생</li>
 <li>은닉층 수가 하나인 신경망: 범용 근사자 → 모든 매끄러운 함수 근사적 표현 가능</li>
 <li>은닉노드 수는 적절히 큰 값으로 놓고 가중치를 감소시키며 적용하는 것이 좋음</li>
 </ul></li>
@@ -3251,7 +3254,7 @@ div.tocify {
 <li><p>아래 각 거리 식은 교재 참고</p></li>
 <li><p><strong>연속형 변수의 경우</strong></p>
 <ul>
-<li><p>유클리디안 거리</p>
+<li><p><strong>유클리디안 거리</strong></p>
 <ul>
 <li>데이터 유사성 측정할 때 많이 사용하는 거리, 통계적 개념 내포 x → 변수 산포 정도가 감안되지 않음</li>
 </ul></li>
@@ -3260,14 +3263,14 @@ div.tocify {
 <li>해당변수 표준편차로 척도 변환 후, 유클리드안 거리를 계산하는 방법</li>
 <li>표준화하게 되면 척도 차이, 분산 차이로 인한 왜곡을 피할 수 있음</li>
 </ul></li>
-<li><p>마할라노비스 거리</p>
+<li><p><strong>마할라노비스 거리</strong></p>
 <ul>
 <li>통계적 개념이 포함된 거리이며 변수들의 산포를 고려하여 이를 표준화한 거리</li>
 <li>두 백터 사이 거리를 산포를 의미하는 표본공분산으로 나눠주어야 함</li>
 <li>그룹에 관한 사전 지식 없이는 표본공분산S를 계산할 수 없으므로 사용하기 곤란</li>
 </ul></li>
 <li><p>체비셰프 거리</p></li>
-<li><p>맨하탄 거리</p>
+<li><p><strong>맨하탄 거리</strong></p>
 <ul>
 <li>유클리디안 거리와 함께 가장 많이 사용되는 거리</li>
 <li>맨하탄 도시 건물에서 건물을 가기 위한 최단 거리를 구하기 위해 고안</li>
@@ -3301,29 +3304,29 @@ div.tocify {
 <li>계층적 군집을 형성하는 방법에는 합병형 방법과 분리형 방법이 있음</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>최단연결법(single linkage, nearest neighbor)
+<li><strong>최단연결법(single linkage, nearest neighbor)</strong>
 <ul>
 <li>n*n 거리행렬에서 거리가 가장 가까운 데이터를 묶어서 군집 형성</li>
 <li>군집과 군집 또는 데이터와의 거리 계산 시, 최단거리(min)를 거리로 계산하여 거리행렬 수정 진행</li>
 <li>수정된 거리행렬에서 거리가 가까운 데이터/군집을 새로운 군집으로 형성</li>
 </ul></li>
-<li>최장연결법(complete linkage, farthest neighbor)
+<li><strong>최장연결법(complete linkage, farthest neighbor)</strong>
 <ul>
 <li>군집과 군집/데이터와 거리 계산 시, 최장거리(max)를 거리로 계산하여 거리행렬을 수정하는 방법</li>
 </ul></li>
-<li>평균연결법(average linkage)
+<li><strong>평균연결법(average linkage)</strong>
 <ul>
 <li>군집과 군집/데이터와 거리 계산 시, 평균(mean)을 거리로 계산하여 거리행렬을 수정하는 방법</li>
 </ul></li>
-<li>와드연결법(ward linkage)
+<li><strong>와드연결법(ward linkage)</strong>
 <ul>
 <li>군집 내 편차들의 제곱합을 고려한 방법</li>
 <li>군집간 정보 손실 최소화를 위해 군집화 진행</li>
 </ul></li>
-<li>군집화
+<li><strong>군집화</strong>
 <ul>
 <li>거리행렬을 통해 가장 가까운 거리의 객체들간 관계를 규명하고 덴드로그램을 그림</li>
-<li>덴드로그램을 보고 군집 개수를 변화해가며 적절한 군집 수 선정</li>
+<li><strong>덴드로그램</strong>을 보고 군집 개수를 변화해가며 적절한 군집 수 선정</li>
 <li>군집 수는 분석 목적에 따라 선정할 수 있지만, 5개 이상은 잘 활용하지 않음</li>
 <li>군집화 단계
 <ul>
@@ -3338,7 +3341,7 @@ div.tocify {
 <h3>4. 비계층적 군집분석</h3>
 <p>n개의 개체를 g개의 군집으로 나눌 수 있는 모든 가능한 방법을 점검해 최적화한 군집을 형성하는 것</p>
 <ul>
-<li>K-평균 군집분석의 개념
+<li><strong>K-평균 군집분석</strong>
 <ul>
 <li>주어진 데이터를 k개의 클러스터로 묶는 알고리즘</li>
 <li>각 클러스터와 거리 차이 분산을 최소화하는 방식으로 동작</li>
@@ -3393,14 +3396,14 @@ div.tocify {
 <li>자료의 분포형태가 다봉형의 형태</li>
 <li>교재 참고</li>
 </ul></li>
-<li>EM(Expectation-Maximization) 알고리즘의 진행 과정
+<li><strong>EM(Expectation-Maximization) 알고리즘</strong>의 진행 과정
 <ul>
 <li>각 자료에 대해 Z의 조건부분포(어느 집단에 속할지에 관한)로부터 조건부 기댓값을 구할 수 있음</li>
 <li>관측변수 X와 잠재변수 Z를 포함하는 (X,Z)에 대한 로그-가능도함수에 Z 대신 상수값인 Z의 조건부 기댓값을 대입하면 로그-가능도함수를 최대로 하는 모수를 쉽게 찾을 수 있음, (M-단계) 갱신된 모수 추정치에 위 과정을 반복하면 수렴하는 값을 얻게 되고 이는 최대 가능도 추정치로 사용될 수 있음</li>
 <li>E-단계: 잠재변수 Z의 기대치 계산</li>
 <li>M-단계: 잠재변수 Z의 기대치를 이용하여 파라미터 추정</li>
 </ul></li>
-<li>혼합 분포 군집모형의 트깅
+<li>혼합 분포 군집모형의 특징
 <ul>
 <li>K-평균군집 절차와 유사하지만 <strong>확률분포를 도입하여 군집 수행</strong></li>
 <li>군집을 몇 개의 모수로 표현할 수 있으며, 서로 다른 크기나 모양의 군집을 찾을 수 있음</li>
@@ -3481,9 +3484,9 @@ div.tocify {
 <div id="연관규칙" class="section level3">
 <h3>1. 연관규칙</h3>
 <ul>
-<li>연관규칙분석(Association Analysis)의 개념
+<li><strong>연관규칙분석(Association Analysis)</strong>의 개념
 <ul>
-<li>흔히 장바구니분석 또는 서열분석이라고 불림</li>
+<li>흔히 <strong>장바구니분석</strong> 또는 <strong>서열분석</strong>이라고 불림</li>
 <li>기업 데이터베이스에서 상품의 구매, 서비스 등 일련의 거래 또는 사건 사이 규칙을 발견하기 위해 적용</li>
 <li>장바구니 분석: 장바구니에 무엇이 같이 들어 있는지에 관한 분석</li>
 <li>서열 분석: ‘A를 구매한 다음에 B를 구매한다’</li>
@@ -3505,15 +3508,18 @@ If A then B: 만일 A가 일어나면 B가 일어난다.
 <li><strong>지지도(support)</strong>
 <ul>
 <li>전체 거래 중 항목 A와 항목 B를 동시에 포함하는 거래의 비율</li>
+<li>지지도 = P(A∩B) = <span class="math inline">\(\frac{A와 B 동시에 포함된 거래 수}{전체 거래 수}\)</span> = <span class="math inline">\(\frac{A∩B}{전체}\)</span></li>
 </ul></li>
 <li><strong>신뢰도(confidence)</strong>
 <ul>
 <li>항목 A를 포함한 거래 중에서 항목 A와 항목 B가 같이 포함될 확률 → 연관성 정도 파악 가능</li>
+<li>신뢰도 = <span class="math inline">\(\frac{P(A∩B)}{P(A)}\)</span> = <span class="math inline">\(\frac{A와 B 동시에 포함된 거래 수}{A 포함하는 거래 수}\)</span> = <span class="math inline">\(\frac{지지도}{P(A)}\)</span></li>
 </ul></li>
 <li><strong>향상도(Lift)</strong>
 <ul>
 <li>A가 구매되지 않았을 때, 품목 B의 구매확률에 비해 A가 구매됐을 때 품목 B의 구매확률 증가 비</li>
 <li>연관규칙 A → B는 품목 A와 품목 B의 구매가 서로 관련 없는 경우에 향상도가 1이 됨</li>
+<li>향상도 = <span class="math inline">\(\frac{P(B|A)}{P(B)}\)</span> = <span class="math inline">\(\frac{P(A∩B)}{P(A)P(B)}\)</span> = <span class="math inline">\(\frac{A와 B 동시에 포함된 거래 수}{A를 포함하는 거래 수 X B를 포함하는 거래 수}\)</span> = <span class="math inline">\(\frac{신뢰도}{P(B)}\)</span></li>
 </ul></li>
 </ol></li>
 <li>연관규칙의 절차
@@ -3547,7 +3553,7 @@ If A then B: 만일 A가 일어나면 B가 일어난다.
 </tbody>
 </table>
 <ul>
-<li>순차패턴(Sequence Analysis)
+<li><strong>순차패턴(Sequence Analysis)</strong>
 <ul>
 <li>동시에 구매될 가능성이 큰 상품군을 찾는 연관성 분석에, 시간이라는 개념을 포함해 순차적으로 구매 가능성이 큰 상품군을 찾는 것</li>
 <li>연관성분석에서의 데이터 형태에서 각각의 고객으로부터 발생한 구매시점에 대한 정보가 포함됨</li>
