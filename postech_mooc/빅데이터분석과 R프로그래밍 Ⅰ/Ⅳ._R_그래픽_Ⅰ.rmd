@@ -19,8 +19,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅰ 과정입니다.  
 
-# Ⅳ. R 그래픽 Ⅰ.
-## 1. R 그래픽 Ⅲ. 히스토그램
+# Ⅳ. R 그래픽 Ⅰ
+## 1. R 그래픽 Ⅲ: 히스토그램
 ### 히스토그램 (1차원)
 - 데이터 불러오기
 ```{r}
