@@ -16,6 +16,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 데이터사이언스를 위한 통계학입문 Ⅰ 과정입니다.
+
 # Ⅲ. 데이터 시각화와 통계적 해석
 ## 1. 데이터 시각화
 
