@@ -390,9 +390,7 @@ print(location)
 ### 9. 라이브러리, API
 ## 라이브러리: 8번의 패키지
 ## API: 서비스 제공자가, 개발자가 데이터를 가져갈 수 있도록 만들어 둔 길
-# +14072552349
-# ACba3e8f9fd0799a5b80cbad679b3e6457
-# 3ba78833e3d0067c8f52aefddc7afca1
+# 번호, 아이디, 코드 확인 후 사용하면 됨
 
 # Download the helper library from https://www.twilio.com/docs/python/install
 import os
@@ -400,15 +398,15 @@ from twilio.rest import Client # twilio 패키지에서 Client 모듈 가져오�
 
 # Your Account Sid and Auth Token from twilio.com/console
 # and set the environment variables. See http://twil.io/secure
-account_sid = 'ACba3e8f9fd0799a5b80cbad679b3e6457'
-auth_token = '3ba78833e3d0067c8f52aefddc7afca1'
+account_sid = '아이디'
+auth_token = '토큰'
 client = Client(account_sid, auth_token)
 
 message = client.messages \
                 .create(
                      body="나은이 뭐해?",
-                     from_='+14072552349',
-                     to='+821071112068'
+                     from_='얻은 번호'',
+                     to='수신자 번호'
                  )
 
 print(message.sid)
