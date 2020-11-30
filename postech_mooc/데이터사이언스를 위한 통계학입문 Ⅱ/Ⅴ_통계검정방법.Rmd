@@ -1,0 +1,22 @@
+---
+title: "Ⅴ. 통계검정방법"
+author: "ne_choi"
+date: '2020 11 30 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 데이터사이언스를 위한 통계학입문 Ⅱ 과정입니다.
+
+# Ⅱ 데이터과학과 통계
+## 1. 데이터과학이란 무엇인가
