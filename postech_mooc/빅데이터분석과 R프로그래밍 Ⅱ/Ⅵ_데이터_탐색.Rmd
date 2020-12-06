@@ -1,0 +1,350 @@
+---
+title: "Ⅵ. 데이터 탐색"
+author: "ne_choi"
+date: '2020 12 06 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅱ 과정입니다.  
+
+# Ⅵ. 데이터 탐색
+## 1. 데이터 다루기
+- 데이터 결합, 분할, 정렬
+
+### 데이터 결합: merge
+- merge(data1, data2, by="ID")
+```{r}
+# practice data
+dat1<-read.csv(file="week6_1/data1.csv")
+dat2<-read.csv(file="week6_1/data2.csv")
+
+# data merging
+dat12<-merge(dat1, dat2, by="ID")
+```
+
+### 데이터 결합: rbind
+- 두 개 데이터를 행(row)로 결합
+```{r}
+# add more data (combine in a row)
+dat3<-read.csv(file="week6_1/data3.csv")
+dat123<-rbind(dat12, dat3)
+
+dat123
+```
+
+### 데이터 정렬: order
+- 데이터명[order(변수1, 변수2)]
+
+```{r}
+# data sorting
+dats1<-dat12[order(dat12$age),]
+
+dats1
+
+dats2<-dat12[order(dat12$gender, dat12$age), ]
+
+dats2
+```
+### 데이터 추출: subset
+- subset(데이터명, 조건1 & 조건2)
+
+```{r}
+# data subset (selecting data)
+#newdat<-dat12[which(dat12$gender=="F" & dat12$age>15)]
+newdat<-subset(dat12, dat12$gender=="F" & dat12$age>15)
+
+newdat
+```
+
+### 일부 변수 제거
+- 데이터이름[!names(데이터) %in% c("변수1", "변수2)]
+
+```{r}
+# excluding variables
+exdat<-dat12[!names(dat12) %in% c("age","gender")]
+
+exdat
+```
+
+### 퀴즈
+```{r}
+new <- subset(dat123, dat123$hourwk >= 10 & dat123$alcohol== "yes")
+
+new
+```
+
+## 2. 데이터 기술통계치 요약
+- 데이터: 학업성취도(포르투칼 고등학생 수학점수)
+
+```{r}
+stud<-read.csv("week6_2/stud_math.csv")
+
+head(stud)
+dim(stud)
+str(stud)
+
+attach(stud)
+```
+
+### summary
+- summary(데이터명): 변수별로 요약통계량 제공
+  - 문자변수에는 빈도를 주고, 숫자변수에는 최솟값, 25%, 중위값, 75%, 최댓값 제공
+
+```{r}
+# 1-1 Numeriacl analytics
+summary(stud)
+mean(G3) # 평균
+sd(G3) # 표준편차(분산의 제곱근)
+var(G3) # 분산
+```
+
+### vars
+- 특정 변수에 관한 요약통계량: var <- c("변수1", "변수2", "변수3")
+
+```{r}
+# creating interested variable list
+vars<-c("G1", "G2", "G3")
+head(stud[vars])
+summary(stud[vars])
+```
+
+### describe
+- summary보다 더 구체적인 요약통계량 얻을 수 있음
+- psych 패키지 필요
+```{r}
+# install.packages("psych")
+library(psych)
+
+# require "psych" for "describe" function
+describe(stud[vars])
+```
+
+### table
+- 범주형 변수 요약: table(변수이름)
+
+```{r}
+# categorical data
+table(health)
+
+health_freq<-table(health)
+names(health_freq) <- c ("very bad", "bad", "average", "good",
+                      "very good")
+barplot(health_freq, col=3)
+```
+
+- 2*2 분할표
+```{r}
+# 2*2 contingency table
+table(health,studytime)
+```
+
+
+## 3. 그래프를 이용한 데이터 탐색
+### 히스토그램
+- 1학년, 2학년, 3학년 성적의 분포
+```{r}
+# 1. histogram with color and title, legend
+par(mfrow=c(2,2))
+hist(G1, breaks = 10, col = "lightblue", main="Histogram of Grade 1" )
+hist(G2, breaks = 10, col = "green", main="Histogram of Grade 2" )
+hist(G3, breaks = 10, col = "coral", main="Histogram of Grade 3" )
+```
+
+### 상자그림
+- 거주 지역에 따른 G3, 통학 시간에 따른 G3
+```{r}
+par(mfrow=c(1,2))
+boxplot(G3~address, boxwex = 0.5, col = c("yellow", "coral"), main="G3 by (Urban, Rural)")
+boxplot(G3~traveltime, boxwex = 0.5, col = c("red","orange","yellow","green"), main="G3 by traveltime")
+```
+- 결과 해석
+  1. 도심지역 학생 성적이 외곽지역 학생보다 높음
+  2. 통학시간이 짧은(15분 이내) 학생 성적이 높음  
+  
+
+- 자유시간에 따른 G3, 공부시간에 따른 G3
+```{r}
+par(mfrow=c(1,2))
+boxplot(G3~freetime, boxwex = 0.5, col = c("yellow", "green", "blue", "grey", "red"))
+boxplot(G3~studytime, boxwex = 0.5, col = c("yellow", "blue", "grey", "red"))
+```
+- 결과 해석
+  1. 방과후 자유시간에 따른 G3 차이: 적은편이라고 응답한 학생 성적이 다소 높음
+  2. 주중 공부 시간이 5시간 이상인 학생 성적이 높은 편
+
+### lattice 패키지
+- 통학시간과 최종성적(G3)의 멀티패널 그림, 성별
+
+```{r}
+library(lattice)
+xyplot(G3~traveltime | sex, data=stud, pch=16, main="G3 ~ traveltime | sex")
+```
+- 결과 해석
+  - 대부분 학생은 30분 이내 통학거리
+  - 통학거리가 짧은 학생 성적 평균이 다소 높게 나타남
+  - 통학거리 1시간 이상은 표본이 상대적으로 적음
+  - 추가: 0점인 데이터가 확인되어 점검이 필요함
+
+```{r}
+# find a data G3 = 0
+s1 <- subset(stud, G3==0)
+s1
+```
+
+### 산점도
+```{r}
+library(ggplot2)
+ggplot(stud, aes(x=G1, y=G3, color=sex, shape=sex)) +
+  geom_point(size=2)
+```
+
+### 막대그림
+```{r}
+# bar chart for romantic by sex
+ggplot(data=stud, aes(factor(romantic)))+geom_bar(aes(fill=factor(sex)), width=.4, colour="black")+ ggtitle("Romantic by sex")
+```
+- 결과 해석
+  - 연애 경험 있는 경우, 여학생 비율이 높음
+  
+```{r}
+# bar chart for internet use by (Urban, Rural)
+ggplot(data=stud, aes(factor(internet)))+geom_bar(aes(fill=factor(address)), width=.4, colour="black")+ggtitle("Internet use by (Urban, Rural)")
+```
+- 결과 해석
+  - 인터넷 사용자 중에는 도심지역에 사는 경우가 훨씬 많음
+
+### pariwise plot
+- pairwise scatterplot: pairs(변수리스트)
+
+```{r}
+# new variable lists
+vars1<-c("G1", "G2", "G3")
+# pariwise plot
+pairs (stud[vars1], main = "Student Math Data",
+       pch = 21,bg = c ("red","green3")[unclass(stud$sex)])
+```
+- 결과 해석
+  - G1, G2, G3 상관성은 매우 높음
+  - 성별 차이는 없음
+  
+
+## 4. 데이터의 정규성검정과 신뢰구간
+### 데이터의 정규성검정
+- 정규확률도(Normal Q-Q plot): 데이터가 정규분포하는가?
+
+```{r}
+# Testing for normality
+# multiple plot (2 by 2)
+par(mfrow=c(2,2))
+#Quantile plot
+qqnorm(G1)
+qqline(G1, col = 2, cex=7)
+
+qqnorm(G2)
+qqline(G2, col = 2, cex=7)
+
+qqnorm(G3)
+qqline(G3, col = 2, cex=7)
+```
+
+### 정규분포
+- 정규분포(Normal distribution)
+
+- 정규분포 적합성검정: 데이터가 정규분포하는지에 대한 검정
+  1. Shapiro-Wilks 검정
+```{r}
+#Shapiro-Wilks test
+shapiro.test(G3)
+```
+- 결과 해석
+  - p-value가 0에 가까워서 정규분포한다고 볼 수 없음
+
+  2. Anderson-Darling 검정(패키지 설치 필요)
+```{r}
+#Anderson-Darling test require installing package "nortest"
+# install.packages('nortest')
+library(nortest)
+ad.test(G3)
+```
+- 결과 해석
+  - p-value가 0에 가까워서 정규분포한다고 볼 수 없음  
+
+### 확률분포함수   
+- 사용 함수
+
+분포함수|설명
+--|--
+binom(x)|이항분포 rbinom(5, size=100, prob-.2)
+exp(x)|지수분포
+gamma(X)|감마분포 rgamma(5, shape=3, rate=2)
+norm(x)|정규분포 rnorm(50, mean=10, sd=5)
+pois(x)|포아송분포 rpois(n, lambda)
+unif(x)|균일분포 runif(30)
+
+- p: 누적함수 / d: 확률밀도함수 / q: quantile 함수 / r: 랜덤넘버 생성
+
+
+- 확률분포함수로부터 데이터 생성
+```{r}
+# Simulation examples
+runif(5,min=1,max=5)
+rnorm(5,mean=5,sd=1)
+rgamma(5,shape=3,rate=2)
+rbinom(5,size=100,prob=.2)
+```
+
+```{r}
+# from normal distribution
+x<-rnorm(1000)
+plot(density(x),xlim=c(-5,10))
+```
+
+- 데이터 생성(정규분포(평균=500, 편차=100)에서 100개 데이터 생성)
+
+set.seed(5)
+mean(rnorm(1000))
+
+```{r}
+# confidence interval of normal distribution
+nreps <- 100
+ll <- numeric(nreps)
+ul <- numeric(nreps)
+n <- 100
+mu <- 500
+sigma <- 100
+for(i in 1:nreps) {
+  set.seed(i)
+  x <- rnorm(n, mu, sigma)
+  ll[i] <- mean(x) - qnorm(0.975)*sqrt(sigma^2/n)
+  ul[i] <- mean(x) + qnorm(0.975)*sqrt(sigma^2/n)
+}
+
+# Draw 95% confidence interval(신뢰 구간)
+# 95%: 100개 중 5개는 모평균을 포함하고 있지 않다
+# 95%: 100개 중, 5개는 오류가 있을 것이다
+
+par(mfrow=c(1,1))
+plot(1:100, ylim=c(min(ll), max(ul)),
+     ylab="95% Confidence Interval", xlab="iterations")
+
+for(i in 1:100) lines(c(i, i), c(ll[i], ul[i]))
+abline(h=mu, col="red", lty=2, lwd=3)
+```
+
+### 신뢰구간의 의미
+- 신뢰수준, 표본오차
+  - 전국 유권자 1,500명 조사 결과, A 후보 지지율은 45%이며, 95% 신뢰수준에서 오차한계는 3.5%이다.
+  → 지지도에 대한 95% 신뢰구간
+    : 표본 지지율 +- 오차한계 (41.5%, 48.5%)
+    
