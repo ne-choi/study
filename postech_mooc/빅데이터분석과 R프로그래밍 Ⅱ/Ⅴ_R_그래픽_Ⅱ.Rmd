@@ -1,0 +1,367 @@
+---
+title: "Ⅴ. R 그래픽 Ⅱ"
+author: "ne_choi"
+date: '2020 12 06 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅱ 과정입니다.  
+
+# Ⅴ. R 그래픽 Ⅰ
+## 1. R 그래픽: ggplot2
+### 데이터 시각화
+1. R 기본 그래픽스(Base program)
+2. Lattice 그래픽스: 직교형태의 멀티패널 툴
+3. ggplot2 그래픽 시스템: Hadley Wickham이 구현
+   - Grammar of Graphic 개념은 그래픽 생성 시, 각 요소를 구분해 취급한다는 의미
+   - Incremental graphic: 기본 R 그래픽스보다 인터액티브한 그래프 그리기 가능, 기초 그림 생성 후 그래픽스 요소를 필요에 따라 붙이거나 수정
+
+### lattice
+- lattice: 직교형태의 그래픽 툴
+  - xyplot: 산점도
+  - bwplot: box whiskers plot, 상자그림
+  - dotplot
+  - levelplot
+  - stripplot: 점을 함께 표시한 상자그림
+  - splom: 산점도 매트릭스
+  - contourplot: 등고선그림
+
+### lattice 설치와 활용
+```{r}
+# install.packages('lattice')
+library(lattice)
+
+ethanol<-read.csv("week5_1/ethanol.csv")
+```
+
+```{r}
+# ethanol data in lattice
+help("ethanol")
+
+head(ethanol)
+dim(ethanol)
+str(ethanol)
+```
+
+- lattice 함수 xyplot을 이용한 그래프(기본 산점도와 동일)
+```{r}
+# basic plot
+xyplot(NOx ~ E , data = ethanol, main = "Single Panel by xyplot")
+```
+
+- xyplot을 이용한 멀티패널 산점도: xyplot(y변수 ~ x변수|조건부변수, data=)
+```{r}
+# multi panel graph
+xyplot(NOx ~ E | C , data = ethanol, main = "NOx ~ E | C ")
+```
+
+- xyplot을 이용한 멀티패널 산점도: subset 데이터
+```{r}
+# multi panel graph for subset
+xyplot(NOx ~ E | C , data = ethanol, subset = C > 8,
+       main = "NOx ~ E | C , data = ethanol, subset = C > 8")
+```
+
+
+## 2. R 그래픽: ggplot2의 활용
+
+```{r}
+library(ggplot2)
+
+car<-read.csv("week5_2/autompg.csv")
+head(car)
+str(car)
+```
+
+```{r}
+# subset of car : cyl (4,6,8)
+car1<-subset(car, cyl==4 | cyl==6 | cyl==8)
+attach(car1)
+```
+
+```{r}
+# 5-1 ggplot2 for scatterplot 
+# Color and shape display by factor (categorical variable)
+# check the variable type(integer, numeric, factor) and define it
+str(car1)
+car1$cyl<-as.factor(car1$cyl)
+```
+
+```{r}
+# Now, you can draw one of plot using ggplot
+par(mfrow = c(1, 1))
+ggplot(car1, aes(x=wt, y=disp, color=cyl, shape=cyl)) + 
+  geom_point(size=3, alpha=0.6)
+```
+- 객체 해석
+  - ggplot 함수에 데이터는 car1을 이용하고, x축에는 wt(차의 무게)를, y축에는 disp(배기량)의 산점도를 그리고, 점 색상은 cyl(실린더 수)로 표현한다.
+  - geom_point는 size=3(숫자 클수록 점 크기가 커짐)
+
+### 그래프 그리기
+- mpg 크기를 표시한 그래프
+```{r}
+# mapping (continuous variable : mpg) on the scatterplot for wt and disp
+ggplot(car1, aes(x=wt, y=disp, color=mpg, size=mpg)) + 
+  geom_point(alpha=0.6)
+```
+- 그래프 설명
+  - 차 무게와 배기량의 산점도에 연비의 높고 낮음을 원의 크기와 색으로 표시한 그래프
+  
+### ggplot2 구조
+- ggplot 기본
+  - ggplot: 새로운 ggplot을 생성
+  - aes: aesthetic mapping을 구성(데이터, 그래프구조)
+  - qplot: 즉석 그림
+
+- geom(geometric) 함수군
+  - geom_abline, geom_hline, geom_vline
+  - geom_bar
+  - geom_point
+  - geom_boxplot
+  - geom_map
+  - geom_smooth, stat_smooth
+  
+### ggplot2 그래프
+- geom_bar를 이용한 단계별 그래프 설명
+```{r}
+p1 <- ggplot(car1, aes(factor(cyl), fill = factor(cyl)))
+p1
+
+# barplot define
+p1 <- p1 + geom_bar(width=5)
+p1
+
+# output by origin(1,2,3)
+p1 <- p1 + facet_grid(. ~ origin)
+p1
+```
+```{r}
+# 위와 똑같은 그래프 그리는 법
+ggplot(car1, aes(factor(cyl), fill=factor(cyl)))+ geom_bar(width=.5)+ facet_grid(. ~ origin)
+```
+
+- geom_bar를 이용한 누적 막대그래프
+```{r}
+# geom_bar : asethetic mapping (4,6,8 cyl)
+p <- ggplot(data=car1, aes(factor(cyl)))
+p + geom_bar(aes(fill=factor(origin)), colour="black")
+```
+
+```{r}
+# for Korean title
+# 5-2-2 : geom_bar : asethetic mapping (4,6,8 cyl)
+par(family="나눔고딕", cex=1.3)
+p <- ggplot(data=car1, aes(factor(cyl)))
+p <- p + geom_bar(aes(fill=factor(origin)), colour="black")
+p <- p+ggtitle("자동차 데이터")
+p
+```
+
+- ggplot 산점도에 회귀선 넣기
+```{r}
+# step1 : # Use hollow circles
+ggplot(car1, aes(x=wt, y=mpg))+geom_point(shape=1)
+```
+
+```{r}
+# by default includes 95% confidence region
+ggplot(car1, aes(x=wt, y=mpg)) + geom_point(shape=1) + geom_smooth(method=lm)  
+```
+- lm: linear model 선형 회귀식
+  - 선형식의 95% 신뢰구간이 dafault로 그려짐
+  
+  
+```{r}
+# excluding 95% confidence region
+ggplot(car1, aes(x=wt, y=mpg)) +
+  geom_point(shape=1) +  geom_smooth(method=lm, se=FALSE) 
+```
+
+- ggplot 산점도에 비선형회귀식 적합
+```{r}
+# geom_smooth() use loess 
+ggplot(car1, aes(x=wt, y=mpg)) + geom_point(shape=1) + geom_smooth(method="loess") 
+```
+- loess: local polynomial regression
+
+
+## 3. R 그래픽: 3D와 히트맵
+### 3D scatterplot
+```{r}
+library(scatterplot3d)
+
+# 5-3 3D scatterplot with data trees
+data(trees)
+
+par(mfrow = c(1, 1))
+s3d <- scatterplot3d(trees, type="h", highlight.3d=TRUE,
+                     angle=55, scale.y=0.7, pch=16, main="scatterplot3d - 5")
+```
+
+```{r}
+# to know about data "trees"
+help(trees)
+head(trees)
+
+# export to csv file
+write.csv(trees,file="trees.csv", row.names = FALSE)
+```
+
+- 3D 산점도에 선형식 추가
+```{r}
+attach(trees)
+
+my.lm <- lm(Volume ~ Girth + Height)
+s3d$plane3d(my.lm, lty.box = "solid")
+```
+
+### 히트맵(heatmap)
+- 히트맵: 통계치를 구한 후, 크기에 비례하여 그라데이션 색상으로 표현한 시각화 기법  
+  - 히트맵의 입력값 형태: 숫자형태의 행렬
+
+- Autompg 데이터의 상관계수를 이용한 히트맵
+```{r}
+attach(car)
+
+par(mfrow=c(1, 1))
+cor.x<-cor(car[,1:6])
+heatmap(cor.x, symm=TRUE)
+```
+
+
+- 데이터: USArrest
+```{r}
+# Crime rate by US State (1973)
+# Arrests per 100,000 residents for assault, murder, and rape 
+# in each of the 50 US states in 1973
+
+help(USArrests)
+head(USArrests)
+
+cor(USArrests)
+round(cor(USArrests), 2)
+```
+
+```{r}
+# subset excluding 3th variable UrbanPop
+# matrix format for heatmap
+x  <- as.matrix(USArrests[, -3])
+result <- heatmap(x, scale="column", Colv=NA, cexCol=1,
+                  main="Violent Crime Rates by US State (1973)")
+
+row.names(USArrests)[result$rowInd[1:10]]
+row.names(USArrests)[result$rowInd[35:50]]
+```
+
+## 4. R 그래픽: 공간지도 분석
+### 추가 패키지 설치
+```{r}
+# maps : world map
+install.packages("maps")
+library(maps)
+
+# mapdata : more world map 
+install.packages("mapdata")
+library(mapdata)
+
+# mapdata : latitude and longitude
+install.packages("mapproj")
+library(mapproj)
+```
+
+- 나라 지도 추출
+```{r}
+# 1. Korea Map 
+par(mfrow = c(1, 2),mar=c(2,2,2,2))
+map(database = 'world', region = c('South Korea','North Korea'), col='green', fill = TRUE)
+title("Korea")
+# using mapdata package
+map(database = 'worldHires', region = c('South Korea','North Korea'), col='green', fill = TRUE)
+title("Korea")
+```
+
+```{r}
+# 2.Italy 
+par(mfrow = c(1, 1),mar=c(2,2,2,2))
+map(database = 'world', region = c('Italy'), col='coral', fill = TRUE)
+title("Italy")
+```
+
+- 위도, 경도 활용하여 독도 표시
+```{r}
+# 3. Dokdo using mapproj package
+library(mapproj)
+par(mfrow = c(1, 1),mar=c(2,2,2,2))
+map('world', proj = 'azequalarea', orient = c(37.24223, 131.8643, 0))
+map.grid(col = 2)
+points(mapproject(list(y = 37.24223, x = 131.8643)), col = "blue", pch = "x", cex = 2)
+title("Dokdo")
+# for reading Korean : encoding to UTF-8 
+# file menu: Tools_global options_code_saving
+```
+
+### 공간지도분석 예제 1
+- 국내 공항 및 노선 현황
+```{r}
+# 4. Airport & route data (source : https://www.data.go.kr/)
+airport<-read.csv("week5_4/airport.csv")
+route = read.csv("week5_4/route.csv")
+head(airport)
+head(route)
+
+head(route[order(route$id),])
+```
+
+```{r}
+library(dplyr)
+
+# Korea map (kr.map) - using dplyr
+world.map <- map_data("world")
+kr.map <- world.map %>% filter(region == "South Korea")
+```
+
+```{r}
+# 5. Domestic airport location 
+ggplot() + 
+  geom_polygon(data=kr.map, aes(x=long, y=lat, group=group)) +
+  geom_label(data=airport, aes(x = lon, y = lat, label=iata)) +
+  labs(title = "south korea airports")
+```
+
+- ggplot은 레이어를 추가하는 방식으로 그래픽을 구현함
+
+### 공간지도분석 예제 2
+- 미국 해엉 데이터: 지도 데이터베이스와 행정자료 결합(미국 1973년 범죄수 지도)
+
+```{r}
+# 6. Assault in US (1973)
+par(mfrow = c(1, 1), mar=c(1,1,1,1))
+# library(maps)
+# excluding Alaska, Hawaii 
+sub.usa <- subset(USArrests,!rownames(USArrests) %in% c("Alaska", "Hawaii"))
+# data with State name, Assult count
+usa.data <- data.frame(states = rownames(sub.usa), Assault = sub.usa$Assault)
+# legend
+col.level <- cut(sub.usa[, 2], c(0, 100, 150, 200, 250, 300, 350))
+legends <- levels(col.level)
+# displaying color for the size  
+levels(col.level) <- sort(heat.colors(6), decreasing = TRUE)
+usa.data <- data.frame(usa.data, col.level = col.level)
+# Map 
+map('state', region = usa.data$states, fill = TRUE, col = as.character(usa.data$col.level))
+title("USA Assault map")
+legend(-77, 34, legends, fill = sort(heat.colors(6), decreasing = TRUE), cex = 0.7)
+```
+
+
