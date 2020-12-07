@@ -1,0 +1,320 @@
+---
+title: "Ⅷ. 선형회귀모형과 텍스트마이닝"
+author: "ne_choi"
+date: '2020 12 07 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅱ 과정입니다.  
+
+# Ⅷ. 선형회귀모형과 텍스트마이닝
+## 1. 상관분석
+### 상관계수
+- 상관계수: cor(변수1, 변수2)
+
+```{r}
+car <- read.csv("week8_1/autompg.csv")
+
+car1 <- subset(car, cyl==4 | cyl==6 | cyl==8)
+attach(car1)
+```
+
+- cor의 디폴트는 pearson의 상관계수   
+  - kendall 상관계수 or spearman의 상관계수를 구할 때: cor(변수1, 변수2, method=c("spearman"))
+  
+### 상관계수와 산점도
+```{r}
+# new variable lists
+vars1<-c("disp", "wt", "accler", "mpg")
+# pariwise plot
+pairs(car1[vars1], main ="Autompg",cex=1, col=as.integer(car1$cyl),pch =substring((car1$cyl),1,1))
+```
+- 결과 해석
+  - 차량 무게와 배기량은 정비례관계 = 양의 상관계수
+  - mpg(연비)와 (wt, disp)는 상관성이 높음 = 반비례, 음의 상관계수
+  - cylinder별로 색상 표시(파랑: 4, 핑크: 6, 회색: 8)
+
+### 상관분석
+- 상관계수(r)은 절댓값이 0-1 사이
+  - 절댓값이 0에 가까울수록 상관관계가 없음
+  - 절댓값이 1에 가까울수록 강한 상관성이 있음
+
+### 통계치와 그래프
+- Monkey 데이터 + King Kong 한 마리
+```{r}
+## Monkey data
+monkey<-read.csv("week8_1/monkey.csv")
+attach(monkey)
+
+# correlation coefficients
+cor(height, weight)
+
+# scatterplot for weight and height
+par(mfrow=c(1, 1))
+plot(height, weight, pch=16, col=3,main="Monkey data")
+
+# add the best fit linear line (lec4_3.R)
+abline(lm(weight~height), col="blue", lwd=2, lty=1)
+```
+
+```{r}
+# linear model and summary of linear model
+m1<-lm(weight~height)
+summary(m1)
+```
+
+```{r}
+## Monkey data + Kingkong
+monkey1 <- read.csv("week8_1/monkey_k.csv")
+head(monkey1)
+dim(monkey1)
+attach(monkey1)
+
+# correlation coefficients
+cor(height, weight)
+# scatterplot for weight and height
+par(mfrow=c(1, 1))
+plot(height, weight, pch=16, col=3,main="Monkey data")
+
+# add the best fit linear line (lec4_3.R)
+abline(lm(weight~height), col="red", lwd=2, lty=1)
+```
+
+- Monkey 데이터에 King Kong 한 마리 데이터 추가
+```{r}
+# linear model and summary of linear model for monkey+king kong
+m2<-lm(weight~height)
+summary(m2)
+```
+- 결과 해석
+  - 한 마리의 킹콩 데이터가 몸무게와 신장의 상관관계 해석을 완전히 바꿀 수 있음
+  
+
+## 2. 선형회귀모형
+### 회귀분석: 단순회귀모형
+- 단순회귀모형: lm(y변수~x변수, data= )
+  - 종속변수: mpg(연비), 독립변수: wt(차량 무게)
+
+```{r}
+r1<-lm(mpg~wt, data=car1)
+summary(r1)
+anova(r1)
+```
+- 결과 해석
+  - 선형회귀식: y(mpg)= 46.60 - 0.0077(wt)
+  - 선형회귀식의 결정계수: R^2^= 0.709  
+
+
+- 산점도에 회귀선 그리기
+```{r}
+# scatterplot with best fit lines
+par(mfrow=c(1,1))
+plot(wt, mpg,  col=as.integer(car1$cyl), pch=19)
+# best fit linear line
+abline(lm(mpg~wt), col="red", lwd=2, lty=1)
+```
+- 코드 해석
+  - col=as.factor(cyl): 배기통별로 컬러를 칠해라
+  - plot(x축변수, y축변수)
+  - abline: add line(선 추가 함수)
+  - lm(y변수~x변수) lm = linear model(선형모형)
+
+### 회귀분석의 목적
+- 예측(prediction)과 추정(estimation)
+  - 선형모형: 독립변수와 종속변수 관계가 선형식으로 적합
+  - 최소자승법(least squares method): 예측값과 관측치간의 오차를 최소화하는 회귀계수를 추정
+  
+### 휘귀분석: 모형 적합도
+- 회귀식에 의해 설명되는 부분(SSR), 설명되지 않는 부분(SSE)
+  - R^2^ = $\frac{SSR}{SST}$ = %\frac{17029}{24017} = 0.709
+    - R^2^는 1에 가까울수록 회귀식에 의해 적합되는 부분이 높음
+    - R^2^는 0에 가까우면 주어진 독립변수들에 의해 설명(예측 혹 적합)되는 부분이 없다고 할 수 있음
+  
+  - 참고
+    - SST = Total Sum of Squares
+    - SSR = Regression Sum of Squares
+    - SSE = error(residual) sum of squares
+
+- 모형의 적합도와 결정계수
+  - R^2^: 0 ≤ R^2^ ≤ 1
+  
+### 회귀모형: 단순회귀모형
+- 종속변수: mpg(연비), 독립변수: disp(배기량)
+
+```{r}
+r2<-lm(mpg~disp, data=car1)
+summary(r2)
+anova(r2)
+```
+- 결과 해석
+  - 선형회귀식 y(mpg) = 35.49 - 0.0614(disp)
+  - 선형회귀식의 결정계수: R^2^ = 0.67
+
+
+- pariwise scatterplot
+```{r}
+# pariwise plot
+pairs(car1[,1:6], main ="Autompg",cex=1, col=as.integer(car1$cyl),pch =substring((car1$cyl),1,1))
+```
+
+
+### 퀴즈
+r1<-lm(mpg~wt, data=car1)
+
+summary(r1) 
+
+r3 <-lm(mpg~wt+accler, data=car1)
+
+summary(r3)
+
+
+## 3. 다중회귀모형
+- 다중회귀모형: lm(y~x1+x2+x3, data= )
+```{r}
+# multiple Regression
+r2<-lm(mpg~wt+accler, data=car1)
+summary(r2)
+anova(r2)
+```
+- 결과 해석
+  - 선형회귀식 y(mpg) = 44.03 - 0.0057(wt) - 0.0176(disp)
+  - p-value도 매우 적은 값
+  → 두 변수 모두 유의함
+
+```{r}
+r1 <- lm(mpg~wt+disp, data=car1)
+summary(r1)
+```
+- 결과 해석
+  - 선형회귀식의 결정계수
+  - R^2^ = 0.7159 (비교: 단순회귀 wt, R^2^=0.709)
+
+### 회귀분석: 잔차의 산점도
+- 잔차산점도: 오차의 가정에 대한 적합성
+```{r}
+# residual diagnostic plot
+layout(matrix(c(1,2,3,4),2,2)) # optrional 4 graphs/page
+plot(r2)
+```
+- 오차에 대한 가정
+  - 잔차가 정규분포한다
+  - 평균은 0, 분산은 모두 동일하다 (선형회귀의 가정)
+  
+- 정규확률도(Normal Q-Q)
+  - 점선에 거의 붙어있으면 정규분포한다고 함
+
+- Residuals vs Leverage
+  - outlier를 찾아낼 때 사용
+
+- Residuals vs Fitted
+  - 분포 정도를 살펴봄
+
+### 그룹별 회귀모형
+- mpg=f(wt), cylinder별
+```{r}
+# filtered data : regression by group
+car2<-filter(car, cyl==4 | cyl==6 )
+car3<-filter(car, cyl==8)
+
+# car cyl=4,6 vs cyl=8 
+par(mfrow=c(1,2))
+plot(car2$wt, car2$mpg, col=as.integer(car2$cyl), pch=19, main="cyl=4 or 6")
+# best fit linear line
+abline(lm(car2$mpg~car2$wt), col="red", lwd=2, lty=1)
+
+plot(car3$wt, car3$mpg, col="green", pch=19, main="cyl=8")
+# best fit linear line
+abline(lm(car3$mpg~car3$wt), col="red", lwd=2, lty=1)
+```
+
+```{r}
+# compare with total 
+m2 <- lm(mpg~wt, data=car2)
+summary(m2)
+
+m3<-lm(mpg~wt, data=car3)
+summary(m3)
+
+m0<-lm(mpg~wt, data=car1)
+summary(m0)
+```
+
+
+## 4. 회귀분석의 진단과 평가
+### 회귀분석 데이터
+```{r}
+# subset of flight data in SFO (n=2974)
+# dest="SFO", origin=="JFK", arr_delay<420, arr_delay>0
+SF<-read.csv("week8_4/SF_2974.csv", stringsAsFactors = TRUE)
+```
+
+### 데이터 기술통계치
+```{r}
+head(SF)
+str(SF)
+dim(SF)
+```
+
+### 데이터 산점도
+```{r}
+# 1. graphic analytics
+SF %>% 
+  ggplot(aes(arr_delay)) + geom_histogram(binwidth = 15)
+
+# 2. graphic analytics
+SF %>%
+  ggplot(aes(x = hour, y = arr_delay)) +
+  geom_boxplot(alpha = 0.1, aes(group = hour)) + geom_smooth(method = "lm") + 
+  xlab("Scheduled hour of departure") + ylab("Arrival delay (minutes)") + 
+  coord_cartesian(ylim = c(0, 120))
+```
+
+### 회귀분석: 단순회귀모형
+- 종속변수: arr_delay, 독립변수: hour(출발시간)
+```{r}
+# linear regression
+m1<- lm(arr_delay ~ hour , data = SF)
+summary(m1)
+```
+- 결과 해석
+  - 선형회귀식 y(arr_delay) = 7.54 + 2.55(hour)
+  - R^2^ = 0.03965 설명력이 높다고 하기 어려움
+
+### 산점도에 회귀선 그리기
+```{r}
+# scatterplot with best fit lines
+library(dplyr)
+
+par(mfrow=c(1,1))
+SF %>%
+  plot(hour, arr_delay,  col=as.integer(SF$carrier), pch=19)%>% 
+  # best fit linear line
+  abline(lm(arr_delay~hour), col="red", lwd=2, lty=1)
+```
+- 결과 해석
+  - 출발 시간이 도착 지연 시간을 정확히 나타내지는 않음
+
+### 회귀분석: 잔차의 산점도
+- 회귀분석의 가정과 진단
+```{r}
+# residual diagnostic plot 
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page 
+plot(m1)
+```
+- 잔차에 대한 해석을 하고 선형회귀모형을 적욯해도 되는지 확인하기
+
+```{r}
+# pariwise plot
+pairs(car1[,1:6], main ="Autompg",cex=1, col=as.integer(car1$cyl),pch =substring((car1$cyl),1,1))
+```
