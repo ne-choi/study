@@ -16,7 +16,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-* POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅱ 과정입니다.  
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 빅데이터분석과 R프로그래밍 Ⅱ 과정입니다.  
 
 # Ⅵ. 데이터 탐색
 ## 1. 데이터 다루기
