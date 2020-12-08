@@ -1,0 +1,283 @@
+---
+title: "Ⅸ. 데이터 마이닝 기초"
+author: "ne_choi"
+date: '2020 12 08 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅰ 과정입니다.  
+
+# Ⅸ. 데이터 마이닝 기초
+## 1. 다중 회귀 분석 Ⅰ
+### 데이터 마이닝 기법
+- 데이터 마이닝
+  - 예측(prediction)
+    - 야구선수의 연봉(차기 년도)
+    - 주식 변동(t+1 시점)
+    - 일기예보(비 올 확률)
+    - 수질오염(오염 수치)
+  → 회귀분석, 선형모형, 비선형모형
+  
+  - 분류(classification)
+    - 대출심사(허가/불가)
+    - 신용등급(A, B, C 등급)
+    - 고객 분류(구매빈도, 구매액)
+    - 품종분류
+  → 의사결정나무, 서포트벡터머신, 판별분석, 로지스틱회귀모형
+
+
+### 다중회귀모형
+- 다중회귀모형(multiple regression)
+  - 종속변수 Y를 설명하는 데 k개의 독립변수 X~1~, ..., X~k~가 있을 때, 다중회귀모형은 아래와 같이 정의
+  - Y~i~ = β~0~ + β~1~X~1i~ + β~2~X~2i~ + ... + β~k~X~ki~ + ε~i~,  i = 1, 2, ..., n
+    ε~i~N(0, σ^2^)
+  - 회귀계수 β~k~의 해석: 다른 독립변수가 일정할 때, X~k~의 한 단위 변화에 따른 평균 변화량
+
+- autompg 데이터
+```{r}
+# autompg data
+car<-read.csv("data/week9_1/autompg.csv")
+head(car)
+str(car)
+attach(car)
+```
+
+- 다중회귀모형: lm(y변수~x1+x2+x3, data= )
+  - 1st model: 전체변수를 모두 포함한 회귀모형
+
+```{r}
+# multiple regression : 1st full model 
+r1<-lm(mpg ~ disp+hp+wt+accler, data=car)
+summary(r1)
+```
+- 결과 해석
+  - 선형회귀식: mpg = 40.88 - 0.011 disp + 0.0048 hp - 0.0061 wt + 0.17 accler
+  - 선형회귀식의 결정계수: R^2^ = 0.7006
+
+- 추가: 의문점 확인
+  - check point 1: 마력(hp)가 높을수록 연비가 좋은가? (상식적으로는 음의 선형관계여야 함)
+    → 데이터 탐색 필요
+
+- 데이터 탐색(Explanatory Data Analysis)
+```{r}
+# pariwise plot - Explanatory Data Analysis
+var1<-c("mpg","disp","hp","wt", "accler" )
+pairs(car[var1], main ="Autompg",cex=1, col=as.integer(car$cyl))
+```
+
+## 2. 다중회귀분석 Ⅱ
+### 다중회귀분석: 변수선택방법
+- 변수선택방법: 다수의 독립변수들이 있을 때 최종모형은?
+  1. 전진선택벅(forward selection): 독립변수 중, 종속변수에 가장 큰 영향을 주는 변수부터 모형에 포함
+  2. 후진제거법(backward elimination): 독립변수를 모두 포함한 모형에서 가장 영향이 적은(중요하지 않은) 변수부터 제거
+  3. 단계별방법(stepwise method): 전진선택법에 의해 변수 추가, 변수 추가 시 기존 변수의 중요도가 정해진 유의수준(threshold)에 포함되지 않으면 앞에서 넣은 변수 제거할 수 있음
+
+
+- 단계별 방법
+  - step(모형, direction = "both")
+```{r}
+# 2rd model using variable selection method
+# step(r1, direction="forward")
+# step(r1, direction="backward")
+
+# stepwise selection
+step(r1, direction="both")
+#step(lm(mpg ~ disp+hp+wt+accler, data=car), direction="both")
+```
+- 결과 해석
+  - 변수 제거: hp
+  - 최종 변수 선택: disp, wt, accler
+
+
+- 단계별 방법에 따른 최종 다중회귀모형
+  - 2nd model: 단계별 선택 방법에 의한 회귀모형
+```{r}
+# final multiple regression
+r2<-lm(mpg ~ disp+wt+accler, data=car)
+summary(r2)
+```
+- 결과 해석
+  - 선형회귀식: mpg = 41.30 = 0.011 disp - 0.0062 wt + 0.17 accler
+  - 선형회귀식의 결정계수: R^2^ = 0.7004
+
+### 회귀분석의 가정과 진단
+```{r}
+# residual diagnostic plot 
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page 
+plot(r2)
+```
+
+### 다중공선성
+- 다중공선성(Multicollinearity)
+  - 독립변수들 사이에 상관관계가 있는 현상
+  - 다중공선성이 존재하는 경우 회귀계수 해석 불가능
+
+- 독립변수들간의 상관계수
+```{r}
+# check correlation between independent variables
+var2<-c("disp","hp","wt", "accler" )
+cor(car[var2])
+
+# get correlation for each pair
+# cor(disp, wt)
+# cor(disp, accler)
+# cor(wt, accler)
+```
+
+- 분산팽창계수(VIF; Variance Inflation Factor): 다중공선성의 척도
+  - VIF~j~ = $\frac{1}{1 - R^2^~j~}$,  j = 1, 2, ..., k
+  - VIF는 다중공산성으로 인한 분산의 증가를 의미
+  - R^2^~j~은 X~j~를 종속변수로 하고 나머지 변수를 독립변수로 하는 회귀모형에서의 결정계쑤
+  - VIF~j~값 > 10이면 다중공선성을 고려
+
+- 정리
+  - 변수 선택 과정에서 상관계수가 높은 두 변수 중 하나만을 선택
+  - 더 많은 데이터 수집
+  - 능형회귀(ridge regression), 주성분회귀(principal components regression)
+
+- car 패키지 내장 함수
+```{r}
+# check multicollinearity 
+# variance inflation factor(VIF)
+# install.packages("car")
+library(car)
+vif(lm(mpg ~ disp+hp+wt+accler, data=car))
+```
+- 결과 해석
+  - check point 1: coefficients & R^2^
+    - 선형회귀식: mpg = 41.30 - 0.011 disp - 0.0062 wt + 0.17 accler
+    - 선형회귀식의 결정계수: R^2^ = 0.7004
+  
+  - check point 2: multi-collinearlity
+    - disp와 wt의 VIF가 10에 가까움
+    → 크게 분제되지 않는다고 할 수 있음
+  
+  - check point 3: residual plot
+  
+  - check point 4: outlier or other suspicious trend
+  
+### 퀴즈 자료
+- 변수 선택에 대한 R^2^ 확인
+````{r}
+# compare R-sqaured in regression 
+# which one is the most important variable?
+summary(lm(mpg ~ disp))
+summary(lm(mpg ~ hp))
+summary(lm(mpg ~ wt))
+summary(lm(mpg ~ accler))
+```
+
+
+### 다중회귀모형: 데이터 탐색
+- 데이터 탐색(EDA: Explanatory Data Analysis)
+  - 3rd model: a possible fitting method
+```{r}
+# more checking point
+plot(hp, mpg, col="blue")
+```
+
+- subset 생상 (hp < 50)
+```{r}
+## 2nd model : data split
+# subset data hp<50
+par(mfrow=c(1,1))
+car_s1<-subset(car, hp<50)
+plot(car_s1$hp, car_s1$mpg,col=10,  main="hp<50")
+# regression for hp<50
+summary(lm(car_s1$mpg ~ car_s1$hp))
+```
+- 결과 해석
+  - 선형회귀식: mpg = 53.06 - 0.33 hp
+  - 선형회귀식의 결정계수: R^2^ = 0.45
+
+
+### 퀴즈
+```{r}
+step(r1, direction="backward")
+```
+
+## 3. 데이터 마이닝과 분류
+- 분류규칙과 과적합
+
+### 분류
+- 분류분석(Classification Analysis)
+  - 다수의 속성(attribute, variable)d을 갖는 객체(object)를 그룹 또는 범주(class, category)로 분류
+  - 학습 표본(training sample)으로부터 효율적인 분류규칙(classification rule)을 생성 → 오분류율 최소화(minimize cost function)
+
+### 분류규칙 예제
+- 오분류율(misclassification rate)
+  - 오분류 객체 수 / 전체 객체 수  
+   
+- 과적합(overfitting)
+  - 분류모형에서 훈련데이터에 과적합이 일어나면, 실제 데이터를 적용했을 때 더 높은 오분류율 발생
+
+  - 예측 모형에서의 과적합
+    - 예측 모형에서 훈련 데이터에 대한 과적합 모델을 선택하는 경우, 실제 데이터 적용 시 더 높은 오차가 발생
+    - 이를 방지하기 위해, 학습데이터와 검증데이터를 5:5, 6:4, 7:3, 8:2로 분리하여 모형 성능을 비교 평가함
+
+### 교차검증
+- 교차검증(cross-validation)
+  1. 데이터 수집
+  2. training data / test data
+  3. training data에 Classifier(분류기) 적용
+  4. output  
+
+- k-fold cross validation method 교차타당성 검증
+  - 5-fold cross-validation: n=100이면, 5등분으로 나누어 4등분은 학습데이터로 예측 모형을 구성하고, 나머지 5등분째 데이터로 검증
+
+
+## 4. 학습테이터와 검증데이터
+### iris 데이터 설명
+- iris 데이터(붓꽃 데이터)
+  1. 목적: 꽃잎 폭과 길이에 관한 4개 변수로 꽃의 종류를 예측하는 것
+  2. 타겟변수(y): setosa, versicolor, virginica
+
+```{r}
+# read csv file
+iris<-read.csv("data/week9_4/iris.csv")
+head(iris)
+str(iris)
+attach(iris)
+```
+- input 변수(독립변수): Sepal.Length, Sepal.Width, Petal.Length, Petal.Width
+- output 변수(종속변수): Species
+
+### 학습데이터와 검증데이터 생성
+- iris 데이터: 150개 데이터
+```{r}
+# training/ test data : n=150
+set.seed(100, sample.kind="Rounding") # seed 1000 지정한 이유: 동일한 데이터를 사용하기 위해 임의 숫자로 고정
+N=nrow(iris) # ramdom sampling을 위해 데이터에 number 부여
+tr.idx=sample(1:N, size=N*2/3, replace=FALSE) # 100개는 학습데이터, 50개는 검증데이터로 사용하라
+tr.idx
+```
+
+```{r}
+# attributes in training and test
+iris.train <- iris[tr.idx, -5] # 5번째 열의 종속변수를 제외한 100개의 데이터
+iris.test <- iris[-tr.idx, -5] # 5번째 열의 종속변수를 제외한 50개의 데이터
+```
+
+- iris 데이터의 타겟변수(학습데이터의 타겟변수, 검증데이터의 타겟변수)
+```{r}
+# target value in training and test
+trainLabels <- iris[tr.idx, 5]
+testLabels <- iris[-tr.idx, -5]
+```
+
+### 퀴즈
+```{r}
+# to get frequency of class in test set
+table(testLabels)
+```

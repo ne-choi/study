@@ -257,6 +257,10 @@ summary(m0)
 # subset of flight data in SFO (n=2974)
 # dest="SFO", origin=="JFK", arr_delay<420, arr_delay>0
 SF<-read.csv("week8_4/SF_2974.csv", stringsAsFactors = TRUE)
+attach(SF)
+
+library(ggplot2)
+library(dplyr)
 ```
 
 ### 데이터 기술통계치
@@ -298,7 +302,7 @@ library(dplyr)
 
 par(mfrow=c(1,1))
 SF %>%
-  plot(hour, arr_delay,  col=as.integer(SF$carrier), pch=19)%>% 
+  plot(hour, arr_delay, col=as.integer(SF$carrier), pch=19)%>% 
   # best fit linear line
   abline(lm(arr_delay~hour), col="red", lwd=2, lty=1)
 ```
