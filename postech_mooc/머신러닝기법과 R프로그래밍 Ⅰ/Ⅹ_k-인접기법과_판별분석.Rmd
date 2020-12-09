@@ -214,4 +214,157 @@ CrossTable(x=testLabels,y=md3_fit,prop.chisq=FALSE,prop.c=FALSE)
 ## 3. 판별분석 Ⅰ
 ### 판별분석
 - 데이터 마이닝 분류 기법 중 하나
+- 객체를 몇 개의 **범주로 분류**
+- 범주를 가장 잘 구분하는 변수 파악 및 범주간 차이를 가장 잘 표현하는 함수 도출
+  - 피셔(Fisher) 방법
+  - 의사결정이론
+    - 선형판별분석(LDA; Liner DA): 정규분포 분산-공분산 행렬이 범주에 관계 없이 동일한 경우
+    - 이차판별분석(QDA; Quadratic DA): 정규분포의 분산-공분산 행렬이 범주별로 다른 경우
+    
+- 예제 데이터
+```{r}
+# install.packages("gmodels") #crosstable
+library(gmodels)
+```
+
+- train / test 분할
+```{r}
+# read csv file
+iris<-read.csv("data/week10_3/iris.csv")
+attach(iris)
+
+# training/ test data : n=150
+
+set.seed(1000,sample.kind="Rounding")
+
+N=nrow(iris)
+tr.idx=sample(1:N, size=N*2/3, replace=FALSE)
+
+# attributes in training and test
+iris.train<-iris[tr.idx,-5] # 독립변수 4개 포함한 100개 데이터
+iris.test<-iris[-tr.idx,-5] # 독립변수 4개 포함한 50개 데이터
+# target value in training and test
+trainLabels<-iris[tr.idx,5] # 학습데이터의 타겟변수
+testLabels<-iris[-tr.idx,5] # 검증데이터의 타겟변수
+
+train<-iris[tr.idx,]
+test<-iris[-tr.idx,]
+```
+- LDA함수: lda(종속변수~독립변수, data=학습데이터이름, prior=사전확률)
+  - 사전확률(prioir probability): 원인 A가 발생할 확률인 P(A)와 같이, 결과가 나타나기 전에 결정되어 있는 확률
+```{r}
+# install the MASS package for LDA
+# install.packages("MASS")
+library(MASS)
+```
+
+```{r}
+# Linear Discriminant Analysis (LDA) with training data n=100
+iris.lda <- lda(Species ~ ., data=train, prior=c(1/3,1/3,1/3)) # .의 의미: 전체 데이터를 사용하겠다(4개)
+iris.lda
+```
+- 결과 해석
+  - Coefficients ~
+  - 첫 번째 범주 판별 함수: LD1 = 0.89 Sepal.Length + 1.71 Sepal.Width - 2.15 Petal.Length - 2.91 Petal.Width
+  - 두 번째 범주 판별 함수: LD2 = -0.11 Sepal.Length - 2.23 Sepal.Width + 0.74 Petal.Length - 2.39 Petal.Width
+  
+  - LD1이 between-group variance의 99%를 설명
+  - LD2가 between-group variance의 1%를 설명
+
+- 검증 데이터에 LDA 결과를 적용하여 범주 추정
+```{r}
+# predict test data set n=50
+testpred <- predict(iris.lda, test)
+testpred
+```
+- 결과 해석
+  - $class: 추정 범주
+  - 세 개 범주의 사후 확률(posterior probability)을 구한 후, max 값의 범주로 할당
+
+- 정확도 산정: 오분류율(검증데이터)
+```{r}
+# accuracy of LDA
+CrossTable(x=testLabels,y=testpred$class, prop.chisq=FALSE)
+```
+- 결과 해석
+  - 정확도: 49/50 → 98%
+  - 오분류율: 1/50 → 2%
+
+### 퀴즈
+iris.lda <- lda(Species ~ ., data=train, prior=c(1/2,1/4,1/4)) # .의 의미: 전체 데이터를 사용하겠다(4개)
+iris.lda
+
+testpred <- predict(iris.lda, test)
+testpred
+
+CrossTable(x=testLabels,y=testpred$class, prop.chisq=FALSE)
+
+testpred1 <- round(testpred$posterior, 2) id=150
+
+## 4. 판별분석 Ⅱ
+### 선형판별분석 vs 이차판별분석
+
+LDA|QDA
+--|--
+분산-공분산 행렬이 범주 관계 없이 동일한 경우|분산-공분산 행렬이 범주별로 다른 경우
+(+) 적은 파라미터 사용, 낮은 분산|(-) 많은 파라미터 사용, 높은 분산
+(-) 낮은 유연성|(=) 높은 유연성
+
+### 이차판별분석(QDA)
+- 모집단 등분산 검정
+  - 분산-공분산 행렬이 범주별로 다른 경우, 이차판별분석 실시  
+
+- Box's M-test
+  - 귀무가설: 모집단의 분산-공분산 행렬이 동일
+  - 대립가설: 모집단의 분산-공분산 행렬이 동일하지 X  
+
+- 등분산 검정을 위한 패키지: biotools  
+```{r}
+# install.packages("biotools")
+library(biotools)
+boxM(iris[1:4], iris$Species)
+```
+- 결과 해석
+  - p-value~0: p-value는 거의 0에 가까움 
+  - 귀무가설(등분산 가정)이 기각 → QDA 실시
+
+### QDA 함수
+- qda(종속변수~독립변수, data=학습데이터이름, prior=사전확률)
+```{r}
+# Quadratic Discriminant Analysis (QDA)
+iris.qda <- qda(Species ~ ., data=train, prior=c(1/3,1/3,1/3))
+iris.qda
+```
+- 추가 설명
+  - prior은 경우에 따라 다르게 줄 수 있음
+  - 독립변수에 대한 그룹별 평균값  
+  
+- 검증 데이터에 QDA 결과를 적용하여 범주 추정  
+```{r}
+# predict test data set n=50
+testpredq <- predict(iris.qda, test)
+testpredq
+```
+- 결과 해석
+  - $class: 추정 범주
+  - 세 개 범주의 사후 확률(posterior probability)을 구한 후, max 값의 범주로 할당  
+
+
+- 정확도 산정: 오분류율(검증데이터)
+```{r}
+# accuracy of QDA
+CrossTable(x=testLabels,y=testpredq$class, prop.chisq=FALSE)
+```
+- 결과 해석
+  - 선형판별로 했을 때와 동일(단, 데이터가 많아지면 결과가 다르게 나올 수 있음)
+
+
+- Partition Plot
+```{r}
+# partimat() function for LDA & QDA
+# install.packages("klaR")
+library(klaR)
+partimat(as.factor(iris$Species) ~ ., data=iris, method="lda")
+partimat(as.factor(iris$Species) ~ ., data=iris, method="qda")
+```
 
