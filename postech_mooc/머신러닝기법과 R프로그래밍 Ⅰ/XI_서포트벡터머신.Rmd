@@ -1,0 +1,296 @@
+---
+title: "XI. 서포트벡터머신"
+author: "ne_choi"
+date: '2020 12 09 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅰ 과정입니다.  
+
+# XI. 서포트벡터머신
+## 1. 서포트벡터머신 Ⅰ
+### Support Vector Machine 
+- 머신러닝 
+  - 지도학습
+    - 분류모델
+      - kNN모델
+      - **SVM(서포트벡터머신)**
+  - 비지도학습
+    - 군집모델
+    
+- 서포트벡터머신 장단점
+
+장점|단점
+--|--
+상대적으로 정확도가 높음|해석상 어려움 발생
+다양한 데이터(연속형, 범주형)를 다룰 수 있음|데이터가 많을 때 속도와 메모리가 많이 듦
+
+- **선형 SVM**
+  - 각 클래스를 분류해주는 margin(각 클래스를 분류하는 하이퍼플레인)을 최대화하는 벡터를 찾는 분석 기법
+  
+- **비선형 SVM**
+  - 대부분 패턴은 선형적 분리가 불가능
+    - 비선형 패턴의 임력공간을 선형 패턴의 feature space로 변환
+    - Kernel method로 비선형 경계면 도출
+
+### 서포트백터머신 패키지와 함수
+- 서포트벡터머신 수행을 위한 패키지: e1071
+- 서포트벡터머신 함수: svm(y변수~x변수, data= )
+
+```{r}
+# install.packages("e1071")
+library (e1071)
+
+iris<-read.csv("data/week11_1/iris.csv")
+attach(iris)
+```
+
+```{r}
+## classification 
+# 1. use all data 
+
+iris$Species <- as.factor(iris$Species)
+
+m1<- svm(Species ~., data = iris)
+summary(m1)
+```
+- svm 옵션(default)
+  - kernel = radial basis function
+  - gamma = 1/(# of dimension) (1/4=0.25)
+  
+
+### 서포트벡터머신 결과
+- svm 모델에 적용한 예측범주와 실제범주 비교(전체 데이터 사용 결과)
+```{r}
+# classify all data using svm result (m1)
+# first 4 variables as attribute variables
+x<-iris[, -5] # iris 데이터엣 타겟값인 5번째 열을 제외한 데이터, 즉 4개의 독립변수만 있는 데이터
+pred <- predict(m1, x) # svm모델 m1을 적용해 예측된 범주값을 pred로 저장
+
+# Check accuracy (compare predicted class(pred) and true class(y))
+# y <- Species or y<-iris[,5]
+y<-iris[,5]
+table(pred, y)
+```
+- 결과 해석
+  - 오분류율: (4+1)/150 = 0.033%
+  
+  
+### 서포트벡터머신 시각화
+- iris 데이터의 서포트벡터머신 결과(전체 데이터 사용 결과)
+```{r}
+# visualize classes by color
+plot(m1, iris,  Petal.Width~Petal.Length, slice=list(Sepal.Width=3, Sepal.Length=4))
+```
+- 결과 해석
+  - 4개 변수 중, petal.width와 petal.length가 중요한 변수
+
+
+## 2. 서포트벡터머신 Ⅱ
+### 서포트벡터머신(kernel 함수)
+- 커널(kernel)이란?
+  - Input Space → Feature Space
+  - f(x) = φ(x)^T^w + b
+
+- 커널함수(kernel function)
+  - x의 기저함수(basis function)
+  - x에 대한 **새로운 특징을 추출하는 변환함수**
+    - 좋은 커널함수: x 데이터의 모든 정보를 보존하면서 class를 잘 분류할 수 있는 커널함수
+  
+  - 커널함수와 기저함수의 관계: **K(x~i~,x~j~) = φ(x~i~)'φ(x~j~)**
+    - radial: K(x~i~,x~j~) = exp($\frac{-||x~i~ - x~j~||^2^}{2σ^2^}$)
+    - polynomial: K(x~i~,x~j~) = (x~i~'x~j~ + 1)^r^
+    - sigmoid: K(x~i~,x~j~) = tanh(kx~i~'x~j~ - σ)
+
+- 패키지 설치
+  - 서포트벡터머신 수행 패키지: e1071
+  - 오분류율 교차표(confusion matrix) 생성 패키지: caret
+```{r}
+# install.packages("caret")
+library(e1071)
+library(caret)
+```
+
+- iris 데이터 (학습데이터와 검증데이터 분할)
+```{r}
+# training (100) & test set (50)
+set.seed(1000, sample.kind="Rounding")
+N=nrow(iris)
+tr.idx=sample(1:N, size=N*2/3, replace=FALSE)
+# target variable
+y=iris[,5]
+# split train data and test data
+train=iris[tr.idx,]
+test=iris[-tr.idx,]
+```
+- 커널함수 적용
+```{r}
+#svm using kernel
+m1<-svm(Species~., data = train) # default: radial
+summary(m1)
+m2<-svm(Species~., data = train,kernel="polynomial")
+summary(m2)
+m3<-svm(Species~., data = train,kernel="sigmoid")
+summary(m3)
+m4<-svm(Species~., data = train,kernel="linear")
+summary(m4)
+```
+
+### 서포트벡터머신 결과
+1. 정확도 측정: kernel-radial basis function
+```{r}
+#measure accuracy
+pred11<-predict(m1,test) # radial basis
+confusionMatrix(pred11, test$Species)
+#table(pred11, y[-tr.idx])
+```
+- 결과 해석
+  - 예측범주: Prediction
+  - 실제범주: Reference
+  - 정확도: 0.96
+
+
+2. 정확도 측정: kernel-polynomial
+```{r}
+pred12<-predict(m2,test) # polynomial
+confusionMatrix(pred12, test$Species)
+#table(pred12, y[-tr.idx])
+```
+- 결과 해석
+  - 정확도: 0.9
+  
+3. 정확도 측정: kernel-sigmoid
+```{r}
+pred13<-predict(m3,test) # simoid
+confusionMatrix(pred13, test$Species)
+#table(pred13, y[-tr.idx])
+```
+- 결과 해석
+  - 정확도: 0.9
+  
+4. 정확도 측정: kernel-linear
+```{r}
+pred14<-predict(m4,test) # linear
+confusionMatrix(pred14, test$Species)
+#table(pred14, y[-tr.idx])
+```
+- 결과 해석
+  - 정확도: 0.9393
+  
+### 서포트벡터머신 정확도 정리
+- linear로만 처리해도 정확도 높은 경우가 많음
+
+
+## 3. 서포트벡터머신 Ⅲ
+### Breast Cancer 데이터
+```{r}
+# install.packages("e1071")
+# load package for support vector machine
+library(e1071) #svm model
+
+# install.packages("caret")
+# load package for Confusion matrix
+library(caret)
+```
+
+```{r}
+# read data
+cancer<-read.csv("data/week11_3/cancer.csv")
+head(cancer, n=10)
+
+# remover X1 column(ID number) # ID number 필요 없는 feature로 제거
+cancer<-cancer[, names(cancer) != "X1"]
+attach(cancer)
+
+# 종속변수형을 factor 함수로 변경해야 함(R 4.0버전 이후)
+cancer$Y <- as.factor(cancer$Y)
+```
+- Breast Cancer Wisconsin (Diagnostic) Data Set
+  - 세침흡인 세포검사를 통해 얻은 683개 유방조직의 9개 특성을 나타냄
+  - input변수(독립변수): 9개, output변수(종속, 타겟변수): 1개
+
+
+- 학습데이터 / 검증데이터 분할
+```{r}
+# training (455) & test set (228)
+# set.seed(1000)
+N=nrow(cancer)
+set.seed(998, sample.kind="Rounding")
+
+# split train data and test data
+tr.idx=sample(1:N, size=N*2/3, replace=FALSE)
+train <- cancer[ tr.idx,]
+test  <- cancer[-tr.idx,]
+```
+
+
+### 서포트벡터머신 결과
+- kernel 함수에 따른 서포트벡터머신
+```{r}
+#svm using kernel
+m1<-svm(Y~., data = train)
+summary(m1)
+
+#measure accuracy
+pred11<-predict(m1,test) # radial basis
+confusionMatrix(pred11, test$Y)
+#table(pred11, y[-tr.idx])
+```
+- 결과 해석
+  - 악성으로 오분류 4, 정상으로 오분류 1
+  - 정확도: 0.9781
+
+```{r}
+m2<-svm(Y~., data = train,kernel="polynomial")
+summary(m2)
+
+pred12<-predict(m2,test) # polynomial
+confusionMatrix(pred12, test$Y)
+#table(pred12, y[-tr.idx])
+```
+- 결과 해석
+  - 악성으로 오분류 0, 정상으로 오분류 12
+  - 정확도: 0.9474
+  - 정확도는 94% 이상이나, 암 진단 특성상 정상으로 오분류하는 경우가 많으면 안 됨
+  - False Positive(예측: P, 실제: N)가 더 위험한 경우
+  
+```{r}
+m3<-svm(Y~., data = train,kernel="sigmoid")
+summary(m3)
+
+pred13<-predict(m3,test) # sigmoid
+confusionMatrix(pred13, test$Y)
+#table(pred13, y[-tr.idx])
+```
+- 결과 해석
+  - 악성으로 오분류 5, 정상으로 오분류 3
+  - 정확도: 0.9649
+  
+```{r}
+m4<-svm(Y~., data = train,kernel="linear")
+summary(m4)
+
+pred14<-predict(m4,test) # linear
+confusionMatrix(pred14, test$Y)
+#table(pred14, y[-tr.idx])
+
+```
+- 결과 해석
+  - 악성으로 오분류 1, 정상으로 오분류 3
+  - 정확도: 0.9825
+ 
+- 전체 결론
+  - 정확도만 보았을 때 linear 모델이 적합하나, True Negative가 위험하기 때문에 radial 모델이 더 적합할 수 있음
+
+### 
