@@ -1,0 +1,242 @@
+---
+title: "XⅡ. 의사결정나무와 랜덤 포레스트"
+author: "ne_choi"
+date: '2020 12 09 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅰ 과정입니다.  
+
+# XⅡ. 의사결정나무와 랜덤 포레스트
+## 1. 의사결정나무 Ⅰ
+### 의사결정나무
+- Decision Tree
+  - 기계학습 중 하나로, 의사결정 규칙을 나무 형태로 분류해가는 분석 기법
+    - 분석과정이 직관적이고 이해하기 쉬움
+    - 연속형/범주형 변수를 모두 사용할 수 있음
+    - 분지규칙은 불순도(범주가 섞여 있는 정도)를 최소화함
+
+- 과정
+  1. tree 형성(Growing tree): 너무 많이 키워서 분류하면 과적합 문제가 생김
+  2. tree 가지치기(Pruning tree): 과적합 예방을 위해
+  3. 최적 tree로 분류(Classification)
+
+```{r}
+#decision tree packages download
+#install.packages("tree")
+#load library
+library(tree)
+
+#package for confusion matrix
+#install.packages("caret")
+library(caret)
+
+# read csv file
+iris<-read.csv("data/week12_1/iris.csv")
+attach(iris)
+```
+
+
+- 학습데이터 / 검증데이터 분할
+```{r}
+# training (n=100)/ test data(n=50) 
+set.seed(1000, sample.kind="Rounding")
+N<-nrow(iris)
+tr.idx<-sample(1:N, size=N*2/3, replace=FALSE)
+# split train data and test data
+train<-iris[tr.idx,]
+test<-iris[-tr.idx,]
+#dim(train)
+#dim(test)
+```
+
+### 의사결정나무 함수
+tree(종속변수~x1+x2+x3+x4, data= ) #종속변수를 모두 사용
+
+### step 1: Growing tree
+- 학습데이터의 tree 결과
+  - 마디 6에서는 더이상 분지할 필요 없음
+```{r}
+treemod <- tree(Species~., data=train)
+treemod
+```
+
+```{r}
+plot(treemod)
+text(treemod,cex=1.5)
+
+table(train$Species)
+```
+
+
+### step 2. Pruning
+- cv.tree(tree모형결과, FUN= )
+- 최적 tree 모형을 위한 가지치기
+
+```{r}
+cv.trees <- cv.tree(treemod, FUN=prune.misclass)
+cv.trees
+plot(cv.trees)
+```
+
+- 최종 트리모형
+```{r}
+# final tree model with the optimal node 
+prune.trees<-prune.misclass(treemod, best=3)
+plot(prune.trees)
+text(prune.trees,pretty=0, cex=1.5)
+#help(prune.misclass)
+```
+
+
+### step 3. 
+```{r}
+# step 3: classify test data 
+treepred<-predict(prune.trees,test,type='class')
+# classification accuracy
+confusionMatrix(treepred,test$Species)
+```
+
+
+## 2. 의사결정나무 Ⅱ
+### rpart 패키지
+```{r}
+# other package for tree
+# install.packages("rpart")
+# install.packages("party")
+library(rpart)
+library(party)
+```
+
+- rpart(종속변수~x1+x2+x3+x4, data= ) #종속변수를 모두 사용
+```{r}
+cl1<-rpart(Species~., data=train)
+plot(cl1)
+text(cl1, cex=1.5)
+```
+
+- Prunning
+  - rpart 패키지는 과적합 우려가 있음(iris의 경우에는 필요 x)
+  - printcp에서 xerror(cross validation error) 값이 최소가 되는 마디를 선택
+```{r}
+#pruning (cross-validation)-rpart
+printcp(cl1)
+plotcp(cl1)
+```
+
+- rpart를 사용한 최종 tree 모형
+```{r}
+pcl1<-prune(cl1, cp=cl1$cptable[which.min(cl1$cptable[,"xerror"]),"CP"])
+plot(pcl1)
+text(pcl1)
+```
+- 결과 해석
+  - tree 함수를 이용했을 때와 동일한 결과
+  
+
+- 정확도
+  - test data에 대한 정확도
+```{r}
+#measure accuracy(rpart)
+#package for confusion matrix
+#install.packages("caret")
+library(caret)
+
+pred2<- predict(cl1,test, type='class')
+confusionMatrix(pred2,test$Species)
+```
+
+
+### party 패키지
+- ctree(종속변수~x1+x2+x3+x4, data= ) #종속변수를 모두 사용
+  - p-value를 기준으로 분지되는 포인트를 잡음
+```{r}
+#decision tree(party)-unbiased recursive partioning based on permutation test
+partymod<-ctree(Species~.,data=train)
+plot(partymod)
+```
+
+
+## 3. 랜덤 포레스트
+### 랜덤 포레스트
+- Random Forest
+  - 2001년 Leo Breiman이 제안
+  - 의사결정나무의 단점(과적합)을 개선한 알고리즘
+  - 앙상블(Ensemble, 결합) 기법을 사용한 모델로, 주어진 데이터를 리샘플링하여 다수의 의사결정나무를 만든 다음, 여러 모델의 예측 결과를 종합해 정확도를 높이는 방법
+
+### Bagging
+- Bagging(Bootstrap Aggregating)
+  - 전체 데이터에서 학습데이터를 복원추출(resampling)하여 트리 구성
+  - Training Data에서 Random Sampling
+  - 클래스 값 중 가장 많이 voting된 값이 결정
+
+### 랜덤 포레스트 패키지
+- randomForest
+```{r}
+install.packages("randomForest")
+library(randomForest)
+```
+
+- iris 데이터 사용
+```{r}
+# read csv file
+iris<-read.csv("data/week12_3/iris.csv")
+attach(iris)
+
+# training/ test data : n = 150
+set.seed(1000, sample.kind="Rounding")
+N<-nrow(iris)
+tr.idx<-sample(1:N, size=N*2/3, replace=FALSE)
+
+# split training and test data
+train<-iris[tr.idx,]
+test<-iris[-tr.idx,]
+#dim(train)
+#dim(test)
+```
+
+- 랜덤포레스트 함수
+  - ramdomForest(종속변수~x1+x2+x3+x4, data= ) #종속변수를 모두 사용
+```{r}
+#Random Forest : mtry=2 (default=sqrt(p))
+iris$Species <- as.numeric(iris@Species)
+
+rf_out1<-randomForest(Species~.,data=train,importance=T)
+rf_out1
+```
+
+- 변수의 중요도: ramdom forest 결과로부터 중요 변수 확인
+```{r}
+# important variables for RF
+round(importance(rf_out1), 2)
+```
+
+- 추가
+```{r}
+#Random Forest : mtry=4
+rf_out2<-randomForest(Species~.,data=train,importance=T, mtry=4)
+rf_out2
+
+# important variables for RF
+round(importance(rf_out2), 2)
+```
+
+
+- 정확도
+```{r}
+#measuring accuracy(rf)
+rfpred<-predict(rf_out2,test)
+confusionMatrix(rfpred,test$Species)
+```
+
