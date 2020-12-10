@@ -150,8 +150,8 @@ D4
 
 ```{r}
 # needs "lattice", "DAAG" package for loading dataset
-install.packages("lattice")
-install.packages("DAAG")
+# install.packages("lattice")
+# install.packages("DAAG")
 library(lattice)
 library(DAAG)
 ```

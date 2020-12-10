@@ -1,0 +1,21 @@
+---
+title: "ⅩⅤ. 주성분 분석과 부분 최소자승법"
+author: "ne_choi"
+date: '2020 12 10 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅱ 과정입니다.  
+
+# ⅩⅤ. 주성분 분석과 부분 최소자승법
