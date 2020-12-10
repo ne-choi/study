@@ -293,4 +293,3 @@ confusionMatrix(pred14, test$Y)
 - 전체 결론
   - 정확도만 보았을 때 linear 모델이 적합하나, True Negative가 위험하기 때문에 radial 모델이 더 적합할 수 있음
 
-### 

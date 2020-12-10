@@ -1,0 +1,295 @@
+---
+title: "ⅩⅣ. 연관규칙과 로지스틱회귀분석"
+author: "ne_choi"
+date: '2020 12 10 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅱ 과정입니다.  
+
+# ⅩⅣ. 연관규칙과 로지스틱회귀분석"
+## 1. 연관규칙 분석 Ⅰ
+### 연관규칙
+- 연관규칙(Association Rule)
+  - 대용량 데이터베이스의 트랜잭션에서 빈번하게 발생하는 패턴을 발견
+  - 거래 간의 상호 관련성을 분석
+
+- 연관규칙 예시
+  - 신발을 구매하는 고객의 10%는 양말을 동시에 구매한다.
+  - 빵과 우유를 고매한 고객의 50%가 쥬스도 함께 구매한다.
+
+- 용어 설명
+  - **시장바구니(market basket)**
+    - 고객이 구매한 물품에 관련한 정보(구매 시기, 지불 방법, 매장 정보 포함)
+  - **트렌잭션(transaction)**
+    - 고객이 거래한 정보를 하나의 트랜잭션이라고 함
+  - **시장바구니 분석(market basket analysis)**
+    - 시장바구니 데이터로부터 연관규칙 탐색 분석
+
+### 연관규칙 평가 척도
+- **지지도(Support)**
+  - $\frac{A와 B를 동시에 포함하는 거래 수}{전체 거래 수}$  
+  
+- **신뢰도(Confidence)**
+  - $\frac{A와 B를 동시에 포함하는 거래 수}{A를 포함하는 거래 수}$  
+  
+- **향상도(Lift)**
+  - $\frac{A와 B를 동시에 포함하는 거래 수}{A를 포함하는 거래 수 x B를 포함하는 거래 수}$
+
+<br>  
+- 지지도가 어느 정도 수준에 도달해야 함
+- 신뢰도가 높을 경우에는 두 항목 A → B에서 항목 B의 확률이 커야 연관규칙이 의미가 있음
+- 향상도가 1보다 큰 값을 주어야 유용한 정보를 준다고 볼 수 있음
+
+
+### 향상도(Lift)
+- 향상도: A가 거래된 경우, 그 거래가 B를 포함하는 경우와 B가 임의로 거래되는 경우의 비율
+
+|향상도|의미|
+|:--:|:--:|
+|1|두 항목의 거래 발생이 독립적인 관계|
+|< 1|두 항목의 거래 발생이 서로 음의 상관관계|
+|> 1| 두 항목의 거래 발생이 서로 양의 상관관계|
+
+- 정리
+  - 각 항목의 구매가 상호관련이 없다면 P(B|A)가 P(B)와 같아 향상도는 1이 됨
+  - 1보다 크면 결과 예측에 관해 우연적 기회(random chance)보다 우수함을 의미
+  - 향상도 값이 클수록 A의 거래 여부가 B의 거래 여부에 큰 영향을 미침
+
+### 연관규칙 수행 패키지
+- arules
+- 데이터가 transaction data로 Dataframe과 구조가 다름
+  - ID, 거래된 아이템, 거래된 일자 정보 등
+```{r}
+# association rule analysis package
+#install.packages("arules")
+library(arules)
+
+# data import-> make transaction data
+dvd1<-read.csv("data/week14_1/dvdtrans.csv")
+dvd1
+```
+
+- arules package를 통해 transaction 데이터 변환과 연관규칙 분석 수행
+- Split을 통해 ID별로 item을 as함수를 통해 transaction 데이터로 변환
+```{r}
+dvd.list<-split(dvd1$Item,dvd1$ID)
+dvd.list
+dvd.trans<-as(dvd.list,"transactions")
+dvd.trans
+
+inspect(dvd.trans)
+```
+
+- transaction 데이터의 요약
+```{r}
+# summary of dvd.trans
+summary(dvd.trans)
+```
+- 결과 해석
+  - 10 트랜잭션 / 10 항목
+  - 밀도(density): 0.3 ← 10*10 cell 중, 30%dml cell에 거래가 발생해 데이터가 있다는 뜻
+  - 거래 항목 중 Gladiator = 7번, Patriot = 6번, Six Sense = 6번 순으로 나왔음을 의미
+
+### 연관규칙 수행함수
+- apriori(transaction, parameter=list(support=0.0#, confidence=0.##))
+```{r}
+# for running dvdtras data
+dvd_rule<-apriori(dvd.trans,
+                  parameter = list(support=0.2,confidence = 0.20,minlen = 2))
+dvd_rule
+
+# same code with short command
+# dvd_rule<-apriori(dvd.trans, parameter = list(supp=0.2,conf= 0.20,minlen = 2))  
+```
+- 결과 해석
+  - support=0.2, confidence=0.2 이상인 13개의 연관규칙 생성
+
+### 연관규칙의 해석
+```{r}
+summary(dvd_rule)
+```
+
+```{r}
+inspect(dvd_rule)
+```
+
+- 결과 해석
+  - 지지도: Green Mile과 Sixth Sense를 동시에 구매할 확률: 20%
+  - 신뢰도: Green Mile을 구매한 경우는 모두 Sixth Sense를 구매: 100%
+  - 향상도: Green Mile을 구매하면 Six Sense 구매비율이 1.667배 향상됨
+<br>
+
+- 그래프로 표현한 연관규칙: 지지도 > 0.2 항목들의 상대빈도
+```{r}
+# Bar chart for support>0.2
+itemFrequencyPlot(dvd.trans,support=0.2,main="item for support>=0.2", col="green")
+```
+
+
+## 2. 연관규칙 분석 Ⅱ
+### 데이터 설명(Groceries)
+- Groceries data("arules" package에 탑재된 데이터)
+  - data("Groceries")로 불러옴
+  - 실제 식료품점의 30일치 transaction 데이터
+  - 9835 트랜젝션 / 169 항목
+  - 밀도: 0.026% ← 9835*169 cell 중, 0.026%의 cell에 거래가 발생하여 숫자가 차 있다는 의미
+  - Element(itemset/transaction) length distribution: 하나의 거래 장바구니(row 1개당)에 item의 개수별로 몇 번의 거래가 있었는지 나타냄
+
+```{r}
+# association rule analysis package
+# install.packages("arules")
+library(arules)
+
+#association rule analysis
+data("Groceries")
+
+summary(Groceries)
+```
+
+### 지지도에 따른 시각화
+- 지지도 5% 이상의 item 막대 그래프
+```{r}
+# Bar chart for item with support>=5%
+itemFrequencyPlot(Groceries,supp=0.05,main="item for support>=5%", col="green", cex=0.8)
+```
+
+- 지지도 상위 20개 막대 그래프
+```{r}
+# Bar chart for the top support 20 items
+itemFrequencyPlot(Groceries,topN=20,main="support top 20 items", col="coral", cex=0.8)
+```
+
+### 연관규칙 분석결과
+- 연관규칙분석
+  - support, confidence, length는 minimum값으로 너무 높게 잡을 경우 연관규칙 분석이 되지 않음
+```{r}
+# Association rule with support>5%, confidence>20% in minimum length 2
+Grocery_rule<-apriori(data=Groceries,
+                      parameter = list(support=0.05,
+                                       confidence = 0.20,
+                                       minlen = 2))
+Grocery_rule
+```
+
+- 연관규칙 조회 및 평가
+```{r}
+#analyzing result
+summary(Grocery_rule)
+inspect(Grocery_rule)
+```
+- 결과 해석
+  - 향상도 최솟값이 1보다 큼
+  - 6개의 rules이 items 2개로 구성되어 있음
+
+- 연관규칙: 향상도(lift) 순서로 정렬
+  - sort() 함수를 통해 분석가가 보려는 기준으로 정렬하여 조회 가능
+```{r}
+# sorting by Lift
+inspect(sort(Grocery_rule,by="lift"))
+# inspect(sort(Grocery_rule, by="support"))
+```
+
+- 연관규칙: 품목별 연관성 탐색
+  - subset() 함수를 통해 원하는 item이 포함된 연관규칙만 선별해 조회 가능
+  - %in%. %pin%, %ain% 등 옵션 이용 가능
+```{r}
+# searching association for interesting items
+rule_interest<-subset(Grocery_rule, items %in% c("yogurt","whole milk"))
+inspect(rule_interest)
+```
+
+- 연관규칙결과를 data.frame으로 저장
+```{r}
+# save as dataframe
+Grocery_rule_df<-as(Grocery_rule,"data.frame")
+Grocery_rule_df
+
+#saving results as csv file
+write(Grocery_rule, file="Grocery_rule.csv",
+      sep=",",
+      quote=TRUE,
+      row.names=FALSE)
+```
+
+
+## 3. 로지스틱회귀분석
+### 로지스틱 회귀모형
+- 로지스틱회귀분석(logistic regression)
+  - 종속변수가 범주형인 경우 사용
+    - 2개의 범주(양성/음성, 불량/양품 등) 또는 3개 이상의 범주를 다룸
+    - 3개 이상 범주일 경우, 서열형 데이터(ordinal data), 명목형 데이터(nominal data)로 나누어 다른 모형 사용
+  
+  - log it(p) = β~0~ + β~1~X
+    - 회귀계수 β~1~의 의미가 선형회귀모형에서와는 다름
+    - β~1~: X가 한 단위 증가할 때, logit(P)(승산비) 로그값의 증가분을 이야기함 → 승산비가 배로 증가함을 의미
+  
+  - Y가 (0/1, cancer/no cancer, present/absent) 등의 값을 취하는 경우, 독립변수들과 Y 관계를 설명하기 위해 로지스틱 함수 사용
+    - f(y) = $\frac{1}{1 + e^-y^}$
+  
+### 로지스틱 회귀모형 실습
+- 데이터 살펴보기
+  - 암 재발 확률 구하기
+  - Y: Remiss(0,1)
+  - 6 explanatory variables: risk factor related cancer remission(Cell, Smear, infill, Li, blast, temp)
+  
+- 로짓 변환을 통해 p헷(확률값)을 계산한 후, 확률값을 보고 0,5  또는 최적 임계치를 기준으로 구분하는 것
+
+- 데이터 불러오기
+```{r}
+# remiss data
+re <- read.csv("data/week14_3/remiss.csv")
+head(re)
+str(re)
+attach(re)
+```
+
+- 로지스틱회귀모형 실시(y는 binomial variable, logit function 선택)
+```{r}
+#logistic regression (full model)
+t1<-glm(remiss~cell+smear+infil+li+blast+temp, data=re,family=binomial(logit))
+summary(t1)
+
+cor(re)
+```
+- 결과 해석
+  - smear, infil은 거의 1에 가까운 값을 보임 → 둘 중 하나 제거하는 것이 좋음
+  - blast의 p-value가 1에 가까움: blast 변수를 추가적으로 설명할 수 있는 부분이 거의 없다 → 제거하는 것이 좋음
+- smear, blast 삭제
+
+- 로지스틱 회귀모형의 평가 척도: -2Log(Deviance), AIC, likelihood ratio test(G^2)
+  - AIC가 낮은 것이 좋은 모델이라고 평가
+```{r}
+# logisitic regression (reduced model 1)
+t2<-glm(remiss~cell+smear+li+temp, data=re,family=binomial(logit))
+summary(t2)
+```
+
+```{r}
+# logisitic regression (reduced model 2)
+t3<-glm(remiss~cell+li+temp, data=re,family=binomial(logit))
+summary(t3)
+```
+- 결과 해석
+  - logit(P) = 67.63 + 9.65Cell + 3.87Li - 82.07Temp
+    - e.g. Li의 beta1 해석: li 한 단위 증가 시 재발 확률은 exp(3.867) = 47.79배  
+
+
+- 예측확률값 출력: 원래 데이터 + 예측확률값
+```{r}
+# output data with predicted probability
+dat1_pred<-cbind(re,t3$fitted.values)
+write.table(dat1_pred,file="dat1_pred.csv", row.names=FALSE, sep=",", na=" ")
+```
+   
