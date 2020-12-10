@@ -1,0 +1,286 @@
+---
+title: "ⅩⅢ. 군집분석"
+author: "ne_choi"
+date: '2020 12 10 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅱ 과정입니다.  
+
+# ⅩⅢ. 군집분석
+## 1. 군집분석과 유사성 척도
+### 군집분석
+- 군집분석은 비지도학습(Unsupervised Learning)
+  - 주어진 데이터(X 변수들)의 속성으로 군집화
+    - 계층형 군집 분석
+    - k-means
+    
+- 유사한 속성을 가진 객체를 군집(cluster)으로 묶는 데이터 마이닝 기법
+  - 예제: 고객 구매패턴을 반영하는 속성 데이터가 수집된다고 할 때, 군집분석을 통해 유사한 구매패턴을 보이는 고객을 군집화하고 판매전략을 도출(소득/충성정도 등)
+ 
+### 군집분석 종류
+1. 계층적 군집(Hierarchical Clustering)
+   - 사전에 군집 수 k를 정하지 않고 단계적으로 군집 트를 제공
+
+2. 비계층적 군집(Non-hierarchical Clustering)
+   - 사전에 군집 수 k를 정한 후 각 객체를 k개 중 하나의 군집에 배정
+
+### 유사성 척도
+- 객체 간의 유사성 정도를 정량적으로 나타내기 위해 척도가 필요
+  - 거리(distance) 척도
+    - 거리가 가까울수록 유사성이 커짐
+  - 상관계수척도
+    - 객체 간 상관계수가 클수록 유사성이 커짐  
+
+```{r}
+# similarity measures - distance
+m1 <- matrix(
+  c(150, 50, 130, 55, 80, 80, 100, 85, 95, 91),
+  nrow = 5,
+  ncol = 2,
+  byrow = TRUE)
+# m1 is a matrix
+m1
+is.data.frame(m1)
+# m1 is defined as dataframe
+m1<-as.data.frame(m1)
+```
+
+- **거리척도**
+  - 객체 i의 p차원 공간에서의 좌표는 열벡터로 표현
+    - p개의 속상을 가진 객체 i에 관해, j번째 속성은 X~ji~로 표현  
+
+  - 거리 계산 함수: dist(데이터, method= ), default는 "euclidean"  
+  
+  1. 유클리디안 거리(Euclidean distance)
+     - Distance = $\sqrt{(x~12~ - x~11~)^2^ + (x~21~ - x~22~)^2^}$
+```{r}
+# 1. Euclidean distance
+D1 <- dist(m1)
+D1
+```
+
+  2. 민코프스키 거리(Minkowski distance
+     - 유클리디안 거리의 일반화된 방법(m = 2일 때는 유클리디안 거리와 동일)
+     - d(x~i~,x~j~) = (시그마|X~ki~ - X~kj~|^m^)^1/m^
+```{r}
+# 2. Minkowski distance
+D2<- dist(m1, method="minkowski", p=3) 
+D2
+```
+
+  3. 마할라노비스 거리(Mahalanobis distance)
+     - 변수 간의 상관관계가 존재할 때 사용
+     - d(x~i~,x~j~) = $\sqrt{(x~i~ - x~j~)^T^S^-1^(x~i~ - x~j~)}$
+
+
+### 상관계수를 유사성 척도로 사용
+- 상관관계가 클수록 두 객체의 유사성이 크다고 추정
+```{r}
+# 3. correlation coefficient
+m2 <- matrix(
+  c(20, 6, 14, 30, 7, 15, 46, 4, 2),
+  nrow = 3,
+  ncol = 3,
+  byrow = TRUE,
+  dimnames = list(
+     c("obs1", "obs2", "obs3"),
+     c("age", "exp", "time")))
+m2
+```
+
+- 상관계쑤 측정
+```{r}
+# correlation between Obs1~Obs2
+cor(m2[1,],m2[2,]) 
+# correlation between Obs1~Obs3
+cor(m2[1,],m2[3,])
+```
+- 결과 해석
+  - 객체 1(obs1)과 객체 2의 유사성이, 객체 1과 객체 3 간 유사성보다 큼(0.9674 > 0.7984)
+
+### 퀴즈
+```{r}
+# 2. Minkowski distance
+D4<- dist(m1, method="manhattan") 
+D4
+```
+
+## 2. 계층적 군집분석
+### 계측적 군집분석
+  - 사전에 군집 수 k를 정하지 않고 단계적으로 군집 형성
+    - 유사한 객체를 군집으로 묶고, 그 군집을 기반으로 유사한 군집을 새로운 군집으로 묶어가면서 군집을 계층적으로 구성
+    - 단일연결법(single linkage method)
+    - 완전연결법(complete linkage method)
+    - 평균연결법(average linkage method)
+    - 중심연결법(centroid linkage method)  
+
+**1. 단일연결법**
+  - 군집 i와 군집 j의 유사성 척도로 두 군집의 모든 객체 쌍의 거리 중 **가장 가까운 거리**를 사용
+    - 객체 쌍이 가장 짧은 거리가 유사할수록 두 군집이 더 유사하다고 평가
+  
+**2. 완전연결법**
+  - 두 군집의 모든 객체 쌍의 거리 중 **가장 먼 거리**를 사용
+
+**3. 평균연결법**
+  - 두 군집의 모든 객체 쌍의 **평균 거리**를 사용
+
+**4. 중심연결법**
+- 두 군집의 **중심 좌표** (무게 중심, 객체가 아닌 위치)
+
+### 완전연결법 vs 평균연결법
+- 데이터 설명
+  - 1833년 영국 Lancashire 방직 공장 임금
+  - DAAG package built in 데이터
+  - 총 51개 객체
+  - 객체별 5개 속성
+    - 나이(age), 남성 근로자 수(mnum), 남성 근로자 평균 임금(mwage), 여성 근로자 수(fnum), 여성 근로자 평균 임금(fwage)
+
+
+```{r}
+# needs "lattice", "DAAG" package for loading dataset
+install.packages("lattice")
+install.packages("DAAG")
+library(lattice)
+library(DAAG)
+```
+
+- 데이터 불러오기(DAAG 패키지 안에 든 데이터)
+```{r}
+# read csv file
+wages1833<-read.csv(file="data/week13_2/wages1833.csv")
+head(wages1833)
+
+# remove observations with the missing values
+dat1<-wages1833
+dat1<-na.omit(dat1)
+str(dat1)
+```
+
+- 계층적 군집분석: hclust(거리계산결과, method=" ")
+```{r}
+# calculate distance between each nodes
+dist_data<-dist(dat1)
+```
+
+1. 완전연결법 적용 결과(거리 계산은 유클리디안)
+```{r}
+# prepare hierarchical cluster
+# complete linkage method
+hc_a <- hclust(dist_data, method = "complete")
+plot(hc_a, hang = -1, cex=0.7, main = "complete")
+```
+- 설명
+  - single: 단일, complete: 완전, average: 평균, centriod: 중심  
+
+2. 평균연결법 적용 결과(거리 계산은 유클리디안)
+```{r}
+# average linkage method
+# check how different from complete method
+hc_c <- hclust(dist_data, method = "average")
+plot(hc_c, hang = -1, cex=0.7, main = "average")
+```
+
+
+### 와드 연결방법
+- Ward's method
+- 많이 사용됨  
+
+3. 와드방법을 적용한 결과(거리계산은 유클리디안)
+```{r}
+# Ward's method
+hc_c <- hclust(dist_data, method = "ward.D2")
+plot(hc_c, hang = -1, cex=0.7, main = "Ward's method")
+```
+
+
+## 3. 비계층적 군집분석
+### 비계층적 군집분석
+- 사전에 군집 수 k를 정한 후, 각 객체를 k개 중 하나의 군집에 배정
+  - 비계층적 군집(Non-hierarchical Clustering)
+    - K-means 알고리즘
+    - K-medoids 알고리즘
+      - PAM(Partitioning Around Medoids)
+      - CLARA(Clustering LARge Applications)
+      
+### k-means 군집분석
+- 비계층적 군집분석 중 가장 널리 사용
+  - k개 군집의 중심좌표를 고려하여 각 객체를 가장 가까운 군집에 배정하는 것을 반복
+    - 0단계. 초기 객체 선정: k개 객체 좌표를 초기 군집 중심좌표로 선정  
+    - 1단계. 객체 군집 배정: 각 객체와 k개 중심좌표와의 거리 산출 후, 가장 가까운 군집에 객체 배정  
+    - 2단계. 군집 중심좌표 산출: 새로운 군집의 중심좌표 산출  
+    - 3단계. 수렴 조건 점검: 새로 산출된 중심 좌표값과 이전 좌표값을 비교하여 수렴 조건 내에 들면 종료, 아니면 단계 1 반복
+    
+### k-means 군집분석 예제
+- 데이터 불러오기
+```{r}
+# read csv file
+wages1833<-read.csv(file="data/week13_3/wages1833.csv")
+head(wages1833)
+
+# preprocessing
+dat1<-wages1833
+dat1<-na.omit(dat1)
+head(dat1, n=5)
+```
+
+- 군집수 k결정
+  - 최적 군집수에 관한 시각화
+  - 최적값은 "silhouette(실루엣)", "gap_stat", "wss(그룹내합계제곱)"으로 산출
+  - 그래프가 완만해지는 지점을 k의 값으로 추정
+```{r}
+# to choose the optimal k
+# install.packages("factoextra")
+library(factoextra)
+fviz_nbclust(dat1, kmeans, method = "wss")
+```
+- 결과 해석
+  - 최적 k = 3  
+  
+- k-means (k=3)
+```{r}
+# compute kmeans
+set.seed(123,sample.kind="Rounding")
+km <- kmeans(dat1, 3, nstart = 25) # random set의 수 (nstart)
+km
+
+# visualize
+fviz_cluster(km, data = dat1, 
+             ellipse.type="convex", # Convex 모양으로 구역 표시
+             repel = TRUE) # repel을 통해 관측치 표기
+```
+
+### K-medoids 군집분석
+- K-medoids 군집분석은 각 군집의 대표 객체(medoid)를 고려
+  - 군집의 대표 객체란, 군집 내 다른 객체들과의 거리가 최소가 되는 객체
+  - K-medoids 군집분석은 객체를 k개의 군집으로 구분하는데, 객체와 속하는 군집의 대표 객체와의 거리 총합을 최소로 하는 방법
+    - **PAM(Partitioning Around Medoids) 알고리즘**: 모든 객체에 관해 대표 객체가 변했을 때 발생하는 거리 총합의 변화를 계산, 데이터 수가 많아질수록 연산량이 크게 증가
+    - **CLARA 알고리즘**: 적절한 수의 객체를 샘플링한 후, PAM 알고리즘을 적용해 대표 객체 선정, 샘플링을 여러 번 한 후 가장 좋은 결과를 선택, 편향된 샘플링은 잘못된 결괏값을 도출할 수 있음  
+
+- PAM 알고리즘 살펴보기
+```{r}
+# compute PAM
+library("cluster")
+pam_out <- pam(dat1, 3)
+pam_out
+
+# freq of each cluster
+table(pam_out$clustering)
+
+# visualize
+fviz_cluster(pam_out, data = dat1,
+             ellipse.type="convex", 
+             repel = TRUE)
+
+```
