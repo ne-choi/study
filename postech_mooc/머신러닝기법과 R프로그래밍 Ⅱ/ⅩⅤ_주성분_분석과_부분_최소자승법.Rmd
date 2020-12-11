@@ -19,3 +19,357 @@ knitr::opts_chunk$set(echo = TRUE)
 - POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅱ 과정입니다.  
 
 # ⅩⅤ. 주성분 분석과 부분 최소자승법
+## 1. 주성분분석
+### 주성분분석(PCA)
+- 주성분분석(Principle Component Analysis)
+  - 다변량 분석기법
+  - '주성분'이라고 불리는 선형조합으로 표현하는 기법
+  - 주성분은 공분산(X^T^X)로부터 eigenvector와 eigenvalue를 도출하여 계산됨
+
+- 주성분 간의 수직 관계
+  - 1st 주성분(PC1): 독립변수들의 변동(분산)을 가장 많이 설명하는 성분
+  - 2nd 주성분(PC2): PC1과 수직인 주성분(1st 주성분이 설명하지 못하는 변동을 두 번째로 설명하는 성분)
+  
+
+- iris 데이터(4개변수)의 주성분 도출: 차원축소&예측력 향상 목적
+```{r}
+iris<-read.csv("data/week15_1/iris.csv")
+iris$Species<-as.factor(iris$Species)
+attach(iris)
+head(iris)
+```
+
+- 독립변수 간 상관관계 확인
+```{r}
+# Check correlation
+cor(iris[1:4])
+```
+- 결과 확인
+  - 0.96, 0.87 등 높은 상관계수가 관찰됨
+
+### 주성분분석을 위한 함수
+- prcomp(독립변수들, center= , scale= )
+  - 옵션을 주지 않으면 center=T, scale=F
+  - center=T, scale=T는 변수들의 평균을 빼고 편차로 나누어 표준화한다는 의미
+```{r}
+# 1.PCA(center=T->mean=0, scale.=T->variance=1)
+ir.pca<-prcomp(iris[,1:4],center=T,scale.=T)
+ir.pca
+summary(ir.pca)
+```
+- 결과 해석
+  - PC1 = 0.5211xSepal.Length - 0.2693xSepal.Width + 0.5804xPetal.Length + 0.5649xPetal.Width
+  - summary의 Proportion of Variance
+    - 전체 분산 중 각 주성분이 설명하는 비율
+    - PC1: 전체 분산의 72.96%를 설명
+    - PC2: 22.85%, PC3: 3.67%, PC4: 0.5%
+    → 누적설명비율을 보면, PC1과 PC2 두 성분으로 전체 분산의 95.81%를 설명
+
+### 최적 주성분 수 찾기
+- scree plot을 그려보고 급격히 떨어지기 전까지의 PC를 선택
+```{r}
+# 2.scree plot : to choose the number of components
+plot(ir.pca,type="l")
+```
+- 결과 해석
+  - 3rd PC에서 설명력이 급격하게 떨어짐
+  - 기울기가 꺾이는 PC3을 elbow point라고 부름
+  → PC1, PC2까지 사용하는 것을 추천
+ 
+ 
+- BAR Chart로 보기: screeplt(pca 결과)
+```{r}
+# either way to draw scree plot
+screeplot(ir.pca)
+```
+
+- PC계산 = X_data(n* p) % * % PCA_weight(p*p)
+```{r}
+# %*%: 행렬의 계산
+# 3. Calculate component = x_data%*% PCA_weight
+PRC<-as.matrix(iris[,1:4])%*%ir.pca$rotation
+head(PRC)
+```
+- 결과 해석
+  - PRC는 n*p행렬, 여기서는 150x4
+  - PC1 = 0.5211xSepal.Length - 0.2693xSepal.Width + 0.5804xPetal.Length + 0.5649xPetal.Width
+
+
+### 주성분을 이용한 분류모형
+- iris data → iris.pc data 구성
+```{r}
+# 4. classification using principal components
+# make data with components
+iris.pc<-cbind(as.data.frame(PRC), Species)
+iris.pc$Species<-as.factor(iris.pc$Species)
+head(iris.pc)
+```
+
+- 주성분을 이용한 서포트벡터머신 수행
+  - 주성분이 input
+```{r}
+# 5. support vector machine
+# install.packages("e1071")
+library (e1071)
+
+# classify all data using PC1-PC4 using support vector machine
+m1<- svm(Species ~., data = iris.pc, kernel="linear")
+# m2<- svm(Species ~PC1+PC2, data = iris.pc, kernel="linear")
+summary(m1)
+```
+
+- 서포트벡터머신 결과 vs PCA 결과
+```{r}
+# predict class for all data 
+x<-iris.pc[, -5]
+pred <- predict(m1, x)
+# check accuracy between true class and predicted class
+y<-iris.pc[,5]
+table(pred, y)
+```
+- 결과 해석
+  - 주성분을 이용한 분류의 오분류율: 2/150 = 0.013(1.33%)
+  → 이 데이터에서는 SVM(오분류율: 4/150 = 2.66%)보다 PCA 분류가 오분류율이 적다
+  
+  
+## 2. 주성분 회귀분석
+### 주성분회귀
+- 주성분회귀(Principle Component Regression)
+  - 독립변수 차원을 줄이기 위해 사용 가능, 주성분을 이용해 타겟변수(Y)의 설명력(예측력)을 높일 수 있음
+    - Y = b~0~ + b~1~PC~1~ + b~2~PC~2~
+  
+  - 독립변수의 전체분산을 가장 잘 설명하는 component를 사용해 독립변수 간 다중공선성 문제를 해결할 수 있음
+  
+  - 주요 component score가 Y의 예측력을 보장하지는 않음
+    - 주요 component score는 X의 분산을 가장 잘 설명하는 방향의 축을 기준으로 변환된 것으로 Y와의 관계에는 상관성이 없을 수도 있음
+
+- **주성분 회귀 분석 순서**
+  1. 데이터에 다중공선성이 있는지 체크
+  2. 주성분 분석을 위한 데이터 전처리(mean-centering or scaling)
+  3. 주성분분석
+  4. 주성분 개수 결정
+  5. 주성분으로 회귀분석모형 수행  
+  
+- **주성분회귀분석**
+  - 여러 변수를 주성분이라는 새로운 변수로 축소하여 회귀모형 수행
+  - 다중공선성 문제 해결 가능
+  - 적절한 주성분을 사용해 회귀모형 구현 필요
+  - 주성분 순서대로 Y변수에 대한 설명력이 높은 것은 아님  
+  
+- wine 데이터: 독립변수 9개, 타겟변수 Aroma rating
+```{r}
+wine<-read.csv("data/week15_2/wine_aroma.csv")
+attach(wine)
+head(wine)
+
+# Check correlation
+cor(wine[1:9])
+```
+
+- 주성분분석
+```{r}
+# 1. PCA(center=T → mean=0, scale.=T → variance=1)
+wi.pca<-prcomp(wine[1:9], center=T, scale.=F)
+wi.pca
+summary(wi.pca)
+```
+
+- 최적 주성분 수 찾기
+```{r}
+# 2.scree plot : to choose the number of components
+plot(wi.pca,type="l")
+```
+- 결과 해석
+  - 2rd PC에서 설명력이 급격히 떨어짐
+  → 이 경우 PC1만 사용해도 됨
+  
+- PC 계산
+```{r}
+# 3. calculate component=x_data%*% PCA weight
+PRC<-as.matrix(wine[,1:9])%*%wi.pca$rotation
+head(PRC)
+```
+
+- wine.pc data 구성
+```{r}
+# 4. Principal component regression
+# make data with components
+wine.pc<-cbind(as.data.frame(PRC),Aroma)
+head(wine.pc)
+```
+
+
+### 주성분을 이용한 회귀모형
+- 다중회귀모형과 주성분회귀분석
+  - 다중회귀모형
+    - Y = β~0~ + β~1~X~1~ + β~2~X~2~ + ... + β~K~X~K~
+  
+  - 주성분회귀모형
+    - Y = β~0~ + β~1~PC~1~ + β~2~PC~2~ + ...
+    - 타겟값(Y)를 가장 잘 예측하는 선형모형
+
+
+- 주성분을 이용한 회귀분석모형 1(WINE DATA: PC1-PC4 포함)
+```{r}
+# regression(PC1-PC4)
+fit1<-lm(Aroma~PC1+PC2+PC3+PC4, data=wine.pc)
+fit1
+summary(fit1)
+```
+- 결과 해석
+  - PC3의 p-value는 0.7로 매우 높음 → 별로 중요하지 않음
+  - R^2^= .494
+
+
+- 주성분을 이용한 회귀분석모형 2(WINE DATA: PC1-PC4 포함)
+```{r}
+# regression(PC1-PC9)
+fit2<-lm(Aroma~., data=wine.pc)
+fit2
+summary(fit2)
+```
+- 결과 해석
+  - R^2^= .741
+  
+
+- 일반 회귀분석모형(wine data: raw data)
+```{r}
+# Multiple regression with the raw data
+fit3<-lm(Aroma ~., data=wine)
+summary(fit3)
+```
+
+- 잔차에 대한 가정 확인
+```{r}
+# residual diagnostic plot 
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page 
+plot(fit3)
+```
+
+
+## 3. Partial Least Square Regression
+### 최소자승회귀법(PLS)
+- 주성분분석의 component vs 최소자승회귀법의 component
+  - PLS는 공정변수의 변동을 설명하는 벡터 t를 구하는 데 X 정보만을 이용하지 않고 타겟변수 y 정보를 동시에 고려하여 도출
+    - t~1~(PLS): Y쪽으로 Shift
+  - Chemometrics, Marketing 분야의 고차원데이터, 독립변수 간 상관성 높은 데이터에 적용
+
+
+- PLS 수행을 위한 패키지 설치
+```{r}
+# install package for Partial Least Square 
+#install.packages('pls')
+library(pls)
+```
+
+- 사용 데이터 설명
+  - 가솔린 데이터(근적외선 흡광고, 60개의 가솔린 표본)
+    - 독립변수 차원:401
+    - 타겟변수(Y): 옥탄가(octane numbers)
+
+```{r}
+data(gasoline)
+#help("gasoline")
+attach(gasoline)
+```
+
+- 데이터 요약 설명(타겟변수 Y: 옥탄가)
+```{r}
+# descriptive statistics
+par(mfrow=c(1,1))
+hist(octane, col=3)
+summary(octane)
+```
+- 결과 해석
+  - 옥탄가의 최솟값 83.4, 최댓값 89.6
+  - 히스토그램은 옥탄가의 분포를 보여줌
+
+
+- 훈련데이터와 검증데이터(50개/10개)
+```{r}
+# train and test set
+gasTrain <- gasoline[1:50, ]
+gasTest <- gasoline[51:60, ]
+
+# 1.check how many principal components
+ga.pca<-prcomp(gasoline$NIR,center=T,scale.=F)
+ga.pca
+summary(ga.pca)
+plot(ga.pca,type="l")
+```
+- 결과 해석
+  - 최소 5개 정도 사용하기
+
+- PLS함수: plsr
+  - plsr(타겟변수~독립변수, ncomp= , data= )
+  - 옵션사항
+    - ncomp: 잠재변수 수
+    - validation=c("none", "CV", "LOO") (CV: cross-validaton, LOO: leave-one-out)
+```{r}
+# pls model by training set (find LV by leave-one-out) 
+# 1. start with 10 component PLS model
+gas1 <- plsr(octane ~ NIR, ncomp = 10, data = gasTrain, validation = "LOO")
+# NIR에 401차원의 값이 들어있음, ncomp: 잠재변수의 수
+
+summary(gas1)
+```
+- 결과 해석
+  - CV
+    - 1개의 잠재변수 → 10개의 잠재변수
+    - 1개의 잠재변수: 평균오차 1.357, 2개의 잠재변수: 평균오차 0.297 ...
+  - TRAINING
+    - X들의 분산설명비율: 2개의 LV로 85.58%
+    - Y값의 변동분 설명비율: 96.85% 설명
+
+
+- PLS 모형에서의 최적 잠재변수 수
+```{r}
+# 2. to choose the number of components
+plot(RMSEP(gas1), legendpos = "topright", pch=46, cex=1.0, main="Cross-validation for # of LV")
+# for gasoline data, # of LV=2
+```
+- 결과 해석
+  - 최적 잠재변수의 수는 RMSEP가 최저이고 변화가 없는 지점에서 결정
+    - 2개의 components (LV)를 추천
+    - 예측모형 평가척도: 평균오차
+
+
+- 최적 PLS 모형의 실제값과 예측값 산점도
+```{r}
+# 3. Display the PLS model with LV=2
+# scatterplot with true and predicted
+plot(gas1, ncomp = 2, asp = 1, line = TRUE, cex=1.5,main="Measured vs Predicted", xlab="Measured" )
+```
+
+- 잠재변수 수에 따른 전체분산의(독립변수들) 설명 정도
+```{r}
+# Check explained variances proportion for X
+explvar(gas1)
+```
+- 결과 해석
+  - 2개의 잠재변수가 전체 분산의 85.58% 설명
+
+
+- 검증데이터의 RMSEP 계산
+```{r}
+# 4. predicted Y for test data
+ypred<-predict(gas1, ncomp = 2, newdata = gasTest)
+
+y<-gasoline$octane[51:60]
+
+# check : RMSEP for test data
+sqrt((sum(y-ypred)^2)/10)
+```
+```{r}
+# 5. compare with the one from #4 : RMSEP for test data
+RMSEP(gas1, newdata = gasTest)
+```
+
+
+- PLS 예측값 내보내기
+```{r}
+# output of y and predicted y
+out1<-cbind(y, ypred)
+# data exporting
+write.csv(out1,file="out1.csv", row.names = FALSE)
+```
