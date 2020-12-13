@@ -1,0 +1,222 @@
+---
+title: "ⅩⅥ. 딥러닝과 텍스트 마이닝"
+author: "ne_choi"
+date: '2020 12 11 '
+output:
+  html_document:
+   toc: true
+   toc_float:
+     collapsed: false
+     smooth_scroll: true
+   theme: united
+   highlight: textmate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅱ 과정입니다.  
+
+# ⅩⅥ. 딥러닝과 텍스트 마이닝
+## 1. Neural Networks
+### Concepts
+- 인공신경망은 기계학습(Machine Learning)의 통계적 학습 알고리즘 중 하나
+- 컴퓨터 비전, 자연어 처리, 음석 인식 등 영역에서 사용
+- AI ⊂ Machine Learning ⊂ Neural Network  
+ 
+
+- **신경망 모델(Neural Network)**
+  - Perceptron을 한 단위로 하는 네트워크를 구축하여, 인간의 신경세포(Neuron)와 유사한 기능을 하도록 제안
+
+### Perceptron - Single Layer
+- 하나의 Perceptron은 단순히 다수의 입력과 가중치의 선형 결합을 계산하는 역할을 수행
+- Activation 함수에 따라 선형결합으로 생성되는 출력값이 결정
+  - Binary Threshold
+  - Sigmoid
+  - ReLU(Rectified Linear Unit)
+  - tanh
+
+### Multi-layer perceptron
+- Perceptron으로 구성된 Single Layer들이 Multi-layer를 만듦
+  - Input layer와 Output layer 사이에는 Hidden layer가 존재하여 Non-linear transformation 수행
+
+- Output layer에서 Softmax 함수를 통해 가장 큰 값을 손쉽게 알 수 있음
+  - Exponential 함수로 항상 양수 결과치가 도출되고 이를 통해 확률값을 도출
+
+### Neural Network 수행
+- mxnet 패키지는 R4.0 버전 이후부터 실행 불가
+- R 3.6.2버전 설치해서 실행 필요
+```{r}
+# require mxnet
+install.packages("https://github.com/jeremiedb/mxnet_winbin/raw/master/mxnet.zip",repos = NULL)
+library(mxnet)
+
+# If you have Error message "no package called XML or DiagrmmeR", then install
+install.packages("XML")
+install.packages("DiagrammeR")
+#library(XML)
+#library(DiagrammeR)
+
+#devtools::install_github("rich-iannone/DiagrammeR")
+
+#install.packages('devtools')
+#library(devtools)
+```
+
+- 데이터 불러오기
+```{r}
+# read csv file
+iris<-read.csv("data/week16_1/iris.csv")
+attach(iris)
+
+# change to numeric from character variable : Species
+iris[,5] = as.numeric(iris[,5])-1
+table(Species)
+# check the data
+head(iris, n=10)
+```
+
+- 학습데이터와 검증데이터
+```{r}
+# split train & test dataset
+# training (n=100)/ test data(n=50) 
+set.seed(1000,sample.kind="Rounding")
+N<-nrow(iris)
+tr.idx<-sample(1:N, size=N*2/3, replace=FALSE)
+
+# split train data and test data
+train<-data.matrix(iris[tr.idx,])
+test<-data.matrix(iris[-tr.idx,])
+
+# feature & Labels
+# 객체별 Feature와 Label로 분리
+# Label은 5번째 열에 위치
+train_feature<-train[,-5]
+trainLabels<-train[,5]
+test_feature<-test[,-5]
+testLabels <-test[,5]
+```
+
+- Hidden Layer 구성
+```{r}
+# Build nn model
+# first layers
+require(mxnet)
+my_input = mx.symbol.Variable('data')
+fc1 = mx.symbol.FullyConnected(data=my_input, num.hidden = 200, name='fc1') # 200개의 뉴런 형성
+relu1 = mx.symbol.Activation(data=fc1, act.type='relu', name='relu1')
+```
+
+```{r}
+# second layers
+fc2 = mx.symbol.FullyConnected(data=relu1, num.hidden = 100, name='fc2') # 100개의 뉴런 형성
+relu2 = mx.symbol.Activation(data=fc2, act.type='relu', name='relu2')
+```
+
+- Output Layer 구성
+```{r}
+# third layers
+fc3 = mx.symbol.FullyConnected(data=relu2, num.hidden = 3, name='fc3') # 3개로 분류(0,1,2)해야 하므로 3개의 Output 뉴런 생성
+
+# softmax
+softmax = mx.symbol.SoftmaxOutput(data=fc3, name='sm')
+# sofrmax 결과를 통해 가장 큰 값 선택
+```
+
+- 모델 학습
+```{r}
+# training
+mx.set.seed(123, sample.kind="Rounding")
+device <- mx.cpu()
+model <- mx.model.FeedForward.create(softmax,
+                                     optimizer = "sgd", # Stochastic Gradient Descent
+                                     array.batch.size=10, # 총 10개 그룹
+                                     num.round = 500, learning.rate=0.1,
+                                     X=train_feature, y=trainLabels, ctx=device,
+                                     eval.metric = mx.metric.accuracy,
+                                     array.layout = "rowmajor",
+                                     epoch.end.callback=mx.callback.log.train.metric(100))
+graph.viz(model$symbol)
+```
+
+- 모델 테스트
+```{r}
+# testing
+predict_probs <- predict(model, test_feature, array.layout = "rowmajor")
+predicted_labels <- max.col(t(predict_probs)) - 1
+table(testLabels, predicted_labels)
+sum(diag(table(testLabels, predicted_labels)))/length(predicted_labels)
+```
+
+
+## 2. Convolutional Neural Networks
+### Features
+- 신경망 모델(Neural Net)
+  - 입력값으로 객체의 특성(feature)을 받고, 출력된 값과 실제 값을 비교하는 과정을 거침(지도학습; Supervised Learning)
+  - 하나의 이미지는 수많은 픽셀들이 모여 형성하며, 특정 색에 해당하는 특정 값을 가짐
+    - 이미지의 모든 픽셀값을 입력값으로 갖는 신경망 모델을 만들 수 있음
+
+### Intuitions
+- 고해상도 이미지의 경우 특성 feature 수가 너무 많아짐
+  - 모든 뉴런이 모든 픽셀과 연결(fully connected)되어 있을 경우, 모델 학습에 큰 어려움이 있음
+  - 각 뉴런들이 이미지의 일부 특성 feature에만 연결될 수 있는 구조가 더 더 적합함
+  - Convolution operation을 통해 구현 가능
+
+- Convolutional Neural Network
+  - Feed forward Network: x~i~^n^을 구함
+    - Convilution
+    - Max Pooling
+    - Activation function
+  - Backpropagation: Error 최소화
+
+### Concolution Operation
+- 임의의 값으로 설정된 filter가 전체 이미지 중 일부의 선형 결합을 계산
+  - 각각 결괏값은 하나의 Neuron이 되며, filter는 해당 Neuron의 가중치과 됨
+  - 결괏값의 사이즈를 정하기 위해서는 Stride, Padding, Depth 고려 필요
+    - Stride: filter를 몇 칸 이동할지 결정
+    - Padding: input 주변에 0으로 padding을 삽입
+    - Depth number of filter: 3차원상의 neuron의 깊이를 결정
+
+### Pooling
+- Convolutional Layer 사이에 Pooling Layer를 넣는 방법이 많이 사용됨
+  - 추출한 이미지에서 지역적인 부분 특징만 뽑아 다음 layer로 넘겨줌
+  - 이를 통해 ① 가중치의 수를 줄일 수 있으며, ② 과적합(overfitting)을 방지할 수 있음
+  - 대표적으로 가장 큰 값(Local Maxima)만을 뽑아내는 Max Pooling이 많이 사용됨
+
+### MNIST
+- Modified National Institute of Standards and Technology
+- 손으로 쓴 숫자를 인식하기 위해 사용되는 데이터
+  - 28x28 pixel(784)의 흑백 이미지(0-255)들이 있음
+  - 0부터 9까지 총 70,000개의 손글씨 이미지가 있음
+
+### CNN in R
+- 신경망 모델 생성을 위한 패키지: mxnet
+```{r}
+# Load MNIST mn1
+# 28*28, 1 channel images
+mn1 <- read.csv("mini_mnist.csv")
+set.seed(123,sample.kind="Rounding")
+N<-nrow(mn1)
+tr.idx<-sample(1:N, size=N*2/3, replace=FALSE)
+
+# split train data and test data
+train_data<-data.matrix(mn1[tr.idx,])
+test_data<-data.matrix(mn1[-tr.idx,])
+
+# 0과 1 사이에 분포하도록 Nomalized(0: 검정색 / 255: 흰색)
+test<-t(test_data[,-1]/255)
+features<-t(train_data[,-1]/255)
+labels<-train_data[,1]
+
+# data preprocession
+features_array <- features
+# 입력 데이터의 차원을 설정(픽셀*객체 개수)
+# ncol(features): 학습 데이터 수(866)
+dim(features_array) <- c(28,28,1,ncol(features))
+test_array <- test
+dim(test_array) <- c(28,28,1,ncol(test))
+
+ncol(features)
+table(labels)
+```
