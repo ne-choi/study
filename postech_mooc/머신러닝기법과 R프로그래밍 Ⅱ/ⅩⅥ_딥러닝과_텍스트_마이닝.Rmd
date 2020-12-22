@@ -220,3 +220,197 @@ dim(test_array) <- c(28,28,1,ncol(test))
 ncol(features)
 table(labels)
 ```
+
+- Convolutional Layer 구성
+```{r}
+# Build cnn model
+# first conv layers
+my_input = mx.symbol.Variable('data')
+conv1 = mx.symbol.Convolution(data=my_input, kernel=c(4,4), stride=c(2,2), pad=c(1,1), num.filter = 20, name='conv1')
+relu1 = mx.symbol.Activation(data=conv1, act.type='relu', name='relu1')
+mp1 = mx.symbol.Pooling(data=relu1, kernel=c(2,2), stride=c(2,2), pool.type='max', name='pool1')
+
+# second conv layers
+conv2 = mx.symbol.Convolution(data=mp1, kernel=c(3,3), stride=c(2,2), pad=c(1,1), num.filter = 40, name='conv2')
+relu2 = mx.symbol.Activation(data=conv2, act.type='relu', name='relu2')
+mp2 = mx.symbol.Pooling(data=relu2, kernel=c(2,2), stride=c(2,2), pool.type='max', name='pool2')
+
+# fully connected
+fc1 = mx.symbol.FullyConnected(data=mp2, num.hidden = 1000, name='fc1')
+relu3 = mx.symbol.Activation(data=fc1, act.type='relu', name='relu3')
+fc2 = mx.symbol.FullyConnected(data=relu3, num.hidden = 3, name='fc2')
+
+# softmax
+sm = mx.symbol.SoftmaxOutput(data=fc2, name='sm')
+
+# training
+mx.set.seed(100,sample.kind="Rounding")
+device <- mx.cpu()
+model <- mx.model.FeedForward.create(symbol=sm, 
+                                     optimizer = "sgd",
+                                     array.batch.size=30,
+                                     num.round = 70, learning.rate=0.1,
+                                     X=features_array, y=labels, ctx=device,
+                                     eval.metric = mx.metric.accuracy,
+                                     epoch.end.callback=mx.callback.log.train.metric(100))
+graph.viz(model$symbol)
+
+# test
+predict_probs <- predict(model, test_array)
+predicted_labels <- max.col(t(predict_probs)) - 1
+table(test_data[, 1], predicted_labels)
+sum(diag(table(test_data[, 1], predicted_labels)))/length(predicted_labels)
+```
+
+- 네트워크 시각화 함수: graph.viz(model$symbol)
+```{r}
+graph.viz(model$symbol)
+```
+
+
+## 3. 텍스트 마이닝
+### 텍스트 마이닝이란?
+- 텍스트마이닝(Text mining)
+  - 웹페이지, 이메일, 소셜네트워크 기록 등 전자문서 파일로부터 특정 연관성(동시적으로 빈도 높은 단어 추출)을 분석하는 방법
+  - 다양한 방식의 알고리즘을 이용해 대용량의 텍스트로부터 트렌드와 관심어를 찾아내는 기법으로 사용
+
+### 텍스트 마이닝 필요 패키지
+- Natural language processing
+  - install.packages('NLP')
+- text mining package
+  - install.packages('tm')
+- visualizing
+  - install.packages('wordcloud')
+- color displaying
+  - install.packages('RColorBrewer')
+- Korean processing
+  - install.packages('KoNLP')
+- import twitter data
+  - install.packages('twitteR')
+
+```{r}
+# set library (set in order)
+library(NLP)
+library(tm)
+library(RColorBrewer)
+library(wordcloud)
+```
+
+- 사용 데이터: tm에 포함된 crude
+```{r}
+# 20 new articles from Reuter- 21578 data set
+data(crude)
+# To know abour crude data
+help(crude)
+```
+
+### 텍스트 마이닝- 함수
+
+함수|설명 및 예제코드
+|---|---|
+str(x[[1]])|데이터 구조 정보(첫 번째 파일 구조) / str(crude[[1]])
+content(x[[1]])|문서 내용(첫 번째 분서 내용)
+meta(X)|메타정보(x에 기록된 저자, 날짜, id 등 정보) / meta(ctude[[1]])
+inspect(X)|코퍼스, 텍스트, 문서행렬 등 정보 제공 / data(crude), inspect(crude[1:3]), inspect(crude[[1]]), tdm <- TermDocumentMatrix(crude), inspect(tdm)
+lapply(x, content)|파일 내용을 보여줌 / lapply(crude, content)
+
+```{r}
+# information about the first file in crude data
+str(crude[[1]])
+content(crude[[1]])
+meta(crude[[1]])
+lapply(crude, content)
+```
+
+```{r}
+# inspect function
+inspect(crude[1:3]) 
+inspect(crude[[1]]) 
+```
+
+### 텍스트 마이닝- 전처리 함수
+
+함수|설명
+|---|---|
+tm_map(x, removePunctuation)|문장부호 제거(. , "" '')
+tm_map(x, stripWhitespace)|공백문자 제거
+tm_map(x, removeNumbers)|숫자 제거
+
+### 텍스트 마이닝 실습
+- 문장부호 없애기: tm_map(x, removePunctuation)
+```{r}
+# 1. remove punctuation in documnet
+crude<-tm_map(crude, removePunctuation)
+content(crude[[1]])
+```
+
+
+- 숫자 제거: tm_map(x, removeNumbers)
+```{r}
+# 2. remove numbers
+crude<-tm_map(crude, removeNumbers)
+content(crude[[1]])
+```
+
+- 스톱워즈 제거: 언어별로 다르며 별도 지정 가능
+```{r}
+# 3. remove stopwords
+crude<-tm_map(crude, function(x) removeWords(x,stopwords()))
+content(crude[[1]])
+```
+
+- 참고: 스톱워즈 리스트
+```{r}
+stopwords() #stopwords("en") 174개, stopwords("SMART")" 517개
+```
+
+- 문서 행렬 구성: TermDocumentMatrix(문서이름)
+```{r}
+# 4. contruct term-doucument matrix 
+tdm<-TermDocumentMatrix(crude)
+inspect(tdm)
+```
+- 결과 해석
+  - DOCS 144: crude 문서 번호 144에 나오는 단어들의 빈도
+  
+- 문서 행렬을 행렬로 변환
+```{r}
+# 5. read tdm as a matrix
+m<-as.matrix(tdm)
+head(m)
+```
+
+- 단어의 빈도 순서로 정렬
+```{r}
+# 6. sorting in high frequency to low frequency 
+v<-sort(rowSums(m), decreasing=TRUE)
+v[1:10] # 가장 높은 것부터 [1:10]번까지
+```
+
+- 텍스트마이닝 수행
+  - 단어 이름과 빈도를 결합한 행렬을 데이터 프레임으로 저장
+  - crude 관련 기사 파일로부터 962개 단어를 분류해 빈도 계산
+```{r}
+# 7. match with freq and word names
+d<-data.frame(word=names(v), freq=v)
+head(d) #가장 빈도 높은 단어 6개
+d[957:962, ] #가장 빈도 낮은 단어 6개
+```
+
+- 텍스트마이닝 결과 그리기
+```{r}
+# 7. plot a word cloud
+wordcloud(d$word, d$freq)
+# help(wordcloud)
+```
+
+```{r}
+# 7-1. Now lets try it with frequent words plotted first
+# par(mfrow = c(1, 1),mar=c(1,2,3,1))
+wordcloud(d$word,d$freq,c(8,.3),2,,FALSE,.1)
+
+# 7-2. color plot with frequent words plotted first
+pal <- brewer.pal(9,"BuGn")
+pal <- pal[-(1:4)]
+wordcloud(d$word,d$freq,c(8,.3),2,,FALSE,,.15,pal)
+```
