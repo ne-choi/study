@@ -12,10 +12,6 @@ output:
    highlight: textmate
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 - POSTECH에서 제공하는 [MOOC](https://pabi.smartlearn.io/) 중, 머신러닝기법과 R프로그래밍 Ⅰ 과정입니다.  
 
 # XI. 서포트벡터머신
